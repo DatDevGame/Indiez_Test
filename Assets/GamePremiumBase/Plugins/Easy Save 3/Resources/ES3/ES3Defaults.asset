@@ -31,7 +31,6 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp
-    - Cinemachine
     - Coffee.UIParticle
     - KinoBloom.Runtime
     - Lofelt.NiceVibrations
