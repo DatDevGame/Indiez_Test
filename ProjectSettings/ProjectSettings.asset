@@ -810,7 +810,25 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    EmbeddedLinux: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    GameCoreScarlett: DOTWEEN
+    GameCoreXboxOne: DOTWEEN;TextMeshPro
+    LinuxHeadlessSimulation: UNITY_VISUAL_SCRIPTING;DOTWEEN
+    Nintendo Switch: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    PS4: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    PS5: DOTWEEN;TextMeshPro
+    QNX: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    Server: UNITY_VISUAL_SCRIPTING
+    Stadia: DOTWEEN;TextMeshPro
+    Standalone: UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;DOTWEEN;TextMeshPro
+    VisionOS: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    WebGL: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    Windows Store Apps: UNITY_VISUAL_SCRIPTING;DOTWEEN
+    XboxOne: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    iPhone: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
+    tvOS: UNITY_VISUAL_SCRIPTING;DOTWEEN;TextMeshPro
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
