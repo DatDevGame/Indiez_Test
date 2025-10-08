@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cc9317832121f4490c28d7107797c0, type: 3}
+  m_Name: AK47_WeaponSO
+  m_EditorClassIdentifier: 
+  m_guid: fce00cd8390c63f44bbc73cd7d7078fd
+  m_ItemModules:
+  - rid: 2674162000506650624
+  - rid: 2674162000506650625
+  - rid: 2674162000506650626
+  references:
+    version: 2
+    RefIds:
+    - rid: 2674162000506650624
+      type: {class: NameItemModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        m_DisplayName: AK 47
+    - rid: 2674162000506650625
+      type: {class: WeaponInfoModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        Damage: 10
+        FireRate: 0.1
+        Range: 50
+        Ammo: -1
+        MaxAmmo: -1
+    - rid: 2674162000506650626
+      type: {class: GameObjectModelPrefabItemModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        m_ModelPrefab: {fileID: 4107069542516003721, guid: b156a1bde435ce44aa12ead6114d0ec2,
+          type: 3}

@@ -1,0 +1,1132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &860760699875871643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5130164306891538892}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5130164306891538892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860760699875871643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7262302992070787248}
+  m_Father: {fileID: 7305329151495421424}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4877573689843306290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4944587871403531814}
+  m_Layer: 0
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4944587871403531814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877573689843306290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7305329151495421424}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5214937226016960856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7305329151495421424}
+  - component: {fileID: 3316592322740911865}
+  - component: {fileID: 8538735769338626951}
+  - component: {fileID: 7522941094675624498}
+  m_Layer: 0
+  m_Name: BaseCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7305329151495421424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214937226016960856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4944587871403531814}
+  - {fileID: 5130164306891538892}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &3316592322740911865
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214937226016960856}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.05
+  m_Radius: 0.18
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.54, z: 0}
+--- !u!114 &8538735769338626951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214937226016960856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3505aa6d98bd4418e0744d5ab56fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mecanim: {fileID: 0}
+  GroundedParameter: IsGrounded
+  MovingParameter: IsMoving
+  User_IsMovingMecanim_NotMovingFloat_Threshold: 0.1
+  Rigidbody: {fileID: 0}
+  UseRigidbodyVelocityForIsMoving: 0
+  UseRaycastsForIsGrounded: 0
+  SlidingParameter: 
+  SpineBone: {fileID: 0}
+  ChestBone: {fileID: 0}
+  RagdolledParameter: 
+  SwingHelper: 0.075
+  GluingFloorLevel: 0.1
+  GluingFloorLevelUseOnMoving: 0
+  GluingFloorLevelOnMoving: 0.05
+  StepPointsOverlapRadius: 0.2
+  UseStepPointsOverlapRadiusOnMoving: 1
+  StepPointsOverlapRadiusOnMoving: 0
+  MotionInfluence:
+    AdvancedInfluence: 0
+    AxisMotionInfluence: {x: 0, y: 1, z: 1}
+    AxisMotionInfluenceBackwards: {x: 1, y: 1, z: 1}
+  Event_OnStep:
+    m_PersistentCalls:
+      m_Calls: []
+  EventExecuteSooner: 0.11
+  SendOnMovingGlue: 1
+  SendOnStopping: 0
+  StepEventOnLanding: 1
+  StepInfoReceiver: {fileID: 0}
+  ExtraPelvisOffset: {x: 0, y: 0, z: 0}
+  ReposeGluingAfter: 1.1073066
+  GlueOnlyOnIdle: 0
+  LocalWorldUp: 1
+  DisableCustomModules: 0
+  CustomModules:
+  - Enabled: 1
+    Parent: {fileID: 8538735769338626951}
+    ModuleReference: {fileID: 11400000, guid: 7d9bd86d54a7a594cb1793f9533e2e00, type: 2}
+    customStringList: []
+    customObjectList: []
+    variables:
+    - VariableName: Rotation Power
+      Tooltip: 
+      _value: {x: 0.5, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: -1, y: 1, z: 0, w: 0}
+    - VariableName: Side Multiplier
+      Tooltip: 
+      _value: {x: -1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: -1, y: 1, z: 0, w: 0}
+    - VariableName: Forward Multiplier
+      Tooltip: 
+      _value: {x: 1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Compensate Spine
+      Tooltip: 
+      _value: {x: 0.5, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+  - Enabled: 1
+    Parent: {fileID: 8538735769338626951}
+    ModuleReference: {fileID: 11400000, guid: d1c896ee3bafddf43b0dd1f38ec2a9e9, type: 2}
+    customStringList: []
+    customObjectList: []
+    variables:
+    - VariableName: Redirect Hips
+      Tooltip: Overall blend for hips rotation / position adjustement on different
+        movement angles.
+      _value: {x: 0.9, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Redirect Foots
+      Tooltip: Rotating foots towards desired movement direction to match it.
+      _value: {x: 0.8, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Redirect Knees
+      Tooltip: Adjusting IK knees bend direction to match movement direction.
+      _value: {x: 0.4, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Limit Leg Raise
+      Tooltip: Limiting how hight legs should be raised. It can be helpful when some
+        running animations tends to raise legs too high on running backwards.
+      _value: {x: 0.15, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 0.3, z: 0, w: 0}
+    - VariableName: Transitions Duration
+      Tooltip: How rapidly the procedural adjustements should be executed.
+      _value: {x: 0.375, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 0.6, z: 0, w: 0}
+    - VariableName: Fix Backward Foots
+      Tooltip: Fixing foots rotation which happens during running backwards.
+      _value: {x: 1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Adjust Stretched
+      Tooltip: Adjusting hips position and rotation when legs redirecting causes
+        too big offset of feet from the hips.
+      _value: {x: 0.55, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Restore Spine
+      Tooltip: Restoring spine rotation which is rotated by the hips rotation adjuster,
+        to face head forward instead of desired direction.
+      _value: {x: 0.4, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Disable When Jumping
+      Tooltip: 
+      _value: {x: 0, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 1
+      _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+    - VariableName: Animator World X Dir
+      Tooltip: (Optional) Using unity animator's variable to define X world direction
+        for this module's algorithm. (no need for Legs Animator module access through
+        code)
+      _value: {x: 0, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 4
+      _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+    - VariableName: Use Rigidbody For Dir
+      Tooltip: Using attached rigidbody velocity to define current desired movement
+        direction for the module's algorithm. (no need for coding!)
+      _value: {x: 0, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 1
+      _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+    - VariableName: Redirect Feet
+      Tooltip: Rotating feet towards desired movement direction to match it.
+      _value: {x: 0.8, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Fix Backward Feet
+      Tooltip: Fixing feet rotation which happens during running backwards.
+      _value: {x: 1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Extra Smoother
+      Tooltip: Applying extra smoothing to the leg motion.
+      _value: {x: 0, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: -1, y: 2, z: 0, w: 0}
+  - Enabled: 1
+    Parent: {fileID: 8538735769338626951}
+    ModuleReference: {fileID: 11400000, guid: 1e5bd3f5b649d1b45b9f6e323910b76b, type: 2}
+    customStringList: []
+    customObjectList: []
+    variables:
+    - VariableName: Power Multiplier
+      Tooltip: 
+      _value: {x: 1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 3, z: 0, w: 0}
+    - VariableName: Duration Multiplier
+      Tooltip: 
+      _value: {x: 1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 3, z: 0, w: 0}
+  - Enabled: 1
+    Parent: {fileID: 8538735769338626951}
+    ModuleReference: {fileID: 11400000, guid: 7eb61b1c17ff136479062144e8467190, type: 2}
+    customStringList:
+    - L-Height
+    - R-Height
+    customObjectList: []
+    variables:
+    - VariableName: Floor Value Below
+      Tooltip: Gluing condition basing on animation curves
+      _value: {x: 0.1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+    - VariableName: Ignore Mid Conditions
+      Tooltip: When enabled algorithm will not check detaching conditions on foot
+        rotation angles
+      _value: {x: 0, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 1
+      _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+    - VariableName: Allow Height Glue On Level
+      Tooltip: If at some value you want to allow glue if character is walking on
+        steep terrain. If parameter is below choosed value it will be allowed
+      _value: {x: -1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+  - Enabled: 1
+    Parent: {fileID: 8538735769338626951}
+    ModuleReference: {fileID: 11400000, guid: 631fad57c7a5169408f21124bb64a094, type: 2}
+    customStringList: []
+    customObjectList: []
+    variables:
+    - VariableName: Blend
+      Tooltip: 
+      _value: {x: 0.525, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+    - VariableName: Adjusting Speed
+      Tooltip: 
+      _value: {x: 1, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 1, z: 0, w: 0}
+  - Enabled: 1
+    Parent: {fileID: 8538735769338626951}
+    ModuleReference: {fileID: 11400000, guid: d231ac1e0417b62409438713c937d99e, type: 2}
+    customStringList: []
+    customObjectList: []
+    variables:
+    - VariableName: Hard Glue Before Move
+      Tooltip: Keep feet glued on ground for a shorty moment before character's velocity
+        builds up
+      _value: {x: 0.212, y: 0, z: 0, w: 0}
+      _string: 
+      _curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _uObject: {fileID: 0}
+      VariableType: 0
+      _rangeHelper: {x: 0, y: 0.3, z: 0, w: 0}
+  ImpulsesPowerMultiplier: 1
+  ImpulsesDurationMultiplier: 1
+  ImpulsesDampUpPushes: 0
+  DebugPushHipsImpulse:
+    OptionalName: Impulse
+    PowerMultiplier: 1
+    ImpulseDuration: 0.6
+    WorldTranslation: {x: 0, y: 0, z: 0}
+    LocalTranslation: {x: 0, y: -1, z: 0}
+    HipsRotate: {x: 0, y: 0, z: 0}
+    InheritElasticness: 0.75
+    ImpulseCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2
+        value: 1
+        inSlope: 3.4375
+        outSlope: 3.4375
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    YAxisMultiplyCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    AlignWithDesiredMoveDirection: 0
+  UseHips: 1
+  HipsHeightStepBlend: 1
+  HipsHeightStepSpeed: 0.87
+  HipsAdjustStyle: 0
+  StabilizeCenterOfMass: 0.3505535
+  AnimationIsStablePose: 0.75
+  StabilizingSpeed: 0.351
+  PushHipsOnLegMove: 0.2
+  NormalizePush: 0
+  PushReactionSpeed: 0.3
+  PushYBlend: 1
+  HipsStretchPreventer: 0.4
+  StretchPreventerSpeed: 0.8
+  StabilizeOnIsMoving: 0.1
+  _Hips_Modules_ExtraWOffset: {x: 0, y: 0, z: 0}
+  _Hips_Modules_ExtraRotOffset: {x: 0, y: 0, z: 0}
+  ExtraHipsHubs: []
+  HipsHubsHandling: 1
+  HipsHubsBlend: 1
+  HubsBackBonesBlend:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  HubBackBonesElasticity: 0
+  HipsSetup:
+    HipsElasticityBlend: 1
+    HipsMuscle:
+      DesiredPosition: {x: 0, y: 0, z: 0}
+      Acceleration: 10000
+      AccelerationLimit: 5000
+      Damping: 10
+      BrakePower: 0.2
+    HipsRotElasticityBlend: 0
+    HipsRotMuscle:
+      DesiredRotation: {x: 0, y: 0, z: 0, w: 0}
+      Acceleration: 5000
+      AccelerationLimit: 1000
+      Damping: 10
+      BrakePower: 0.2
+  StabilityAlgorithm: 0
+  Legs:
+  - G_CustomForceAttach: 0
+    G_CustomForceNOTDetach: 0
+    G_CustomForceDetach: 0
+    G_CustomForceNOTAttach: 0
+    Owner: {fileID: 8538735769338626951}
+    LegBlendWeight: 1
+    LegMoveSpeedMultiplier: 1
+    LegRaiseMultiplier: 1
+    GlueThresholdMultiplier: 1
+    GluePointOffset: {x: 0, y: 0}
+    LegStretchMultiplier: 1
+    CustomLegAnimating: {fileID: 0}
+    FootPitchOffset: 0
+    BoneStart: {fileID: 0}
+    BoneMid: {fileID: 0}
+    BoneEnd: {fileID: 0}
+    Side: 1
+    OppositeLegIndex: 1
+    RaycastPrecision: 0
+    UseFeet: 0
+    BoneFeet: {fileID: 0}
+    FeetSensitivity: 0.5
+    InverseHint: 0
+    AnkleToHeel: {x: 0.13463272, y: -0.0016325309, z: 0.0020730451}
+    AnkleToFeetEnd: {x: 0.13315782, y: -0.116619505, z: 0.007311435}
+    AnkleRight: {x: -0.014826104, y: 0.045693994, z: 0.9988454}
+    AnkleUp: {x: -0.99980813, y: 0.012123607, z: -0.015394945}
+    AnkleForward: {x: -0.012813076, y: -0.99888206, z: 0.04550548}
+    FootMiddlePosition: 0.5
+    AnkleYawCorrection: 0
+    _FinalIKPos: {x: 0, y: 0, z: 0}
+  - G_CustomForceAttach: 0
+    G_CustomForceNOTDetach: 0
+    G_CustomForceDetach: 0
+    G_CustomForceNOTAttach: 0
+    Owner: {fileID: 8538735769338626951}
+    LegBlendWeight: 1
+    LegMoveSpeedMultiplier: 1
+    LegRaiseMultiplier: 1
+    GlueThresholdMultiplier: 1
+    GluePointOffset: {x: 0, y: 0}
+    LegStretchMultiplier: 1
+    CustomLegAnimating: {fileID: 0}
+    FootPitchOffset: 0
+    BoneStart: {fileID: 0}
+    BoneMid: {fileID: 0}
+    BoneEnd: {fileID: 0}
+    Side: 2
+    OppositeLegIndex: 0
+    RaycastPrecision: 0
+    UseFeet: 0
+    BoneFeet: {fileID: 0}
+    FeetSensitivity: 0.5
+    InverseHint: 0
+    AnkleToHeel: {x: -0.13463123, y: 0.0016325214, z: -0.0020730647}
+    AnkleToFeetEnd: {x: -0.13315634, y: 0.116619505, z: -0.007311445}
+    AnkleRight: {x: -0.014826223, y: 0.045694, z: 0.9988454}
+    AnkleUp: {x: 0.9998081, y: -0.012123624, z: 0.015395186}
+    AnkleForward: {x: 0.012813121, y: 0.9988822, z: -0.04550546}
+    FootMiddlePosition: 0.5
+    AnkleYawCorrection: 0
+    _FinalIKPos: {x: 0, y: 0, z: 0}
+  BaseLegAnimating:
+    StepMoveDuration: 0.35
+    MoveToGoalCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.1842105
+      - serializedVersion: 3
+        time: 0.4885197
+        value: 0.8972011
+        inSlope: 1.38764
+        outSlope: 1.38764
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3333333
+        outWeight: 0.3333333
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    SpherizeTrack:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.6958197
+        outSlope: 0.6958197
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.460011
+      - serializedVersion: 3
+        time: 0.5
+        value: 0.3
+        inSlope: -0.04204308
+        outSlope: -0.04204308
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.333
+        outWeight: 0.3410656
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.2721428
+        outSlope: -0.2721428
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3953607
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    SpherizePower: 0.6
+    MinFootRaise: 0.1
+    MaxFootRaise: 0.4
+    RaiseYAxisCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.8504464
+        outSlope: 0.8504464
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.6517575
+      - serializedVersion: 3
+        time: 0.2731183
+        value: 0.45
+        inSlope: 0.9770691
+        outSlope: 0.9770691
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3333333
+        outWeight: 0.3387407
+      - serializedVersion: 3
+        time: 0.505118
+        value: 0.5
+        inSlope: -0.2710344
+        outSlope: -0.2710344
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3333333
+        outWeight: 0.3333333
+      - serializedVersion: 3
+        time: 0.9110107
+        value: 0
+        inSlope: -0.1500788
+        outSlope: -0.1500788
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.5409704
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    AllowSpeedups: 0.75
+    AllowDetachBefore: 1
+    PushHipsOnMoveCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 5.630541
+        outSlope: 5.630541
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.198735
+      - serializedVersion: 3
+        time: 0.383
+        value: 0.3733972
+        inSlope: -0.1664574
+        outSlope: -0.1664574
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.333
+        outWeight: 0.2940554
+      - serializedVersion: 3
+        time: 0.7075226
+        value: 0.1460427
+        inSlope: -1.565806
+        outSlope: -1.565806
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3605607
+        outWeight: 0.3446763
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.09374858
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    FootRotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.3622882
+      - serializedVersion: 3
+        time: 0.3540614
+        value: 0.4
+        inSlope: 0.5529403
+        outSlope: 0.5529403
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3333333
+        outWeight: 0.3433508
+      - serializedVersion: 3
+        time: 0.7867279
+        value: -0.1428572
+        inSlope: 0.3331003
+        outSlope: 0.3331003
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3333333
+        outWeight: 0.3333333
+      - serializedVersion: 3
+        time: 0.85
+        value: 0
+        inSlope: 0.3498169
+        outSlope: 0.3498169
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.5534658
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  UseGluing: 1
+  MainGlueBlend: 1
+  GlueRangeThreshold: 0.375
+  GlueFadeInSpeed: 0.925
+  AllowGlueBelowFoot: 0.261
+  GlueFadeOutSpeed: 0.343
+  UnglueOn: 55
+  AllowGlueDrag: 0.828
+  GlueMode: 2
+  OnlyLocalAnimation: 0
+  SmoothSuddenSteps: 0.85
+  LegElevateBlend: 0
+  LegElevateHeightLimit: 0.6
+  FootRotationBlend: 1
+  FootAlignRapidity: 0.75
+  AnimateFeet: 1
+  LimitFeetYaw: 22
+  AnimationFloorLevel: 0.001
+  _Editor_Foldout_Setup_LegsList: 1
+  _Editor_EnsureCount: 1
+  _Editor_OnValidateTrigger: 1
+  _EditorAllowAutoUpdateFeetParams: 1
+  _EditorCategory: 0
+  _EditorSetupCategory: 0
+  _EditorMotionCategory: 0
+  _EditorExtraCategory: 2
+  IKHintMode: 0
+  LimitLegStretch: 0.99
+  FeetYOffset: 0
+  FeetLengthAdjust: 0
+  baseTransform: {fileID: 0}
+  Hips: {fileID: 0}
+  ScaleReferenceMode: 1
+  finalScaleReference: 0.8276874
+  finalScaleReferenceSqrt: 0.1
+  customScaleReferenceValue: 0.5
+  DelayedInitialization: 0
+  Calibrate: 1
+  AnimatePhysics: 0
+  UnscaledDeltaTime: 0
+  DisableIfInvisible: {fileID: 0}
+  FadeOffAtDistance: 0
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  RaycastHitTrigger: 1
+  CastDistance: 1
+  RaycastStartHeight: 0
+  RaycastStartHeightMul: 1
+  RaycastStyle: 0
+  RaycastShape: 0
+  SpherecastRealign: 0
+  SpherecastResize: 1
+  NoRaycastGroundBehaviour: 0
+  ZeroStepsOnNoRaycast: 0
+  NoRaycast_KeepAttachedUntilStretch: 1.1
+  BodyStepDown: 1
+  MaxBodyStepUp: 0
+  UngroundFadeSpeed: 0.1
+  IsMovingFadeSpeed: 0.4
+  LegsAnimatorBlend: 1
+  _Editor_DefaultModuleOnStart: {fileID: 0}
+  _Editor_LegHelperModule: {fileID: 0}
+--- !u!195 &7522941094675624498
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214937226016960856}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.16
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.08
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!1001 &3197729895709533439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5130164306891538892}
+    m_Modifications:
+    - target: {fileID: 4052569337583029638, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399275144815733588, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d890f3c90aa03a5439a9093e00abd135, type: 2}
+    - target: {fileID: 8607427289585352884, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_RangeValueType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607427289585352884, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+        type: 3}
+      propertyPath: m_RangeIntProgressSO
+      value: 
+      objectReference: {fileID: 11400000, guid: e71e2328cc18adf41af822fdbaa02935,
+        type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b, type: 3}
+--- !u!4 &7262302992070787248 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5235571446701040719, guid: b4c44b0eae56f45e8b2e2d3fa1fd307b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3197729895709533439}
+  m_PrefabAsset: {fileID: 0}

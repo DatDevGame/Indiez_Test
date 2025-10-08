@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e034c30360f514cb3627ae6351d3ca, type: 3}
+  m_Name: WeaponManagerSO
+  m_EditorClassIdentifier: 
+  m_InitialValue:
+  - {fileID: 11400000, guid: fce00cd8390c63f44bbc73cd7d7078fd, type: 2}
+  m_ItemUsedEventCode:
+    m_EventType: 
+    m_EventCode: 
+  m_ItemSelectedEventCode:
+    m_EventType: 
+    m_EventCode: 
+  m_ItemUnlockedEventCode:
+    m_EventType: 
+    m_EventCode: 
+  m_DisplayNameTerm: 
+  m_AnalyticsName: 
+  m_AdsLocation: 0
+  m_ResourceLocation: 0
+  m_CurrentItemInUse: {fileID: 11400000, guid: 7cf123a5d0a646f499b22ecb9b0ec07c, type: 2}
