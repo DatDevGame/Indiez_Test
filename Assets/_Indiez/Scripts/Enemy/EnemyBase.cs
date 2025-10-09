@@ -31,13 +31,6 @@ public class EnemyBase : MonoBehaviour
     protected bool m_IsLocal = false;
     [SerializeField] protected EnemyStatsSO m_StatsSO;
 
-
-//Temp
-    private void Start()
-    {
-        Init(m_StatsSO);
-    }
-    [Button]
     public virtual void Init(EnemyStatsSO statsSO = null)
     {
         m_StatsSO = statsSO;

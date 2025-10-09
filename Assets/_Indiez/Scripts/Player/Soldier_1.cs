@@ -173,9 +173,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             Dead();
             m_SoldierStats.Health = 0;
         }
-
         m_HealthBar.SetValue(m_SoldierStats.Health + (int)amount, m_SoldierStats.Health, 0.2f);
-        Debug.Log($"Receive Attack");
     }
 
     public PointType GetPointType()

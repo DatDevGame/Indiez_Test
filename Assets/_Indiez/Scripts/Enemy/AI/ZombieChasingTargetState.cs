@@ -33,7 +33,7 @@ public class ZombieChasingTargetState : AIBotState
                 m_ZombieAIController.NavMeshAgent.enabled = true;
         }
         m_ZombieAIController.NavMeshAgent.isStopped = false;
-        m_ZombieAIController.Animator.SetTrigger(m_ZombieAIController.AnimationKeySO.Walking);
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, true);
     }
 
     protected override void OnStateDisable()

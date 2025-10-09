@@ -66,6 +66,7 @@ public class ZombieAttackingTargetState : AIBotState
 
     private void PerformAttack()
     {
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, false);
         m_ZombieAIController.Animator.SetTrigger(m_ZombieAIController.AnimationKeySO.Attack);
 
         float animationLength = 0f;

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f518b592a0e0d4ea8a970e05c38f52, type: 3}
   m_Name: HealthBarSO
   m_EditorClassIdentifier: 
-  m_guid: 
-  PlayerHealthBarMaterial: {fileID: 0}
+  m_guid: ab3740db74a17714c8a31cc4004c33cd
+  PlayerHealthBarMaterial: {fileID: 2100000, guid: 9bafc0d5ed2adf44d934a90f2a173553,
+    type: 2}
   OpponentHealthBarMaterial: {fileID: 0}
