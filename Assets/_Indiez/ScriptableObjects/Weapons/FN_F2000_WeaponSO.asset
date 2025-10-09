@@ -17,10 +17,16 @@ MonoBehaviour:
   - rid: 2674162020009639936
   - rid: 2674162020009639937
   - rid: 2674162020009639938
-  RevolverLocalPosition: {x: 0.091, y: -0.046, z: 0.032}
-  RevolverLocalRotation: {x: -5.545, y: 111.398, z: 65.938}
-  LeftHandIkHintLocalPosion: {x: -0.613, y: 0.961, z: 0}
-  LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  IK_Idle:
+    RevolverLocalPosition: {x: 0.0527, y: -0.0113, z: 0.0285}
+    RevolverLocalRotation: {x: 8.414, y: 96.033, z: 106.098}
+    LeftHandIkHintLocalPosion: {x: -1.077, y: 1.179, z: -1.31}
+    LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  IK_Aim:
+    RevolverLocalPosition: {x: 0.078, y: -0.04, z: 0.019}
+    RevolverLocalRotation: {x: -10.39, y: 103.562, z: 65.212}
+    LeftHandIkHintLocalPosion: {x: 0, y: 0, z: 0}
+    LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
   IdleAnimationKey: Assault_IdleTrigger
   AimAnimationKey: Assault_Aim_Trigger
   references:

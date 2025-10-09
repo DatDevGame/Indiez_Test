@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f3ddce11766413097037423e7e4eee, type: 3}
   m_Name: CurrentWeapon_PPrefItemSOVariable
   m_EditorClassIdentifier: 
-  m_InitialValue: {fileID: 11400000, guid: 990010cbb1d833b4cb68273c83bba46f, type: 2}
+  m_InitialValue: {fileID: 11400000, guid: fce00cd8390c63f44bbc73cd7d7078fd, type: 2}
   m_Key: CurrentWeapon_PPrefItemSOVariable_7cf123a5d0a646f499b22ecb9b0ec07c
   m_ItemSOList: {fileID: 11400000, guid: 5ce7528e965c5fc49b8622d2dc82b491, type: 2}

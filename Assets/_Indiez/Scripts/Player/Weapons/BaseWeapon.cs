@@ -6,11 +6,14 @@ public abstract class BaseWeapon : MonoBehaviour
     public Transform RightHandIK => m_RightHandIK;
     public Transform LeftHandIK => m_LeftHandIK;
     public WeaponStats WeaponStats => weaponStats;
+    public BaseBullet BulletPrefab => m_BulletPrefab;
     public WeaponSO WeaponSO => weaponSO;
 
+    [SerializeField, BoxGroup("Reference")] protected Transform m_PointFire;
     [SerializeField, BoxGroup("Reference")] protected Transform m_RightHandIK;
     [SerializeField, BoxGroup("Reference")] protected Transform m_LeftHandIK;
-
+    [SerializeField, BoxGroup("Resource")] protected BaseBullet m_BulletPrefab;
+    [SerializeField, BoxGroup("Resource")] protected ParticleSystem m_BulletMuzzleFirePrefab;
     [SerializeField, BoxGroup("Weapon Data")] protected WeaponSO weaponSO;
 
     protected float m_nextFireTime;

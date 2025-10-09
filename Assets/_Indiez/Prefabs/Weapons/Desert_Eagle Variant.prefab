@@ -132,6 +132,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 154.134
       objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.388
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.79
+      objectReference: {fileID: 0}
     - target: {fileID: 2506711723493581850, guid: 868a5e67cd2ad854c83034284cece15d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,6 +228,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5050145904088940331}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &6912646550314082741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5050145904088940331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8434470993651697124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3681967982141995727, guid: 868a5e67cd2ad854c83034284cece15d,
@@ -236,6 +252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c6ef2921a3a0547ac5713194e4ecc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PointFire: {fileID: 6912646550314082741}
   m_RightHandIK: {fileID: 154777893671210531}
   m_LeftHandIK: {fileID: 6000377769501832579}
+  m_BulletPrefab: {fileID: 2755422726587436955, guid: 69d493336d20dc54e97f41d9924d431c,
+    type: 3}
+  m_BulletMuzzleFirePrefab: {fileID: 1465932610192973303, guid: 8609ce76a812e974da39fa3a36f2a93c,
+    type: 3}
   weaponSO: {fileID: 11400000, guid: 990010cbb1d833b4cb68273c83bba46f, type: 2}
