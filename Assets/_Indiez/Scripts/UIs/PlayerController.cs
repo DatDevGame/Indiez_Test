@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
 
             float speed = m_Player.SoldierStats.MoveSpeed * inputStrength;
             m_Player.CharacterController.Move(moveDir * m_Player.SoldierStats.MoveSpeed * Time.deltaTime);
-            Debug.Log($"Move");
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             m_Player.transform.rotation = Quaternion.Slerp(
                 m_Player.transform.rotation,

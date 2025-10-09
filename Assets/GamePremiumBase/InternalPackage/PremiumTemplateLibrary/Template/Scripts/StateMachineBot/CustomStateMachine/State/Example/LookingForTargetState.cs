@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HCore.Helpers;
 using Sirenix.OdinInspector;
+using Premium;
 
 [Serializable]
 public class LookingForTargetState : AIBotState

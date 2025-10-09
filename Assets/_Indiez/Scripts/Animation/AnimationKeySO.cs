@@ -6,14 +6,10 @@ using UnityEngine;
 public class AnimationKeySO : SerializableScriptableObject
 {
     public string Idle = "Idle";
-    public string Chasing = "Chasing";
-    public string HeadAttack = "HeadAttack";
-    public string BodyAttack = "BodyAttack";
+    public string Walking = "Chasing";
+    public string Attack = "HeadAttack";
     public string Hit_1 = "Hit_1";
     public string Hit_2 = "Hit_2";
     public string Dead = "Dead";
     public string DeadTrigger = "DeadTrigger";
-    public string Block = "Block";
-
-    public float DivineAnimSpeedAttack = 1.5f;
 }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3573dce0b8b40934c85a853f863b7d7d, type: 3}
+  m_Name: EnemyStatsSO
+  m_EditorClassIdentifier: 
+  m_guid: a8a02397fb148274eb6c3f3d8c8c545f
+  LookAtDuration: 0.2
+  MaxHealth: 100
+  DetectionRange: 20
+  BlockChance: 0.2
+  CriticalChance: 0.1
+  CriticalMultiplier: 2
+  TeamLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  LookAtRange: 4
+  MoveSpeed: 2
+  AttackDamage: 15
+  AttackRange: 1.5
+  AttackCoolDown: 0.2
+  TargetLayermask:
+    serializedVersion: 2
+    m_Bits: 512

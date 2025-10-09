@@ -18,7 +18,7 @@ public abstract class BaseSoldier : MonoBehaviour
     public Animator Animator => m_Animator;
     public SodierStats SoldierStats => m_SoldierStats;
     public StatsSO StatsSOData => m_StatsSO;
-    public AnimationKeySO AnimationKeySO => m_AnimationKeySO;
+    public SoldierAnimationSO AnimationKeySO => m_SoldierAnimationSO;
     public bool IsAlive => m_IsAlive;
     public bool IsActive => m_IsActive;
     public bool IsLocal => m_IsLocal;
@@ -30,7 +30,7 @@ public abstract class BaseSoldier : MonoBehaviour
     [SerializeField, BoxGroup("References")] protected Animator m_Animator;
     [SerializeField, BoxGroup("References")] protected LegsAnimator m_LegsAnimator;
     [SerializeField, BoxGroup("References")] protected MeshRenderer m_HealthBarMesh;
-    [SerializeField, BoxGroup("Data")] protected AnimationKeySO m_AnimationKeySO;
+    [SerializeField, BoxGroup("Data")] protected SoldierAnimationSO m_SoldierAnimationSO;
     [SerializeField, BoxGroup("Data")] protected WeaponManagerSO m_WeaponManagerSO;
     [ShowInInspector, ReadOnly] protected SodierStats m_SoldierStats;
     private bool m_IsTryTakeDame = false;

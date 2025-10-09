@@ -6,13 +6,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Premium.PoolManagement;
 using Sirenix.OdinInspector;
-using Indiez;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class Soldier_1 : BaseSoldier, Indiez.Interface.INavigationPoint
+public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
     [SerializeField, BoxGroup("Resource")] protected StatsSO m_PlayerStatsSO;
 
@@ -41,6 +40,13 @@ public class Soldier_1 : BaseSoldier, Indiez.Interface.INavigationPoint
         m_StatsSO = m_PlayerStatsSO;
         m_SoldierStats = new SodierStats();
         m_SoldierStats.LoadStats(m_StatsSO);
+
+        if (m_HealthBar == null)
+            m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
+        RangeIntValue range = new RangeIntValue(0, m_SoldierStats.Health);
+        var progress = new RangeProgress<int>(range, 100);
+        m_HealthBar.Init(progress);
+        m_IsActive = true;
     }
     protected virtual void Update()
     {
@@ -111,12 +117,12 @@ public class Soldier_1 : BaseSoldier, Indiez.Interface.INavigationPoint
     }
     private void PerformAttack()
     {
-        string keyAttackType = UnityEngine.Random.Range(0, 1) <= 0 ? m_AnimationKeySO.HeadAttack : m_AnimationKeySO.BodyAttack;
-        m_Animator.SetTrigger(keyAttackType);
-        float animationLength = 0f;
-        AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-        animationLength = stateInfo.length / m_AnimationKeySO.DivineAnimSpeedAttack;
-        m_TriggerTimer = m_SoldierStats.AttackCoolDown + animationLength;
+        // string keyAttackType = UnityEngine.Random.Range(0, 1) <= 0 ? m_AnimationKeySO.HeadAttack : m_AnimationKeySO.BodyAttack;
+        // m_Animator.SetTrigger(keyAttackType);
+        // float animationLength = 0f;
+        // AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
+        // animationLength = stateInfo.length / m_AnimationKeySO.DivineAnimSpeedAttack;
+        // m_TriggerTimer = m_SoldierStats.AttackCoolDown + animationLength;
     }
 
     //Call In Animation
@@ -152,13 +158,7 @@ public class Soldier_1 : BaseSoldier, Indiez.Interface.INavigationPoint
         return targets;
     }
 
-
-    public BaseSoldier GetSoldier()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public Indiez.Interface.PointType GetPointType()
+    public PointType GetPointType()
     {
         throw new System.NotImplementedException();
     }
@@ -222,6 +222,12 @@ public class Soldier_1 : BaseSoldier, Indiez.Interface.INavigationPoint
             Gizmos.DrawLine(prevPoint, nextPoint);
             prevPoint = nextPoint;
         }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        m_SoldierStats.Health -= (int)amount;
+        m_HealthBar.SetValue(m_SoldierStats.Health + amount, m_SoldierStats.Health, 0.2f);
     }
 #endif
 
