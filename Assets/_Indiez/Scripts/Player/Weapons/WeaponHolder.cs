@@ -22,11 +22,6 @@ public class WeaponHolder : MonoBehaviour
 
     private Dictionary<WeaponSO, BaseWeapon> m_WeaponSlot;
 
-    private void Awake()
-    {
-        m_WeaponSlot = new Dictionary<WeaponSO, BaseWeapon>();
-    }
-
     private void Update()
     {
         if (currentWeapon != null && IKRighHandPos != null && IKLeftHandPos != null)
@@ -45,6 +40,9 @@ public class WeaponHolder : MonoBehaviour
 
     public void EquipWeapon(BaseWeapon newWeapon)
     {
+        if (m_WeaponSlot == null)
+            m_WeaponSlot = new Dictionary<WeaponSO, BaseWeapon>();
+
         if (newWeapon == null)
             return;
 
