@@ -14,7 +14,6 @@ using UnityEngine.AI;
 public abstract class BaseSoldier : MonoBehaviour
 {
     public Action OnDead = delegate { };
-    //public BoxerAnimationEventReceiver BoxerAnimationEventReceiver => m_BoxerAnimationEventReceiver;
     public CharacterController CharacterController => m_CharacterController;
     public Animator Animator => m_Animator;
     public SodierStats SoldierStats => m_SoldierStats;

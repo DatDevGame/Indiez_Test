@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cc9317832121f4490c28d7107797c0, type: 3}
+  m_Name: Desert_Eagle_WeaponSO
+  m_EditorClassIdentifier: 
+  m_guid: 990010cbb1d833b4cb68273c83bba46f
+  m_ItemModules:
+  - rid: 2674162020009639939
+  - rid: 2674162020009639940
+  - rid: 2674162020009639941
+  IK_Idle:
+    RevolverLocalPosition: {x: 0, y: 0, z: 0}
+    RevolverLocalRotation: {x: 0, y: 0, z: 0}
+    LeftHandIkHintLocalPosion: {x: 0, y: 0, z: 0}
+    LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  IK_Aim:
+    RevolverLocalPosition: {x: 0, y: 0, z: 0}
+    RevolverLocalRotation: {x: 0, y: 0, z: 0}
+    LeftHandIkHintLocalPosion: {x: 0, y: 0, z: 0}
+    LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  IdleAnimationKey: Pistol_Idle_Trigger
+  AimAnimationKey: Pistol_Aim_Trigger
+  references:
+    version: 2
+    RefIds:
+    - rid: 2674162020009639939
+      type: {class: NameItemModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        m_DisplayName: Desert_Eagle
+    - rid: 2674162020009639940
+      type: {class: WeaponInfoModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        Damage: 100
+        FireRate: 0.3
+        Range: 20
+        Ammo: -1
+        MaxAmmo: -1
+    - rid: 2674162020009639941
+      type: {class: GameObjectModelPrefabItemModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        m_ModelPrefab: {fileID: 8434470993651697124, guid: 96dc6eb8f16acfc4690aa5d1e838ed2c,
+          type: 3}

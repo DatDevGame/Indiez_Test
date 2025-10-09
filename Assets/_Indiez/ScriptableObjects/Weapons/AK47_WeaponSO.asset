@@ -21,6 +21,8 @@ MonoBehaviour:
   RevolverLocalRotation: {x: -4.226, y: 108.491, z: 67.026}
   LeftHandIkHintLocalPosion: {x: -0.616, y: 1.088, z: 0}
   LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  IdleAnimationKey: Assault_IdleTrigger
+  AimAnimationKey: Assault_Aim_Trigger
   references:
     version: 2
     RefIds:

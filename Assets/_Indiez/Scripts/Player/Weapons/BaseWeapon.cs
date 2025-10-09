@@ -15,7 +15,6 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected float m_nextFireTime;
     protected bool m_isEquipped;
-    protected Animator m_animator;
     protected WeaponStats weaponStats;
 
     public virtual void OnEquip()

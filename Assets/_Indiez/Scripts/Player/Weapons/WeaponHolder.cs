@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class WeaponHolder : MonoBehaviour
 {
+    [SerializeField, BoxGroup("Refference")] private BaseSoldier m_BaseSoldier;
     [SerializeField, BoxGroup("Refference")] private Transform m_RevolverTranform;
     [SerializeField, BoxGroup("Right Hand IK")] private TwoBoneIKConstraint m_RightHandIK;
     [SerializeField, BoxGroup("Right Hand IK")] private Transform m_RightHandTarget;
@@ -20,6 +21,12 @@ public class WeaponHolder : MonoBehaviour
     [ShowInInspector, ReadOnly] private BaseWeapon currentWeapon;
 
     private Dictionary<WeaponSO, BaseWeapon> m_WeaponSlot;
+
+    private void Awake()
+    {
+        if (m_BaseSoldier == null)
+            m_BaseSoldier = gameObject.GetComponent<BaseSoldier>();
+    }
 
     private void Update()
     {
@@ -58,14 +65,63 @@ public class WeaponHolder : MonoBehaviour
         }
         currentWeapon.OnEquip();
 
-        float durationIK = 0.05f;
-        m_RevolverTranform.DOLocalMove(currentWeapon.WeaponSO.RevolverLocalPosition, durationIK);
-        m_RevolverTranform.DOLocalRotate(currentWeapon.WeaponSO.RevolverLocalRotation, durationIK);
-        m_LeftHandHint.DOLocalMove(currentWeapon.WeaponSO.LeftHandIkHintLocalPosion, durationIK);
-        m_LeftHandHint.DOLocalRotate(currentWeapon.WeaponSO.LeftHandIkHintLocalRotation, durationIK);
+        IKHandle
+        (currentWeapon.WeaponSO.IK_Idle.RevolverLocalPosition,
+        currentWeapon.WeaponSO.IK_Idle.RevolverLocalRotation,
+        currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalPosion,
+        currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalRotation);
 
         IKRighHandPos = currentWeapon.RightHandIK;
         IKLeftHandPos = currentWeapon.LeftHandIK;
+
+        if (m_BaseSoldier != null)
+            m_BaseSoldier.Animator.SetTrigger(currentWeapon.WeaponSO.IdleAnimationKey);
+
+    }
+
+    [Button]
+    public void TestAim()
+    {
+        IKHandle
+(currentWeapon.WeaponSO.IK_Aim.RevolverLocalPosition,
+currentWeapon.WeaponSO.IK_Aim.RevolverLocalRotation,
+currentWeapon.WeaponSO.IK_Aim.LeftHandIkHintLocalPosion,
+currentWeapon.WeaponSO.IK_Aim.LeftHandIkHintLocalRotation);
+
+        if (m_BaseSoldier != null)
+        {
+            m_BaseSoldier.Animator.SetTrigger(currentWeapon.WeaponSO.AimAnimationKey);
+        }
+
+    }
+
+    [Button]
+    public void TestIdle()
+    {
+        IKHandle
+(currentWeapon.WeaponSO.IK_Idle.RevolverLocalPosition,
+currentWeapon.WeaponSO.IK_Idle.RevolverLocalRotation,
+currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalPosion,
+currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalRotation);
+
+        if (m_BaseSoldier != null)
+        {
+            m_BaseSoldier.Animator.SetTrigger(currentWeapon.WeaponSO.IdleAnimationKey);
+        }
+
+    }
+
+    private void IKHandle(
+        Vector3 RevolverLocalPosition,
+        Vector3 RevolverLocalRotation,
+        Vector3 LeftHandIkHintLocalPosion,
+        Vector3 LeftHandIkHintLocalRotation,
+        float duration = 0.05f)
+    {
+        m_RevolverTranform.DOLocalMove(RevolverLocalPosition, duration);
+        m_RevolverTranform.DOLocalRotate(RevolverLocalRotation, duration);
+        m_LeftHandHint.DOLocalMove(LeftHandIkHintLocalPosion, duration);
+        m_LeftHandHint.DOLocalRotate(LeftHandIkHintLocalRotation, duration);
     }
 
     public void FireCurrent()
