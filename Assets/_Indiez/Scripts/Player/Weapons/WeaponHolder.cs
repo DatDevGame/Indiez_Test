@@ -3,18 +3,17 @@ using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using DG.Tweening;
 
 public class WeaponHolder : MonoBehaviour
 {
     [SerializeField, BoxGroup("Refference")] private Transform m_RevolverTranform;
-    [SerializeField, BoxGroup("Refference")] private Transform m_EquipTranform;
-    [SerializeField, BoxGroup("Refference")] private Transform m_AimTranform;
-
     [SerializeField, BoxGroup("Right Hand IK")] private TwoBoneIKConstraint m_RightHandIK;
     [SerializeField, BoxGroup("Right Hand IK")] private Transform m_RightHandTarget;
 
     [SerializeField, BoxGroup("Left Hand IK")] private TwoBoneIKConstraint m_LeftHandIK;
     [SerializeField, BoxGroup("Left Hand IK")] private Transform m_LeftHandTarget;
+    [SerializeField, BoxGroup("Left Hand IK")] private Transform m_LeftHandHint;
     [ShowInInspector] private Transform IKRighHandPos;
     [ShowInInspector] private Transform IKLeftHandPos;
 
@@ -26,13 +25,9 @@ public class WeaponHolder : MonoBehaviour
     {
         if (currentWeapon != null && IKRighHandPos != null && IKLeftHandPos != null)
         {
-            currentWeapon.transform.parent = m_EquipTranform;
-            currentWeapon.transform.position = m_EquipTranform.position;
-            currentWeapon.transform.rotation = m_EquipTranform.rotation;
-
-            // m_RightHandTarget.position = IKRighHandPos.position;
-            // m_RightHandTarget.rotation = IKRighHandPos.rotation;
-
+            currentWeapon.transform.parent = m_RevolverTranform;
+            currentWeapon.transform.position = m_RevolverTranform.position;
+            currentWeapon.transform.rotation = m_RevolverTranform.rotation;
             m_LeftHandTarget.position = IKLeftHandPos.position;
             m_LeftHandTarget.rotation = IKLeftHandPos.rotation;
         }
@@ -62,6 +57,13 @@ public class WeaponHolder : MonoBehaviour
             m_WeaponSlot.Add(newWeapon.WeaponSO, currentWeapon);
         }
         currentWeapon.OnEquip();
+
+        float durationIK = 0.05f;
+        m_RevolverTranform.DOLocalMove(currentWeapon.WeaponSO.RevolverLocalPosition, durationIK);
+        m_RevolverTranform.DOLocalRotate(currentWeapon.WeaponSO.RevolverLocalRotation, durationIK);
+        m_LeftHandHint.DOLocalMove(currentWeapon.WeaponSO.LeftHandIkHintLocalPosion, durationIK);
+        m_LeftHandHint.DOLocalRotate(currentWeapon.WeaponSO.LeftHandIkHintLocalRotation, durationIK);
+
         IKRighHandPos = currentWeapon.RightHandIK;
         IKLeftHandPos = currentWeapon.LeftHandIK;
     }
