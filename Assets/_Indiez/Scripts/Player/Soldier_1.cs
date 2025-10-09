@@ -14,6 +14,7 @@ using UnityEditor;
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
     [SerializeField, BoxGroup("Resource")] protected StatsSO m_PlayerStatsSO;
+    [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
 
     protected float m_TriggerTimer;
     protected float m_ForwardDistance = 0.8f;
@@ -43,6 +44,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
         if (m_HealthBar == null)
             m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
+        m_HealthBarMesh.material = new Material(m_HealthBarSO.PlayerHealthBarMaterial);
         RangeIntValue range = new RangeIntValue(0, m_SoldierStats.Health);
         var progress = new RangeProgress<int>(range, 100);
         m_HealthBar.Init(progress);
@@ -158,6 +160,24 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         return targets;
     }
 
+    private void Dead()
+    {
+        OnDead?.Invoke();
+    }
+
+    public void TakeDamage(float amount)
+    {
+        m_SoldierStats.Health -= (int)amount;
+        if (m_SoldierStats.Health <= 0)
+        {
+            Dead();
+            m_SoldierStats.Health = 0;
+        }
+
+        m_HealthBar.SetValue(m_SoldierStats.Health + (int)amount, m_SoldierStats.Health, 0.2f);
+        Debug.Log($"Receive Attack");
+    }
+
     public PointType GetPointType()
     {
         throw new System.NotImplementedException();
@@ -222,12 +242,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             Gizmos.DrawLine(prevPoint, nextPoint);
             prevPoint = nextPoint;
         }
-    }
-
-    public void TakeDamage(float amount)
-    {
-        m_SoldierStats.Health -= (int)amount;
-        m_HealthBar.SetValue(m_SoldierStats.Health + amount, m_SoldierStats.Health, 0.2f);
     }
 #endif
 

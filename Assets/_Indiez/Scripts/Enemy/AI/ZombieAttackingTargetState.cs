@@ -73,20 +73,23 @@ public class ZombieAttackingTargetState : AIBotState
         animationLength = stateInfo.length / 1.5f;
 
         m_TriggerTimer = m_ZombieAIController.EnemyBase.EnemyStats.AttackCoolDown + animationLength;
-        LayerMask targetLayer = m_ZombieAIController.EnemyBase.EnemyStats.TeamLayerMask;
+        LayerMask targetLayer = m_ZombieAIController.EnemyBase.EnemyStats.TargetLayermask;
 
         Vector3 origin = m_ZombieAIController.transform.position + Vector3.up * 0.5f;
         Vector3 direction = m_ZombieAIController.transform.forward * m_ForwardDistance;
         float attackRange = m_ForwardDistance;
 
 #if UNITY_EDITOR
-        Debug.DrawLine(origin, origin + direction * attackRange, Color.cyan, 1.0f);
+        Debug.DrawLine(origin, origin + direction * attackRange, Color.cyan, 99);
 #endif
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, attackRange, targetLayer))
+        Debug.Log($"Handle Attack Pro 1 - {targetLayer}");
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, 99, targetLayer))
         {
+            Debug.Log($"Handle Attack Pro 2.0");
+            Debug.Log($"Handle Attack Pro 2 -{hit.collider.name}");
             IDamageable target = hit.collider.GetComponent<IDamageable>();
-            if (target != null && hit.collider.gameObject.layer != m_ZombieAIController.gameObject.layer)
+            if (target != null)
                 m_Target = target;
         }
     }
@@ -95,11 +98,14 @@ public class ZombieAttackingTargetState : AIBotState
     public void HandleAttackHit()
     {
         float distanceAttack = Vector3.Distance(m_ZombieAIController.transform.position, m_ZombieAIController.GetTargetPoint());
+        Debug.Log($"Handle Attack - {distanceAttack} <= {m_ZombieAIController.EnemyBase.EnemyStats.AttackRange}");
+        if (m_Target == null)
+            Debug.Log($"Handle Attack 2");
         if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_Target != null)
         {
             m_Target.TakeDamage(m_ZombieAIController.EnemyBase.EnemyStats.AttackDamage);
             //SoundManager.Instance.PlayLoopSFX(m_ZombieAIController.EnemyBase.GetRandomPunchSound(), volumn: 0.5f);
-            Debug.Log($"Handle Attack");
+            Debug.Log($"Handle Attack - 3");
         }
 
     }

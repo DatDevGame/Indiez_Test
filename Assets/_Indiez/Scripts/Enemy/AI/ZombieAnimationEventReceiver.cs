@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Premium.PoolManagement;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ZombieAnimationEventReceiver : MonoBehaviour
