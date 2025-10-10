@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class SodierStats
 {
+    public LayerMask TargetLayerMask;
     public LayerMask TeamLayerMask;
     public int Health;
     public float AttackDamage;
@@ -13,8 +14,9 @@ public class SodierStats
     public float CriticalMultiplier;
     public float BlockChance;
 
-    public void LoadStats(StatsSO statsSO)
+    public void LoadStats(SoldierStatsSO statsSO)
     {
+        TargetLayerMask = statsSO.TargetLayermask;
         TeamLayerMask = statsSO.TeamLayerMask;
         Health = statsSO.MaxHealth;
         AttackDamage = statsSO.AttackDamage;

@@ -4,6 +4,7 @@ using DG.Tweening;
 using HCore.Events;
 using Premium;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float m_Horizontal;
     private float m_Vertical;
     private Vector3 m_JoyStickdir;
-
+    private Soldier_1 m_Soldier;
     bool isActive = true;
 
     private void Awake()
@@ -30,10 +31,15 @@ public class PlayerController : MonoBehaviour
         GameEventHandler.RemoveActionEvent(PVPEventCode.OnLevelStart, OnLevelStart);
         GameEventHandler.RemoveActionEvent(PVPEventCode.OnLevelEnd, OnLevelEnd);
     }
-    private void OnLevelStart()
+    private void Start()
     {
         if (m_Player == null)
             m_Player = FindObjectOfType<BaseSoldier>();
+        m_Soldier = m_Player as Soldier_1;
+    }
+    private void OnLevelStart()
+    {
+
         m_Player.OnDead += OnDead;
         SetActive(true);
     }

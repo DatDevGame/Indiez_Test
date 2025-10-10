@@ -50,13 +50,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.505
+      value: 0.514
       objectReference: {fileID: 0}
     - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.452
+      value: 2.433
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872124811225964190, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2506711723493581850, guid: 868a5e67cd2ad854c83034284cece15d,
         type: 3}
@@ -204,7 +244,7 @@ MonoBehaviour:
   m_PointFire: {fileID: 2120451994503579292}
   m_RightHandIK: {fileID: 4658442885785479434}
   m_LeftHandIK: {fileID: 1280820515973747370}
-  m_BulletPrefab: {fileID: 2755422726587436955, guid: de9992633bff23244b2706c2bb507662,
+  m_BulletPrefab: {fileID: 8607112323178225277, guid: de9992633bff23244b2706c2bb507662,
     type: 3}
   m_BulletMuzzleFirePrefab: {fileID: 1465932610192973303, guid: 8609ce76a812e974da39fa3a36f2a93c,
     type: 3}

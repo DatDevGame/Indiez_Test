@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class WeaponHolder : MonoBehaviour
 {
+    public BaseWeapon CurrentWeapon => currentWeapon;
+
     [SerializeField, BoxGroup("Refference")] private BaseSoldier m_BaseSoldier;
     [SerializeField, BoxGroup("Refference")] private Transform m_RevolverTranform;
     [SerializeField, BoxGroup("Right Hand IK")] private TwoBoneIKConstraint m_RightHandIK;
@@ -80,35 +82,23 @@ public class WeaponHolder : MonoBehaviour
     }
 
     [Button]
-    public void TestAim()
+    public void AimIK()
     {
         IKHandle
 (currentWeapon.WeaponSO.IK_Aim.RevolverLocalPosition,
 currentWeapon.WeaponSO.IK_Aim.RevolverLocalRotation,
 currentWeapon.WeaponSO.IK_Aim.LeftHandIkHintLocalPosion,
 currentWeapon.WeaponSO.IK_Aim.LeftHandIkHintLocalRotation);
-
-        if (m_BaseSoldier != null)
-        {
-            m_BaseSoldier.Animator.SetTrigger(currentWeapon.WeaponSO.AimAnimationKey);
-        }
-
     }
 
     [Button]
-    public void TestIdle()
+    public void IdleIK()
     {
         IKHandle
 (currentWeapon.WeaponSO.IK_Idle.RevolverLocalPosition,
 currentWeapon.WeaponSO.IK_Idle.RevolverLocalRotation,
 currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalPosion,
 currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalRotation);
-
-        if (m_BaseSoldier != null)
-        {
-            m_BaseSoldier.Animator.SetTrigger(currentWeapon.WeaponSO.IdleAnimationKey);
-        }
-
     }
 
     private void IKHandle(

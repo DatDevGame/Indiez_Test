@@ -24,10 +24,12 @@ MonoBehaviour:
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
   IK_Aim:
     RevolverLocalPosition: {x: 0.078, y: -0.04, z: 0.019}
-    RevolverLocalRotation: {x: -10.39, y: 103.562, z: 65.212}
-    LeftHandIkHintLocalPosion: {x: 0, y: 0, z: 0}
+    RevolverLocalRotation: {x: -7.607, y: 108.53, z: 65.022}
+    LeftHandIkHintLocalPosion: {x: -1.109, y: 0.803, z: 0}
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
-  IdleAnimationKey: Assault_IdleTrigger
+  PointFirePos: {x: 0.140346, y: -0.5382035, z: 0.01228881}
+  PointFireEur: {x: 103.369, y: 43.08501, z: 132.512}
+  IdleAnimationKey: Assault_Idle_Trigger
   AimAnimationKey: Assault_Aim_Trigger
   references:
     version: 2
@@ -41,9 +43,9 @@ MonoBehaviour:
       type: {class: WeaponInfoModule, ns: , asm: Assembly-CSharp}
       data:
         m_ItemSO: {fileID: 11400000}
-        Damage: 15
-        FireRate: 0.03
-        Range: 20
+        Damage: 1
+        FireRate: 0.02
+        Range: 10
         Ammo: -1
         MaxAmmo: -1
     - rid: 2674162020009639938

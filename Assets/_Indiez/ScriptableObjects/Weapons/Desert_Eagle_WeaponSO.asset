@@ -23,10 +23,12 @@ MonoBehaviour:
     LeftHandIkHintLocalPosion: {x: -1.269, y: 0.49, z: -0.03}
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
   IK_Aim:
-    RevolverLocalPosition: {x: 0.19, y: -0.042, z: -0.002}
-    RevolverLocalRotation: {x: 6.394, y: 94.972, z: 84.703}
-    LeftHandIkHintLocalPosion: {x: 0, y: 0, z: 0}
+    RevolverLocalPosition: {x: 0.199, y: -0.106, z: 0.003}
+    RevolverLocalRotation: {x: 23.294, y: 93.29, z: 84.267}
+    LeftHandIkHintLocalPosion: {x: -1.725, y: 0, z: 0}
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  PointFirePos: {x: -0.1200575, y: -0.4300131, z: -0.2797114}
+  PointFireEur: {x: 121.93, y: 41.905, z: 137.94}
   IdleAnimationKey: Pistol_Idle_Trigger
   AimAnimationKey: Pistol_Aim_Trigger
   references:
@@ -41,9 +43,9 @@ MonoBehaviour:
       type: {class: WeaponInfoModule, ns: , asm: Assembly-CSharp}
       data:
         m_ItemSO: {fileID: 11400000}
-        Damage: 100
-        FireRate: 0.3
-        Range: 20
+        Damage: 5
+        FireRate: 0.5
+        Range: 5
         Ammo: -1
         MaxAmmo: -1
     - rid: 2674162020009639941

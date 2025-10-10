@@ -56,8 +56,6 @@ public class ZombieAttackingTargetState : AIBotState
                 m_ZombieAIController.NavMeshAgent.enabled = true;
         }
 
-        Debug.Log($"Attack State - {isTooClose}");
-
         m_ZombieAIController.BotTransform.DOLookAt(m_ZombieAIController.GetTargetPoint(), m_ZombieAIController.EnemyBase.StatsSOData.LookAtDuration);
         m_TriggerTimer -= Time.deltaTime;
         if (m_TriggerTimer <= 0 && m_ZombieAIController.Target.IsAvailable())
@@ -84,11 +82,8 @@ public class ZombieAttackingTargetState : AIBotState
         Debug.DrawLine(origin, origin + direction * attackRange, Color.cyan, 99);
 #endif
 
-        Debug.Log($"Handle Attack Pro 1 - {targetLayer}");
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 99, targetLayer))
         {
-            Debug.Log($"Handle Attack Pro 2.0");
-            Debug.Log($"Handle Attack Pro 2 -{hit.collider.name}");
             IDamageable target = hit.collider.GetComponent<IDamageable>();
             if (target != null)
                 m_Target = target;
@@ -99,16 +94,12 @@ public class ZombieAttackingTargetState : AIBotState
     public void HandleAttackHit()
     {
         float distanceAttack = Vector3.Distance(m_ZombieAIController.transform.position, m_ZombieAIController.GetTargetPoint());
-        Debug.Log($"Handle Attack - {distanceAttack} <= {m_ZombieAIController.EnemyBase.EnemyStats.AttackRange}");
         if (m_Target == null)
-            Debug.Log($"Handle Attack 2");
         if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_Target != null)
         {
             m_Target.TakeDamage(m_ZombieAIController.EnemyBase.EnemyStats.AttackDamage);
             //SoundManager.Instance.PlayLoopSFX(m_ZombieAIController.EnemyBase.GetRandomPunchSound(), volumn: 0.5f);
-            Debug.Log($"Handle Attack - 3");
         }
-
     }
 
     public override void InitializeState(AIBotController botController)

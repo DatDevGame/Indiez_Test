@@ -13,17 +13,24 @@ using UnityEditor;
 
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
-    [SerializeField, BoxGroup("Resource")] protected StatsSO m_PlayerStatsSO;
+    [SerializeField, BoxGroup("PointFire Config")] private float m_SideOffset = 0.2f;
+    [SerializeField, BoxGroup("PointFire Config")] private float m_SmoothSpeed = 10f;
+    [SerializeField, BoxGroup("PointFire Config")] private float m_MaxYawAngle = 10f;
+    [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
+
+#if UNITY_EDITOR
+    [BoxGroup("Editor")] public PPrefItemSOVariable m_CurrentWeapons;
+#endif
 
     protected float m_TriggerTimer;
     protected float m_ForwardDistance = 0.8f;
     protected bool m_IsLooking = false;
+    protected bool m_IsAiming = false;
 
-    //protected PlayerBoxerAnimationEventReceiver m_PlayerBoxerAnimationEventReceiver;
     protected IDamageable m_TargetDamagable;
     protected INavigationPoint m_TargetNavigationPoint;
-
+    protected Vector3 m_DefaultLocalPos;
     protected virtual void Awake()
     {
         InitWeapons();
@@ -35,12 +42,16 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected override void InitWeapons()
     {
         base.InitWeapons();
+        m_WeaponHolder.CurrentWeapon.SetFakePointFire(m_FakePointfire);
+        m_WeaponHolder.CurrentWeapon.SetOwner(this);
     }
     public virtual void Init()
     {
-        m_StatsSO = m_PlayerStatsSO;
         m_SoldierStats = new SodierStats();
-        m_SoldierStats.LoadStats(m_StatsSO);
+        m_SoldierStats.LoadStats(m_SoldierStatsSO);
+
+        m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
+        m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
 
         if (m_HealthBar == null)
             m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
@@ -56,6 +67,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         DetectEnemy();
         LookAtTarget();
         OnUpdateAttack();
+
     }
 
     protected virtual void DetectEnemy()
@@ -74,19 +86,45 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected virtual void LookAtTarget()
     {
-        if (m_TargetNavigationPoint != null)
-        {
-            float attackRange = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
-            if (attackRange < m_PlayerStatsSO.AttackRange * m_PlayerStatsSO.LookAtRange && m_TargetNavigationPoint.IsAvailable())
-            {
-                m_IsLooking = true;
-                transform.DOLookAt(m_TargetNavigationPoint.GetSelfPoint(), m_PlayerStatsSO.LookAtDuration);
-            }
-            else
-            {
-                m_IsLooking = false;
-            }
+        if (m_TargetNavigationPoint == null)
+            return;
 
+        float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.05f;
+        float distance = Vector3.Distance(transform.position, GetTargetPoint());
+        bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
+
+        Debug.Log($"Fire Dir: {m_WeaponHolder.CurrentWeapon.PointFire.forward}, Soldier Dir: {transform.forward}");
+
+        if (canLook)
+        {
+            m_IsLooking = true;
+            transform.DOLookAt(GetTargetPoint(), 0.05f);
+
+            if (!m_IsAiming)
+            {
+                m_IsAiming = true;
+
+                string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
+                m_Animator.ResetTrigger(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey);
+                m_Animator.SetTrigger(aimState);
+
+                m_WeaponHolder.AimIK();
+            }
+        }
+        else
+        {
+            m_IsLooking = false;
+
+            if (m_IsAiming)
+            {
+                m_IsAiming = false;
+
+                string idleState = m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey;
+                m_Animator.ResetTrigger(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey);
+                m_Animator.SetTrigger(idleState);
+
+                m_WeaponHolder.IdleIK();
+            }
         }
     }
 
@@ -96,17 +134,17 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             return;
         m_TriggerTimer -= Time.deltaTime;
         float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
-        if (distanceAttack > m_SoldierStats.AttackRange)
+        if (distanceAttack > m_WeaponHolder.CurrentWeapon.WeaponStats.Range)
             return;
 
         Vector3 origin = transform.position + Vector3.up * 0.5f;
         Vector3 direction = transform.forward * m_ForwardDistance;
-        float attackRange = m_ForwardDistance;
+        float attackRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range;
 
 #if UNITY_EDITOR
         Debug.DrawLine(origin, origin + direction * attackRange, Color.cyan, 1.0f);
 #endif
-        LayerMask targetLayer = m_SoldierStats.TeamLayerMask;
+        LayerMask targetLayer = m_SoldierStats.TargetLayerMask;
         if (Physics.Raycast(origin, direction, out RaycastHit hit, attackRange, targetLayer))
         {
             IDamageable target = hit.collider.GetComponent<IDamageable>();
@@ -115,24 +153,37 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         }
 
         if (m_TriggerTimer <= 0 && m_TargetNavigationPoint.IsAvailable())
+        {
+            m_TriggerTimer = m_WeaponHolder.CurrentWeapon.WeaponStats.FireRate;
             PerformAttack();
+        }
     }
+
     private void PerformAttack()
     {
-        // string keyAttackType = UnityEngine.Random.Range(0, 1) <= 0 ? m_AnimationKeySO.HeadAttack : m_AnimationKeySO.BodyAttack;
-        // m_Animator.SetTrigger(keyAttackType);
-        // float animationLength = 0f;
-        // AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-        // animationLength = stateInfo.length / m_AnimationKeySO.DivineAnimSpeedAttack;
-        // m_TriggerTimer = m_SoldierStats.AttackCoolDown + animationLength;
+        if (m_WeaponHolder == null) return;
+
+        Vector3 targetPoint = GetTargetPoint();
+        Vector3 aimDir = (targetPoint - m_WeaponHolder.CurrentWeapon.PointFire.position);
+        aimDir.y = 0f;
+        aimDir.Normalize();
+
+        if (aimDir.sqrMagnitude > 0.001f)
+        {
+            float targetYaw = Mathf.Atan2(aimDir.x, aimDir.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, targetYaw, 0f);
+        }
+
+        m_WeaponHolder.FireCurrent();
     }
+
 
     //Call In Animation
     public void HandleAttackHit()
     {
         if (m_TargetDamagable != null && m_TargetNavigationPoint != null)
         {
-            float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
+            float distanceAttack = Vector3.Distance(transform.position, GetTargetPoint());
             if (distanceAttack <= m_SoldierStats.AttackRange)
             {
                 HapticManager.Instance.PlayFlashHaptic();
@@ -145,7 +196,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected List<INavigationPoint> FindTargetsInRange()
     {
         var targets = new List<INavigationPoint>();
-        var colliders = Physics.OverlapSphere(transform.position, m_PlayerStatsSO.DetectionRange, m_PlayerStatsSO.TeamLayerMask);
+        var colliders = Physics.OverlapSphere(transform.position, m_WeaponHolder.CurrentWeapon.WeaponStats.Range, m_SoldierStats.TargetLayerMask);
         foreach (var collider in colliders)
         {
             if (collider.gameObject.layer == gameObject.layer)
@@ -159,8 +210,8 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         }
         return targets;
     }
-
-    private void Dead()
+    
+    protected void Dead()
     {
         OnDead?.Invoke();
     }
@@ -198,7 +249,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        if (m_PlayerStatsSO == null) return;
+        if (m_SoldierStatsSO == null) return;
 
         GUIStyle style = new GUIStyle();
         style.normal.textColor = Color.white;
@@ -207,24 +258,26 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
         Vector3 center = transform.position + Vector3.up * 0.01f;
 
+        float attackRange = m_CurrentWeapons.value.GetModule<WeaponInfoModule>().Range;
+
         // Detection Range
-        DrawCircleXZ(center, m_PlayerStatsSO.DetectionRange, 64, Color.magenta);
-        Vector3 detectionLabelPos = center + new Vector3(0, 0.01f, -m_PlayerStatsSO.DetectionRange + 0.2f);
+        DrawCircleXZ(center, m_SoldierStatsSO.DetectionRange, 64, Color.magenta);
+        Vector3 detectionLabelPos = center + new Vector3(0, 0.01f, -m_SoldierStatsSO.DetectionRange + 0.2f);
         Handles.color = Color.white;
-        Handles.Label(detectionLabelPos, $"Detection Range: {m_PlayerStatsSO.DetectionRange}", style);
+        Handles.Label(detectionLabelPos, $"Detection Range: {m_SoldierStatsSO.DetectionRange}", style);
 
         // LookAt Range = AttackRange * 1.5f
-        float lookAtRange = m_PlayerStatsSO.AttackRange * m_PlayerStatsSO.LookAtRange;
+        float lookAtRange = attackRange + (attackRange * 0.05f);
         DrawCircleXZ(center, lookAtRange, 64, Color.yellow);
-        Vector3 detectionLabelPos2 = center + new Vector3(0, 0.01f, -(m_PlayerStatsSO.AttackRange * 1.5f) + 0.2f);
+        Vector3 detectionLabelPos2 = center + new Vector3(0, 0.01f, -(m_SoldierStatsSO.AttackRange * 1.5f) + 0.2f);
         Handles.color = Color.white;
-        Handles.Label(detectionLabelPos2, $"LookAt Range: {m_PlayerStatsSO.AttackRange * 1.5f}", style);
+        Handles.Label(detectionLabelPos2, $"LookAt Range: {lookAtRange}", style);
 
         // Attack Range
-        DrawCircleXZ(center, m_PlayerStatsSO.AttackRange, 64, Color.red);
-        Vector3 detectionLabelPos3 = center + new Vector3(0, 0.01f, -m_PlayerStatsSO.AttackRange + 0.2f);
+        DrawCircleXZ(center, attackRange, 64, Color.red);
+        Vector3 detectionLabelPos3 = center + new Vector3(0, 0.01f, -attackRange + 0.2f);
         Handles.color = Color.white;
-        Handles.Label(detectionLabelPos3, $"Attack Range: {m_PlayerStatsSO.AttackRange}", style);
+        Handles.Label(detectionLabelPos3, $"Attack Range: {attackRange}", style);
     }
 
     private void DrawCircleXZ(Vector3 center, float radius, int segments, Color color)

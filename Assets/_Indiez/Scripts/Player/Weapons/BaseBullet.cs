@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Premium;
 using Premium.PoolManagement;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
@@ -12,11 +13,11 @@ public class BaseBullet : MonoBehaviour
     protected BaseWeapon m_Gun;
     protected Coroutine m_ShootCoroutine;
 
+    protected bool m_IsActive = false;
     public virtual void OnInit(BaseWeapon baseWeapon)
     {
         m_Gun = baseWeapon;
     }
-
     public virtual void Shoot()
     {
         gameObject.SetActive(true);
@@ -30,10 +31,24 @@ public class BaseBullet : MonoBehaviour
         float timer = 0f;
         Vector3 velocity = Vector3.zero;
 
+        // StartCoroutine(CommonCoroutine.Delay(0.01f, false, () =>
+        // {
+        //     Transform child = transform;
+
+        //     Vector3 worldPos = child.position;
+        //     Quaternion worldRot = child.rotation;
+
+        //     child.SetParent(null, false);
+        //     child.position = worldPos;
+        //     child.rotation = worldRot;
+
+        //     transform.SetParent(null);
+
+        // }));
+
         while (timer < m_LifeTime)
         {
             Vector3 targetPos = transform.position + transform.forward * m_Speed * Time.deltaTime;
-
             transform.position = Vector3.SmoothDamp(
                 transform.position,
                 targetPos,

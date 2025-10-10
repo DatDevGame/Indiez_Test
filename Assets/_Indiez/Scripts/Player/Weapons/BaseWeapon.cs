@@ -5,6 +5,7 @@ public abstract class BaseWeapon : MonoBehaviour
 {
     public Transform RightHandIK => m_RightHandIK;
     public Transform LeftHandIK => m_LeftHandIK;
+    public Transform PointFire => m_PointFire;
     public WeaponStats WeaponStats => weaponStats;
     public BaseBullet BulletPrefab => m_BulletPrefab;
     public WeaponSO WeaponSO => weaponSO;
@@ -18,6 +19,8 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected float m_nextFireTime;
     protected bool m_isEquipped;
+    protected BaseSoldier m_Owner;
+    protected Transform m_FakePoinfire;
     protected WeaponStats weaponStats;
 
     public virtual void OnEquip()
@@ -37,6 +40,8 @@ public abstract class BaseWeapon : MonoBehaviour
     {
         Debug.Log($"{weaponStats.WeaponName} reloaded!");
     }
+    public virtual void SetFakePointFire(Transform FakePoinfire) => m_FakePoinfire = FakePoinfire;
+    public virtual void SetOwner(BaseSoldier Owner) => m_Owner = Owner;
 }
 
 

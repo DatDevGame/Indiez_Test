@@ -71,6 +71,7 @@ public class ZombieAIController : AIBotController, INavigationPoint
 
     protected void OnDead()
     {
+        m_NavMeshAgent.enabled = false;
         StopStateMachine();
     }
 #if UNITY_EDITOR

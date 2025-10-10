@@ -9,21 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc3a0aea40dc8ff4998a67ed80bd3cc0, type: 3}
-  m_Name: PlayerStatsSO
+  m_Script: {fileID: 11500000, guid: 5ab41af0b3f6b2944aebe2e056c42665, type: 3}
+  m_Name: SoldierStatsSO
   m_EditorClassIdentifier: 
-  m_guid: 
+  m_guid: 29db894dd327ee44ebb6d908cb664056
   LookAtDuration: 0.2
   MaxHealth: 100
   DetectionRange: 100
-  BlockChance: 0.2
+  BlockChance: 0
   CriticalChance: 0.1
   CriticalMultiplier: 2
   TeamLayerMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 0
   LookAtRange: 4
-  MoveSpeed: 3.5
+  MoveSpeed: 1.5
   AttackDamage: 15
   AttackRange: 0.5
   AttackCoolDown: 1
+  TargetLayermask:
+    serializedVersion: 2
+    m_Bits: 1024

@@ -2,32 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using Premium.PoolManagement;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AK47_Weapon : BaseWeapon
 {
-    [Button]
     public override void Fire()
     {
+        // --- Bullet ---
         var bulletPool = PoolManager.GetOrCreatePool<BaseBullet>(
             objectPrefab: BulletPrefab,
             initialCapacity: 1
         );
 
         BaseBullet bullet = bulletPool.Get();
-        bullet.transform.SetPositionAndRotation(m_PointFire.position, m_PointFire.rotation);
 
+        // --- Fire VFX ---
         var firePool = PoolManager.GetOrCreatePool<ParticleSystem>(
             objectPrefab: m_BulletMuzzleFirePrefab,
             initialCapacity: 1
         );
+
         ParticleSystem fireVFX = firePool.Get();
-        fireVFX.transform.SetPositionAndRotation(m_PointFire.position, m_PointFire.rotation);
+
+        fireVFX.transform.SetParent(m_PointFire, false);
+        fireVFX.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        fireVFX.transform.localScale = Vector3.one;
+
         fireVFX.gameObject.SetActive(true);
         fireVFX.Play();
         fireVFX.Release(m_BulletMuzzleFirePrefab, 0.2f);
 
+        bullet.transform.SetPositionAndRotation(
+            m_FakePoinfire.position,
+            m_FakePoinfire.rotation
+        );
+
         bullet.OnInit(this);
         bullet.Shoot();
     }
+
 }

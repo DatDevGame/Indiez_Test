@@ -169,7 +169,7 @@ MonoBehaviour:
   m_PointFire: {fileID: 1144827871617836178}
   m_RightHandIK: {fileID: 5920113819256392452}
   m_LeftHandIK: {fileID: 236445859577671844}
-  m_BulletPrefab: {fileID: 2755422726587436955, guid: 4064ce97625b8954c95f2ac18d2abda8,
+  m_BulletPrefab: {fileID: -479713053271977368, guid: 4064ce97625b8954c95f2ac18d2abda8,
     type: 3}
   m_BulletMuzzleFirePrefab: {fileID: 1465932610192973303, guid: 8609ce76a812e974da39fa3a36f2a93c,
     type: 3}

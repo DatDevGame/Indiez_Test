@@ -40,6 +40,6 @@ Material:
     - _Width: 1.1
     m_Colors:
     - _BorderColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighHealthColor: {r: 0.030668736, g: 1, b: 0, a: 1}
+    - _HighHealthColor: {r: 1, g: 0.8702211, b: 0, a: 1}
     - _LowHealthColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

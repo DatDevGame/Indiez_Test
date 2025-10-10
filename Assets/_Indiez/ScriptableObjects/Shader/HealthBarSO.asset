@@ -15,4 +15,5 @@ MonoBehaviour:
   m_guid: ab3740db74a17714c8a31cc4004c33cd
   PlayerHealthBarMaterial: {fileID: 2100000, guid: 9bafc0d5ed2adf44d934a90f2a173553,
     type: 2}
-  OpponentHealthBarMaterial: {fileID: 0}
+  OpponentHealthBarMaterial: {fileID: 2100000, guid: de42c80c662734f40bedcff0bd8ada54,
+    type: 2}

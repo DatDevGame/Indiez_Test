@@ -22,7 +22,6 @@ public class ZombieLookingTargetState : AIBotState
 
     protected override void OnStateUpdate()
     {
-        Debug.Log($"Look State");
         if (m_ZombieAIController != null)
         {
             if (!m_ZombieAIController.EnemyBase.IsAlive)
@@ -45,7 +44,6 @@ public class ZombieLookingTargetState : AIBotState
             m_ZombieAIController = zombieAIController;
         base.InitializeState(botController);
         m_ZombieAIController.Animator.SetTrigger(m_ZombieAIController.AnimationKeySO.Idle);
-        Debug.Log($"InitializeState -> Zombie Looking State");
     }
 }
 

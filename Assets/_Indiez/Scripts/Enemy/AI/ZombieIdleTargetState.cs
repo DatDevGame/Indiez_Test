@@ -13,7 +13,6 @@ public class ZombieIdleTargetState : AIBotState
         if (botController is ZombieAIController zombieAIController)
             m_ZombieAIController = zombieAIController;
         base.InitializeState(botController);
-        Debug.Log($"InitializeState -> Zombie Idle State");
     }
 }
 
@@ -36,6 +35,5 @@ public class ZombieIdleTargetToLookingTargetTransition : AIBotStateTransition
             m_ZombieAIController = zombieAIController;
         base.InitializeTransition(originState, botController);
         m_IdleTargetState = GetOriginStateAsType<ZombieIdleTargetState>();
-        Debug.Log($"InitializeTransition -> Zombie Idle State");
     }
 }

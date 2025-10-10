@@ -44,7 +44,6 @@ public class ZombieChasingTargetState : AIBotState
 
     protected override void OnStateUpdate()
     {
-        Debug.Log($"Chasing State");
         base.OnStateUpdate();
         if (m_ZombieAIController.Target == null)
             return;
@@ -56,7 +55,6 @@ public class ZombieChasingTargetState : AIBotState
         if (botController is ZombieAIController zombieAIController)
             m_ZombieAIController = zombieAIController;
         base.InitializeState(botController);
-        Debug.Log($"InitializeState -> Zombie Chasing State");
     }
 
     protected virtual void MoveTarget(Vector3 targetPosition)
@@ -87,7 +85,6 @@ public class ZombieChasingToAttackTransition : AIBotStateTransition
             m_ZombieAIController = zombieAIController;
         base.InitializeTransition(originState, botController);
         m_ZombieChasingTargetState = GetOriginStateAsType<ZombieChasingTargetState>();
-        Debug.Log($"InitializeTransition -> Zombie Chasing Target To Attack Target Transition");
     }
 
     protected bool CheckAttackRange(Vector3 vecTarget)

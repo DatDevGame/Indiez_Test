@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1743794397482380720, guid: 4a6a878d079d6af41adeae12b6adc439,
         type: 3}
       propertyPath: m_Name
-      value: DeserEagleBullet Variant
+      value: AK47Bullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1867453185236316516, guid: 4a6a878d079d6af41adeae12b6adc439,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 5129634621858055570, guid: 4a6a878d079d6af41adeae12b6adc439,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5129634621858055570, guid: 4a6a878d079d6af41adeae12b6adc439,
         type: 3}
@@ -150,7 +150,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1743794397482380720, guid: 4a6a878d079d6af41adeae12b6adc439,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2755422726587436955}
+      addedObject: {fileID: 8607112323178225277}
   m_SourcePrefab: {fileID: 100100000, guid: 4a6a878d079d6af41adeae12b6adc439, type: 3}
 --- !u!1 &1891529388880380317 stripped
 GameObject:
@@ -158,7 +158,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 176551017002675245}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2755422726587436955
+--- !u!114 &8607112323178225277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891529388880380317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7789e5a167ce6e5449cf0a9773f9cd9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 76e387f3ac5559e4289d728daabeabec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_LifeTime: 3

@@ -9,6 +9,8 @@ public class WeaponSO : ItemSO
 {
     [BoxGroup("IK Data")] public IKData IK_Idle;
     [BoxGroup("IK Data")] public IKData IK_Aim;
+    [BoxGroup("PointFire Config")] public Vector3 PointFirePos;
+    [BoxGroup("PointFire Config")] public Vector3 PointFireEur;
     [BoxGroup("Animation Key Data")] public string IdleAnimationKey, AimAnimationKey;
 }
 
