@@ -117,7 +117,19 @@ currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalRotation);
     public void FireCurrent()
     {
         if (currentWeapon)
+        {
+            m_RevolverTranform.DOShakePosition(
+    duration: 0.03f,
+    strength: 0.03f,
+    vibrato: 10,
+    randomness: 90,
+    snapping: false,
+    fadeOut: true
+);
+
             currentWeapon.Fire();
+        }
+
     }
 
     public void ReloadCurrent()

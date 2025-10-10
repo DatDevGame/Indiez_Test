@@ -95,8 +95,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         float distance = Vector3.Distance(transform.position, GetTargetPoint());
         bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
 
-        Debug.Log($"Fire Dir: {m_WeaponHolder.CurrentWeapon.PointFire.forward}, Soldier Dir: {transform.forward}");
-
         if (canLook)
         {
             m_IsLooking = true;
@@ -180,21 +178,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     }
 
 
-    //Call In Animation
-    public void HandleAttackHit()
-    {
-        if (m_TargetDamagable != null && m_TargetNavigationPoint != null)
-        {
-            float distanceAttack = Vector3.Distance(transform.position, GetTargetPoint());
-            if (distanceAttack <= m_SoldierStats.AttackRange)
-            {
-                HapticManager.Instance.PlayFlashHaptic();
-                CameraShake.Instance.Shake(0.05f, 0.2f);
-                m_TargetDamagable.TakeDamage(m_SoldierStats.AttackDamage);
-                //SoundManager.Instance.PlayLoopSFX(GetRandomPunchSound(), volumn: 0.5f);
-            }
-        }
-    }
     protected List<INavigationPoint> FindTargetsInRange()
     {
         var targets = new List<INavigationPoint>();
@@ -218,7 +201,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         OnDead?.Invoke();
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 hitPos)
     {
         if (m_SoldierStats.Health > 0)
         {
@@ -226,7 +209,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             m_LegsAnimator.User_AddImpulse(m_HitDamgePelvisImpulse);
             GameEventHandler.Invoke(PlayerEventCode.TakeDamage, amount);
         }
-
 
         if (m_SoldierStats.Health <= 0)
         {

@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FIMSpace.FProceduralAnimation;
+using Premium.PoolManagement;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ZombiePrototype : EnemyBase, IDamageable
 {
+    [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
+    [SerializeField, BoxGroup("Resource")] protected BulletImpactDataSO m_BulletImpactDataSO;
 
     protected void Start()
     {
@@ -36,8 +40,32 @@ public class ZombiePrototype : EnemyBase, IDamageable
         m_CharacterController.enabled = m_IsAlive;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 hitPos)
     {
+        if (m_EnemyStats.Health > 0)
+        {
+            m_EnemyStats.Health -= (int)amount;
+            m_LegsAnimator.User_AddImpulse(m_HitDamgePelvisImpulse);
+
+            #region Pool BulletImpact
+            ParticleSystem bulletImpactPrefab = m_BulletImpactDataSO.GetBulletImpact(gameObject.layer);
+            // --- Bullet Impact VFX ---
+            var bulletImpactPool = PoolManager.GetOrCreatePool<ParticleSystem>(
+                objectPrefab: bulletImpactPrefab,
+                initialCapacity: 1
+            );
+            ParticleSystem bulletImpact = bulletImpactPool.Get();
+
+            bulletImpact.transform.SetParent(transform, false);
+            bulletImpact.transform.position = hitPos;
+
+            bulletImpact.gameObject.SetActive(true);
+            bulletImpact.Play();
+            bulletImpact.Release(bulletImpactPrefab, 0.2f);
+            #endregion
+        }
+
+
         m_EnemyStats.Health -= (int)amount;
         if (m_EnemyStats.Health <= 0)
         {
@@ -53,7 +81,7 @@ public class ZombiePrototype : EnemyBase, IDamageable
     [Button]
     public void TakeDameEditor(int amout)
     {
-        TakeDamage(amout);
+        TakeDamage(amout, Vector3.zero);
     }
 #endif
 }

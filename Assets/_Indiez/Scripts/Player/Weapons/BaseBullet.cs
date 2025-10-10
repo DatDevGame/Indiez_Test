@@ -78,7 +78,7 @@ public class BaseBullet : MonoBehaviour
         {
             if (m_Gun.WeaponSO.TryGetModule<WeaponInfoModule>(out var module))
             {
-                damageable.TakeDamage(module.Damage);
+                damageable.TakeDamage(module.Damage, hit.point);
             }
         }
         Despawn();
