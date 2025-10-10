@@ -6,6 +6,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Premium.PoolManagement;
 using Sirenix.OdinInspector;
+using HCore.Events;
+using FIMSpace.FProceduralAnimation;
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -13,9 +17,7 @@ using UnityEditor;
 
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
-    [SerializeField, BoxGroup("PointFire Config")] private float m_SideOffset = 0.2f;
-    [SerializeField, BoxGroup("PointFire Config")] private float m_SmoothSpeed = 10f;
-    [SerializeField, BoxGroup("PointFire Config")] private float m_MaxYawAngle = 10f;
+    [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse; 
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
 
@@ -210,7 +212,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         }
         return targets;
     }
-    
+
     protected void Dead()
     {
         OnDead?.Invoke();
@@ -218,7 +220,14 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     public void TakeDamage(float amount)
     {
-        m_SoldierStats.Health -= (int)amount;
+        if (m_SoldierStats.Health > 0)
+        {
+            m_SoldierStats.Health -= (int)amount;
+            m_LegsAnimator.User_AddImpulse(m_HitDamgePelvisImpulse);
+            GameEventHandler.Invoke(PlayerEventCode.TakeDamage, amount);
+        }
+
+
         if (m_SoldierStats.Health <= 0)
         {
             Dead();

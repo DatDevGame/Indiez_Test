@@ -9,7 +9,7 @@ public class CameraShake : MonoBehaviour
     public static CameraShake Instance { get; private set; }
 
     [SerializeField] private CinemachineVirtualCamera m_VCam;
-
+    private IEnumerator ShakeIE;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,7 +23,8 @@ public class CameraShake : MonoBehaviour
     [Button]
     public void Shake(float frequencyGainValue, float shakeCameraTime)
     {
-        StartCoroutine(ShakeHandle(frequencyGainValue, shakeCameraTime));
+        ShakeIE = ShakeHandle(frequencyGainValue, shakeCameraTime);
+        StartCoroutine(ShakeIE);
     }
 
     private IEnumerator ShakeHandle(float frequencyGainValue, float shakeCameraTime)
