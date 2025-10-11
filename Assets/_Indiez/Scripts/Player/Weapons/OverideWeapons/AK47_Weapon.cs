@@ -38,7 +38,8 @@ public class AK47_Weapon : BaseWeapon
             m_FakePoinfire.position,
             m_FakePoinfire.rotation
         );
-
+        bullet.gameObject.SetActive(true);
+        bullet.gameObject.layer = m_Owner.gameObject.layer;
         bullet.OnInit(this);
         bullet.Shoot();
     }

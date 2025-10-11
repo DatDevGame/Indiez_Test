@@ -28,8 +28,8 @@ MonoBehaviour:
     RevolverLocalRotation: {x: 23.294, y: 93.29, z: 84.267}
     LeftHandIkHintLocalPosion: {x: -1.725, y: 0, z: 0}
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
-  PointFirePos: {x: -0.1200575, y: -0.4300131, z: -0.2797114}
-  PointFireEur: {x: 121.93, y: 41.905, z: 137.94}
+  PointFirePos: {x: -0.1379718, y: -0.5600564, z: -0.2375381}
+  PointFireEur: {x: 121.165, y: 30.536, z: 120.48}
   IdleAnimationKey: Pistol_Idle_Bool
   AimAnimationKey: Pistol_Aim_Bool
   references:

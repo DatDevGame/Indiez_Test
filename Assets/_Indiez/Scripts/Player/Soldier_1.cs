@@ -102,6 +102,9 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_WeaponHolder.CurrentWeapon.SetFakePointFire(m_FakePointfire);
         m_WeaponHolder.CurrentWeapon.SetOwner(this);
         m_ChangeWeaponTimer = 1f;
+        
+        m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
+        m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
     }
 
     protected virtual void DetectEnemy()

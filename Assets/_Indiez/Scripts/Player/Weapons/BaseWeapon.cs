@@ -51,6 +51,7 @@ public abstract class BaseWeapon : MonoBehaviour
         m_BoxCollider.AddComponent<Rigidbody>();
         transform.SetParent(null);
         m_Owner.OnDead -= OwnerDead;
+        m_BoxCollider.gameObject.layer = m_Owner.gameObject.layer;
     }
 
     protected virtual void OwnerDead()
