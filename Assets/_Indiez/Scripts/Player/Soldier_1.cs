@@ -36,12 +36,14 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected virtual void Awake()
     {
         GameEventHandler.AddActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeaponEvent);
+        GameEventHandler.AddActionEvent(PlayerEventCode.ThrowGrenadeTrigger, ThrowGrenadeTrigger);
         InitWeapons();
     }
 
     protected virtual void OnDestroy()
     {
         GameEventHandler.RemoveActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeaponEvent);
+        GameEventHandler.RemoveActionEvent(PlayerEventCode.ThrowGrenadeTrigger, ThrowGrenadeTrigger);
     }
 
     protected virtual void Start()
@@ -70,6 +72,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_HealthBar.Init(progress);
         m_IsActive = true;
     }
+    protected virtual void ThrowGrenadeTrigger() => ThrowGrenade();
     protected virtual void Update()
     {
         if (!m_IsAlive) return;

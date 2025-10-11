@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FuseTime: 3
   m_ExplosionRadius: 3
-  m_Damage: 300
+  m_Damage: 10
   m_ApplyExplosionForce: 1
   m_ExplosionForce: 25
   m_ExplosionUpwardModifier: 1

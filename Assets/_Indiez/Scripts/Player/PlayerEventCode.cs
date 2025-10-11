@@ -9,7 +9,12 @@ public enum PlayerEventCode
 
     /// <summary>
     /// Call When Equip Weapon
-    /// <para>Param: <b>float amount</b> — Damage.</para>
+    /// <para>Param: <b>WeaponSO weaponSO</b> — Data Weapon.</para>
     /// </summary>
     EquipWeapon,
+
+    /// <summary>
+    /// Call When click button Throw Grenade
+    /// </summary>
+    ThrowGrenadeTrigger,
 }

@@ -73,7 +73,4 @@ public class GrenadeSoldier : BombBase
         Vector3 velocity = (toTargetXZ.normalized * Mathf.Cos(angle) + Vector3.up * Mathf.Sin(angle)) * speed;
         m_Rb.velocity = velocity;
     }
-
-
-
 }
