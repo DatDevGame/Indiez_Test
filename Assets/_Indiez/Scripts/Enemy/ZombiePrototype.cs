@@ -2,15 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FIMSpace.FProceduralAnimation;
+using Premium;
 using Premium.PoolManagement;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class ZombiePrototype : EnemyBase, IDamageable
 {
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
+    [SerializeField, BoxGroup("References")] protected AnimateDissolve m_AnimateDissolve;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
     [SerializeField, BoxGroup("Resource")] protected BulletImpactDataSO m_BulletImpactDataSO;
+
+    protected List<Material> m_IndiMatSkins;
+    protected SkinnedMeshRenderer[] m_SkinnedMeshRenderers;
 
     protected void Start()
     {
@@ -20,6 +27,7 @@ public class ZombiePrototype : EnemyBase, IDamageable
     public override void Init(EnemyStatsSO statsSO = null)
     {
         base.Init(statsSO);
+        InitDissolveMat();
 
         if (m_HealthBar == null)
             m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
@@ -28,6 +36,30 @@ public class ZombiePrototype : EnemyBase, IDamageable
         var progress = new RangeProgress<int>(range, 100);
         m_HealthBar.Init(progress);
     }
+
+    protected virtual void InitDissolveMat()
+    {
+        m_IndiMatSkins = new List<Material>();
+
+        m_SkinnedMeshRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (var skinMesh in m_SkinnedMeshRenderers)
+        {
+            Material[] mats = skinMesh.materials;
+
+            for (int i = 0; i < mats.Length; i++)
+            {
+                if (mats[i] == null)
+                    continue;
+
+                Material instanceMat = new Material(mats[i]);
+                mats[i] = instanceMat;
+                m_IndiMatSkins.Add(instanceMat);
+            }
+            skinMesh.materials = mats;
+        }
+    }
+
 
     protected void Dead()
     {
@@ -65,16 +97,19 @@ public class ZombiePrototype : EnemyBase, IDamageable
             #endregion
         }
 
-
-        m_EnemyStats.Health -= (int)amount;
         if (m_EnemyStats.Health <= 0)
         {
             Dead();
             m_EnemyStats.Health = 0;
-        }
 
+            StartCoroutine(CommonCoroutine.Delay(3, false, () =>
+            {
+                foreach (var dissolveMat in m_IndiMatSkins)
+                    m_AnimateDissolve.PlayDissolve(dissolveMat, 5f);
+                m_SkinnedMeshRenderers.ForEach(v => v.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off);
+            }));
+        }
         m_HealthBar.SetValue(m_EnemyStats.Health + (int)amount, m_EnemyStats.Health, 0.2f);
-        Debug.Log($"Receive Attack");
     }
 
 #if UNITY_EDITOR

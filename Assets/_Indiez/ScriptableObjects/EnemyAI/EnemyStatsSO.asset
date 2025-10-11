@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: a8a02397fb148274eb6c3f3d8c8c545f
   LookAtDuration: 0.2
-  MaxHealth: 99999
+  MaxHealth: 100
   DetectionRange: 20
   BlockChance: 0.2
   CriticalChance: 0.1
