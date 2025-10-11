@@ -51,7 +51,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!isActive || m_Player == null) return;
+        if (m_Soldier == null)
+            return;
+        if (!m_Soldier.IsAvailable())
+            return;
 
         m_Horizontal = m_Joystick.Horizontal;
         m_Vertical = m_Joystick.Vertical;

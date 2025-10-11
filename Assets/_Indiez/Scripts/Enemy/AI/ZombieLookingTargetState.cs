@@ -16,15 +16,16 @@ public class ZombieLookingTargetState : AIBotState
 
     protected override void OnStateEnable()
     {
-        base.OnStateEnable();
-        m_ZombieAIController.Animator.SetTrigger(m_ZombieAIController.AnimationKeySO.Idle);
+        m_ZombieAIController.NavMeshAgent.isStopped = true;
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, false);
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Idle, true);
     }
 
     protected override void OnStateUpdate()
     {
         if (m_ZombieAIController != null)
         {
-            if (!m_ZombieAIController.EnemyBase.IsAlive)
+            if (!m_ZombieAIController.IsAvailable())
                 return;
 
             List<INavigationPoint> navigationPoints = m_ZombieAIController.FindTargetsInRange();
@@ -57,7 +58,10 @@ public class ZombieLookingTargetToChasingTargetTransition : AIBotStateTransition
 
     protected override bool Decide()
     {
-        if (m_ZombieAIController.Target != null)
+        if (!m_ZombieAIController.Target.IsAvailable())
+            return false;
+
+        if (m_ZombieAIController.Target != null & m_ZombieAIController.IsAvailable())
         {
             m_TriggerTimer -= Time.deltaTime;
             float timeLookAt = m_InitialTriggerTime * 0.5f;
@@ -76,12 +80,6 @@ public class ZombieLookingTargetToChasingTargetTransition : AIBotStateTransition
             m_TriggerTimer = m_ZombieAIController.ZombieAIProfile.TimeRandomChasingTarget;
         }
         return false;
-    }
-
-    private IEnumerator SceamDelay()
-    {
-        m_ZombieAIController.Animator.SetTrigger(m_ZombieAIController.AnimationKeySO.Sceam);
-        yield return new WaitForSeconds(1);
     }
 
     public override void InitializeTransition(AIBotState originState, AIBotController botController)

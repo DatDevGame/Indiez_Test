@@ -209,6 +209,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8871685156867776058}
+    - targetCorrespondingSourceObject: {fileID: 3681967982141995727, guid: 868a5e67cd2ad854c83034284cece15d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3809784512862938033}
   m_SourcePrefab: {fileID: 100100000, guid: 868a5e67cd2ad854c83034284cece15d, type: 3}
 --- !u!4 &154777893671210531 stripped
 Transform:
@@ -255,8 +259,30 @@ MonoBehaviour:
   m_PointFire: {fileID: 6912646550314082741}
   m_RightHandIK: {fileID: 154777893671210531}
   m_LeftHandIK: {fileID: 6000377769501832579}
+  m_BoxCollider: {fileID: 3809784512862938033}
   m_BulletPrefab: {fileID: 2755422726587436955, guid: 69d493336d20dc54e97f41d9924d431c,
     type: 3}
   m_BulletMuzzleFirePrefab: {fileID: 1465932610192973303, guid: 8609ce76a812e974da39fa3a36f2a93c,
     type: 3}
   weaponSO: {fileID: 11400000, guid: 990010cbb1d833b4cb68273c83bba46f, type: 2}
+--- !u!65 &3809784512862938033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434470993651697124}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31, y: 1, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: ZombieAnimationSO
   m_EditorClassIdentifier: 
   m_guid: 2fef559a169946b448cdff049c06be73
-  Idle: Idle
-  Walking: ZombieWalkingTrigger
+  Idle: ZombieIdleBool
+  Walking: ZombieWalkingBool
   Attack: ZombieAttackTrigger
   Hit_1: Hit_1
   Hit_2: Hit_2
-  Dead: ZombieDead
+  Dead: ZombieDeadBool
   DeadTrigger: ZombieDeadTrigger
+  Sceam: ZombieSceamTrigger
+  Look: ZombieLookTrigger

@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Bits: 0
   LookAtRange: 4
   MoveSpeed: 0.5
-  AttackDamage: 1
+  AttackDamage: 30
   AttackRange: 1.5
   AttackCoolDown: 0.2
   TargetLayermask:

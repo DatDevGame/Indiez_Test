@@ -16,6 +16,7 @@ using UnityEditor;
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
+    [SerializeField, BoxGroup("References")] protected RagdollController m_RagdollController;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
 
@@ -71,7 +72,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     }
     protected virtual void Update()
     {
-        if (!m_IsActive) return;
+        if (!m_IsAlive) return;
         DetectEnemy();
         LookAtTarget();
         OnUpdateAttack();
@@ -246,6 +247,15 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected void Dead()
     {
         OnDead?.Invoke();
+        m_WeaponHolder.RightHandIK.weight = 0;
+        m_WeaponHolder.LeftHandIK.weight = 0;
+        m_IsAlive = false;
+        m_Animator.enabled = false;
+        m_LegsAnimator.enabled = m_IsAlive;
+        m_HealthBarMesh.enabled = m_IsAlive;
+        m_CharacterController.enabled = m_IsAlive;
+        OnDead?.Invoke();
+        m_RagdollController.EnableRagdoll();
     }
 
     public void TakeDamage(float amount, Vector3 hitPos)

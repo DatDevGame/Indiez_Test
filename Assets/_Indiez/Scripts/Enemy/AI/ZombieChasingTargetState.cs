@@ -33,6 +33,7 @@ public class ZombieChasingTargetState : AIBotState
                 m_ZombieAIController.NavMeshAgent.enabled = true;
         }
         m_ZombieAIController.NavMeshAgent.isStopped = false;
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Idle, false);
         m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, true);
     }
 
@@ -76,6 +77,8 @@ public class ZombieChasingToAttackTransition : AIBotStateTransition
 
     protected override bool Decide()
     {
+        if (!m_ZombieAIController.Target.IsAvailable())
+            return false;
         return CheckAttackRange(m_ZombieAIController.GetTargetPoint());
     }
 
@@ -91,7 +94,6 @@ public class ZombieChasingToAttackTransition : AIBotStateTransition
     {
         if (m_ZombieAIController == null) return false;
         float distanceToTarget = Vector3.Distance(m_ZombieAIController.transform.position, vecTarget);
-        return distanceToTarget <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange;
+        return distanceToTarget <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_ZombieAIController.IsAvailable();
     }
-
 }

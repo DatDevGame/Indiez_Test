@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class BaseWeapon : MonoBehaviour
@@ -13,6 +14,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField, BoxGroup("Reference")] protected Transform m_PointFire;
     [SerializeField, BoxGroup("Reference")] protected Transform m_RightHandIK;
     [SerializeField, BoxGroup("Reference")] protected Transform m_LeftHandIK;
+    [SerializeField, BoxGroup("Owner Dead Reference")] protected BoxCollider m_BoxCollider;
     [SerializeField, BoxGroup("Resource")] protected BaseBullet m_BulletPrefab;
     [SerializeField, BoxGroup("Resource")] protected ParticleSystem m_BulletMuzzleFirePrefab;
     [SerializeField, BoxGroup("Weapon Data")] protected WeaponSO weaponSO;
@@ -42,7 +44,22 @@ public abstract class BaseWeapon : MonoBehaviour
         Debug.Log($"{weaponStats.WeaponName} reloaded!");
     }
     public virtual void SetFakePointFire(Transform FakePoinfire) => m_FakePoinfire = FakePoinfire;
-    public virtual void SetOwner(BaseSoldier Owner) => m_Owner = Owner;
+    public virtual void SetOwner(BaseSoldier Owner)
+    {
+        m_Owner = Owner;
+        m_BoxCollider.enabled = true;
+        m_BoxCollider.AddComponent<Rigidbody>();
+        transform.SetParent(null);
+        m_Owner.OnDead -= OwnerDead;
+    }
+
+    protected virtual void OwnerDead()
+    {
+        m_BoxCollider.enabled = true;
+        m_BoxCollider.AddComponent<Rigidbody>();
+        transform.SetParent(null);
+        m_Owner.OnDead -= OwnerDead;
+    }
 }
 
 

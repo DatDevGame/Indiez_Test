@@ -9,6 +9,9 @@ public class WeaponHolder : MonoBehaviour
 {
     public BaseWeapon CurrentWeapon => currentWeapon;
 
+    public TwoBoneIKConstraint RightHandIK => m_RightHandIK;
+    public TwoBoneIKConstraint LeftHandIK => m_LeftHandIK;
+
     [SerializeField, BoxGroup("Refference")] private BaseSoldier m_BaseSoldier;
     [SerializeField, BoxGroup("Refference")] private Transform m_RevolverTranform;
     [SerializeField, BoxGroup("Right Hand IK")] private TwoBoneIKConstraint m_RightHandIK;
@@ -33,6 +36,9 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
+        if (!m_BaseSoldier.IsAlive)
+            return;
+
         if (currentWeapon != null && IKRighHandPos != null && IKLeftHandPos != null)
         {
             currentWeapon.transform.parent = m_RevolverTranform;
