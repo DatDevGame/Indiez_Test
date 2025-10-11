@@ -12,6 +12,8 @@ using UnityEngine;
 public class ZombiePrototype : EnemyBase, IDamageable
 {
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
+    [SerializeField, BoxGroup("References")] protected ZombieAIController m_ZombieAIController;
+    [SerializeField, BoxGroup("References")] protected RagdollController m_RagdollController;
     [SerializeField, BoxGroup("References")] protected AnimateDissolve m_AnimateDissolve;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
     [SerializeField, BoxGroup("Resource")] protected BulletImpactDataSO m_BulletImpactDataSO;
@@ -65,11 +67,13 @@ public class ZombiePrototype : EnemyBase, IDamageable
     {
         m_IsAlive = false;
         OnDead?.Invoke();
-        m_Animator.SetTrigger(m_AnimationKeySO.DeadTrigger);
-        m_Animator.SetBool(m_AnimationKeySO.Dead, true);
+        m_ZombieAIController.NavMeshAgent.enabled = false;
+        m_Animator.enabled = false;
         m_LegsAnimator.enabled = m_IsAlive;
         m_HealthBarMesh.enabled = m_IsAlive;
         m_CharacterController.enabled = m_IsAlive;
+
+        m_RagdollController.EnableRagdoll();
     }
 
     public void TakeDamage(float amount, Vector3 hitPos)

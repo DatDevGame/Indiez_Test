@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 3252640976634732727}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50901544, y: -0.58786505, z: 0.4094888, w: 0.47711307}
-  m_LocalPosition: {x: 0.142446, y: -0.7111639, z: -0.024938285}
+  m_LocalPosition: {x: 0.12086783, y: -0.7146784, z: -0.024938285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1722,6 +1722,8 @@ MonoBehaviour:
   m_Animator: {fileID: 5641440780921070085}
   m_LegsAnimator: {fileID: 2730734888777290242}
   m_HealthBarMesh: {fileID: 2825022142878080558}
+  m_GrenadeSoldierPrefab: {fileID: 4303677060918809771, guid: 19c69ceaf108f4e4a9edd80a5aed91eb,
+    type: 3}
   m_SoldierAnimationSO: {fileID: 11400000, guid: e401f4a78e2457f4d8dcbae27002e2a4,
     type: 2}
   m_WeaponManagerSO: {fileID: 11400000, guid: 5ce7528e965c5fc49b8622d2dc82b491, type: 2}
@@ -1795,6 +1797,8 @@ MonoBehaviour:
   m_FakePointfire: {fileID: 580487347313977391}
   m_HealthBarSO: {fileID: 11400000, guid: ab3740db74a17714c8a31cc4004c33cd, type: 2}
   m_CurrentWeapons: {fileID: 11400000, guid: 7cf123a5d0a646f499b22ecb9b0ec07c, type: 2}
+  speedsMulty: 2
+  arcFactor: 0.07
 --- !u!114 &5438035323216430523
 MonoBehaviour:
   m_ObjectHideFlags: 0

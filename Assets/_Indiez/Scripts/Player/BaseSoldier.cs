@@ -19,6 +19,7 @@ public abstract class BaseSoldier : MonoBehaviour
     public SodierStats SoldierStats => m_SoldierStats;
     public SoldierStatsSO StatsSOData => m_SoldierStatsSO;
     public SoldierAnimationSO AnimationKeySO => m_SoldierAnimationSO;
+    public GrenadeSoldier GrenadeSoldierPrefab => m_GrenadeSoldierPrefab;
     public bool IsAlive => m_IsAlive;
     public bool IsActive => m_IsActive;
     public bool IsLocal => m_IsLocal;
@@ -30,6 +31,7 @@ public abstract class BaseSoldier : MonoBehaviour
     [SerializeField, BoxGroup("References")] protected Animator m_Animator;
     [SerializeField, BoxGroup("References")] protected LegsAnimator m_LegsAnimator;
     [SerializeField, BoxGroup("References")] protected MeshRenderer m_HealthBarMesh;
+    [SerializeField, BoxGroup("Resource")] protected GrenadeSoldier m_GrenadeSoldierPrefab;
     [SerializeField, BoxGroup("Data")] protected SoldierAnimationSO m_SoldierAnimationSO;
     [SerializeField, BoxGroup("Data")] protected WeaponManagerSO m_WeaponManagerSO;
     [SerializeField, BoxGroup("Data")] protected SoldierStatsSO m_SoldierStatsSO;
@@ -37,7 +39,6 @@ public abstract class BaseSoldier : MonoBehaviour
     protected bool m_IsAlive = true;
     protected bool m_IsActive = false;
     protected bool m_IsLocal = false;
-
 
     protected virtual void InitWeapons()
     {

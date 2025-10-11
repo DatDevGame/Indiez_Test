@@ -9,8 +9,6 @@ using Sirenix.OdinInspector;
 using HCore.Events;
 using FIMSpace.FProceduralAnimation;
 
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -77,7 +75,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         DetectEnemy();
         LookAtTarget();
         OnUpdateAttack();
-
     }
 
     protected void OnEquipWeaponEvent(params object[] parameters)
@@ -205,10 +202,28 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             float targetYaw = Mathf.Atan2(aimDir.x, aimDir.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetYaw, 0f);
         }
-
         m_WeaponHolder.FireCurrent();
     }
 
+    protected virtual void ThrowGrenade()
+    {
+        if (m_IsAiming)
+        {
+            var grenadePool = PoolManager.GetOrCreatePool<GrenadeSoldier>(
+                objectPrefab: m_GrenadeSoldierPrefab,
+                initialCapacity: 1
+            );
+
+            float speedsMulty = 2;
+            float arcFactor = 0.07f;
+            GrenadeSoldier grenadeSoldier = grenadePool.Get();
+            grenadeSoldier.transform.SetPositionAndRotation(m_FakePointfire.position, m_FakePointfire.rotation);
+            grenadeSoldier.gameObject.SetActive(true);
+            grenadeSoldier.OnInit(this);
+            grenadeSoldier.StartFuse();
+            grenadeSoldier.ThrowToTargetByDistance(m_FakePointfire.position, GetTargetPoint(), speedsMulty, arcFactor);
+        }
+    }
 
     protected List<INavigationPoint> FindTargetsInRange()
     {
@@ -270,6 +285,24 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         return m_TargetNavigationPoint.GetSelfPoint();
     }
 #if UNITY_EDITOR
+
+    [BoxGroup("Editor")] public float speedsMulty = 2;
+    [BoxGroup("Editor")] public float arcFactor = 0.07f;
+    [Button]
+    protected virtual void ThrowToTargetByDistance(bool isHigh)
+    {
+        var grenadePool = PoolManager.GetOrCreatePool<GrenadeSoldier>(
+                objectPrefab: m_GrenadeSoldierPrefab,
+                initialCapacity: 1
+            );
+
+        GrenadeSoldier grenadeSoldier = grenadePool.Get();
+        grenadeSoldier.transform.SetPositionAndRotation(m_FakePointfire.position, m_FakePointfire.rotation);
+        grenadeSoldier.gameObject.SetActive(true);
+        grenadeSoldier.OnInit(this);
+        grenadeSoldier.StartFuse();
+        grenadeSoldier.ThrowToTargetByDistance(m_FakePointfire.position, GetTargetPoint(), speedsMulty, arcFactor);
+    }
     private void OnDrawGizmosSelected()
     {
         if (m_SoldierStatsSO == null) return;
