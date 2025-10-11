@@ -132,10 +132,10 @@ currentWeapon.WeaponSO.IK_Idle.LeftHandIkHintLocalRotation);
         if (currentWeapon)
         {
             m_RevolverTranform.DOShakePosition(
-    duration: 0.03f,
-    strength: 0.03f,
+    duration: 0.035f,
+    strength: 0.035f,
     vibrato: 10,
-    randomness: 90,
+    randomness: 360,
     snapping: false,
     fadeOut: true
 );

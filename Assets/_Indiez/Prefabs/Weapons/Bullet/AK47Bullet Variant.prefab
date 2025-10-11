@@ -172,3 +172,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LifeTime: 3
   m_Speed: 50
+  m_BulletImpactDataSO: {fileID: 11400000, guid: d4bd072d9fd2ed54fb66f91f0bc81f84,
+    type: 2}

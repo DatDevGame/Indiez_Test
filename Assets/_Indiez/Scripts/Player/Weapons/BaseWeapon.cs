@@ -34,6 +34,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     }
 
+    [Button]
     public abstract void Fire();
 
     public virtual void Reload()
