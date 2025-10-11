@@ -3565,7 +3565,7 @@ MonoBehaviour:
   m_BotTransform: {fileID: 4512007508711713045}
   m_States:
   - rid: 2674162031510159373
-  - rid: 2674162031510159374
+  - rid: 2674162078738284544
   - rid: 2674162031510159375
   - rid: 2674162031510159376
   m_EnemyBase: {fileID: 3623713231717001629}
@@ -3579,12 +3579,6 @@ MonoBehaviour:
         stateId: 8f1d442a-519b-494e-8602-28ad5feddb6e
         transitions:
         - rid: 2674162031510159377
-    - rid: 2674162031510159374
-      type: {class: ZombieLookingTargetState, ns: , asm: Assembly-CSharp}
-      data:
-        stateId: c57debfd-57b7-4655-a261-9edc9b9a1ae6
-        transitions:
-        - rid: 2674162031510159378
     - rid: 2674162031510159375
       type: {class: ZombieChasingTargetState, ns: , asm: Assembly-CSharp}
       data:
@@ -3600,11 +3594,7 @@ MonoBehaviour:
     - rid: 2674162031510159377
       type: {class: ZombieIdleTargetToLookingTargetTransition, ns: , asm: Assembly-CSharp}
       data:
-        targetStateID: c57debfd-57b7-4655-a261-9edc9b9a1ae6
-    - rid: 2674162031510159378
-      type: {class: ZombieLookingTargetToChasingTargetTransition, ns: , asm: Assembly-CSharp}
-      data:
-        targetStateID: eda21949-3da2-4857-a864-4f0ddec8d3c7
+        targetStateID: c2cbd55e-7f61-49a9-bc4c-e3e83c9e8e42
     - rid: 2674162031510159379
       type: {class: ZombieChasingToAttackTransition, ns: , asm: Assembly-CSharp}
       data:
@@ -3612,7 +3602,17 @@ MonoBehaviour:
     - rid: 2674162031510159380
       type: {class: ZombieAttackingToLookTransition, ns: , asm: Assembly-CSharp}
       data:
-        targetStateID: c57debfd-57b7-4655-a261-9edc9b9a1ae6
+        targetStateID: c2cbd55e-7f61-49a9-bc4c-e3e83c9e8e42
+    - rid: 2674162078738284544
+      type: {class: ZombieLookingTargetState, ns: , asm: Assembly-CSharp}
+      data:
+        stateId: c2cbd55e-7f61-49a9-bc4c-e3e83c9e8e42
+        transitions:
+        - rid: 2674162078738284545
+    - rid: 2674162078738284545
+      type: {class: ZombieLookingTargetToChasingTargetTransition, ns: , asm: Assembly-CSharp}
+      data:
+        targetStateID: eda21949-3da2-4857-a864-4f0ddec8d3c7
 --- !u!114 &5302313333997207715
 MonoBehaviour:
   m_ObjectHideFlags: 0

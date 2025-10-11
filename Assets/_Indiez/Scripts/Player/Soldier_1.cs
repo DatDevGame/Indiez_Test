@@ -18,6 +18,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
     [SerializeField, BoxGroup("References")] protected RagdollController m_RagdollController;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
+    [SerializeField, BoxGroup("Referrence")] protected Transform m_GrenadePoint;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
 
 #if UNITY_EDITOR
@@ -209,24 +210,28 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_WeaponHolder.FireCurrent();
     }
 
+    public float speedsMulty = 2;
+    public float arcFactor = 0.07f;
     protected virtual void ThrowGrenade()
     {
         if (m_IsAiming)
         {
-            var grenadePool = PoolManager.GetOrCreatePool<GrenadeSoldier>(
+            ThrowToTargetByDistance();
+        }
+    }
+    protected virtual void ThrowToTargetByDistance()
+    {
+        var grenadePool = PoolManager.GetOrCreatePool<GrenadeSoldier>(
                 objectPrefab: m_GrenadeSoldierPrefab,
                 initialCapacity: 1
             );
 
-            float speedsMulty = 2;
-            float arcFactor = 0.07f;
-            GrenadeSoldier grenadeSoldier = grenadePool.Get();
-            grenadeSoldier.transform.SetPositionAndRotation(m_FakePointfire.position, m_FakePointfire.rotation);
-            grenadeSoldier.gameObject.SetActive(true);
-            grenadeSoldier.OnInit(this);
-            grenadeSoldier.StartFuse();
-            grenadeSoldier.ThrowToTargetByDistance(m_FakePointfire.position, GetTargetPoint(), speedsMulty, arcFactor);
-        }
+        GrenadeSoldier grenadeSoldier = grenadePool.Get();
+        grenadeSoldier.transform.SetPositionAndRotation(m_FakePointfire.position, m_FakePointfire.rotation);
+        grenadeSoldier.gameObject.SetActive(true);
+        grenadeSoldier.OnInit(this);
+        grenadeSoldier.StartFuse();
+        grenadeSoldier.ThrowToTargetByDistance(m_GrenadePoint.position, GetTargetPoint(), speedsMulty, arcFactor);
     }
 
     protected List<INavigationPoint> FindTargetsInRange()
@@ -299,23 +304,10 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     }
 #if UNITY_EDITOR
 
-    [BoxGroup("Editor")] public float speedsMulty = 2;
-    [BoxGroup("Editor")] public float arcFactor = 0.07f;
+    [BoxGroup("Editor")] public float speedsMultyEditOR = 2;
+    [BoxGroup("Editor")] public float arcFactoreDITOR = 0.07f;
     [Button]
-    protected virtual void ThrowToTargetByDistance(bool isHigh)
-    {
-        var grenadePool = PoolManager.GetOrCreatePool<GrenadeSoldier>(
-                objectPrefab: m_GrenadeSoldierPrefab,
-                initialCapacity: 1
-            );
 
-        GrenadeSoldier grenadeSoldier = grenadePool.Get();
-        grenadeSoldier.transform.SetPositionAndRotation(m_FakePointfire.position, m_FakePointfire.rotation);
-        grenadeSoldier.gameObject.SetActive(true);
-        grenadeSoldier.OnInit(this);
-        grenadeSoldier.StartFuse();
-        grenadeSoldier.ThrowToTargetByDistance(m_FakePointfire.position, GetTargetPoint(), speedsMulty, arcFactor);
-    }
     private void OnDrawGizmosSelected()
     {
         if (m_SoldierStatsSO == null) return;

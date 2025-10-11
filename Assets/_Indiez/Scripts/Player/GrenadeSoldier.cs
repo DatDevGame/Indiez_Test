@@ -46,6 +46,8 @@ public class GrenadeSoldier : BombBase
 
         Vector3 toTarget = target - origin;
         Vector3 toTargetXZ = new Vector3(toTarget.x, 0, toTarget.z);
+        Vector3 dirXZ = toTargetXZ.normalized;
+
         float y = toTarget.y;
         float x = toTargetXZ.magnitude;
 
@@ -55,7 +57,7 @@ public class GrenadeSoldier : BombBase
         float discriminant = speedSq * speedSq - gravity * (gravity * x * x + 2 * y * speedSq);
         if (discriminant < 0)
         {
-            Vector3 dir = (toTargetXZ.normalized + Vector3.up * 0.5f).normalized;
+            Vector3 dir = (dirXZ + Vector3.up * 0.5f).normalized;
             m_Rb.velocity = dir * speed;
             return;
         }
@@ -70,7 +72,8 @@ public class GrenadeSoldier : BombBase
         if (useHighArc) angle += extra;
         else angle += extra * 0.35f;
 
-        Vector3 velocity = (toTargetXZ.normalized * Mathf.Cos(angle) + Vector3.up * Mathf.Sin(angle)) * speed;
+        Vector3 velocity = dirXZ * Mathf.Cos(angle) * speed + Vector3.up * Mathf.Sin(angle) * speed;
         m_Rb.velocity = velocity;
     }
+
 }

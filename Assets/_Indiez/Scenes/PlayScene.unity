@@ -1391,6 +1391,37 @@ MonoBehaviour:
   - {fileID: 458082742}
   - {fileID: 1246401967}
   - {fileID: 1099382059}
+--- !u!1 &803625197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803625198}
+  m_Layer: 9
+  m_Name: GrenadePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &803625198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803625197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.43, z: 0.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 771711330}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &807747988 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8077381246729677409, guid: 8e87ff4b8d8106342a3e4bda37a8329b,
@@ -3715,18 +3746,23 @@ PrefabInstance:
     - target: {fileID: 580487347313977391, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11890258
+      value: 0.11885023
       objectReference: {fileID: 0}
     - target: {fileID: 580487347313977391, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.71504074
+      value: -0.7150477
       objectReference: {fileID: 0}
     - target: {fileID: 2001014259864854749, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
         type: 3}
       propertyPath: m_Name
       value: Sodier_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3002652097643230200, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
+        type: 3}
+      propertyPath: m_GrenadePoint
+      value: 
+      objectReference: {fileID: 803625198}
     - target: {fileID: 3002652097643230200, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
         type: 3}
       propertyPath: m_RagdollController
@@ -3789,7 +3825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3961923233585785973, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 803625198}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2001014259864854749, guid: f74f6ea7dabb66a40ad11772c5c73cb3,
         type: 3}
