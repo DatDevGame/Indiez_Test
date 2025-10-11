@@ -17,7 +17,7 @@ using UnityEditor;
 
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
-    [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse; 
+    [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
 
@@ -26,6 +26,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 #endif
 
     protected float m_TriggerTimer;
+    protected float m_ChangeWeaponTimer;
     protected float m_ForwardDistance = 0.8f;
     protected bool m_IsLooking = false;
     protected bool m_IsAiming = false;
@@ -35,8 +36,15 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected Vector3 m_DefaultLocalPos;
     protected virtual void Awake()
     {
+        GameEventHandler.AddActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeaponEvent);
         InitWeapons();
     }
+
+    protected virtual void OnDestroy()
+    {
+        GameEventHandler.RemoveActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeaponEvent);
+    }
+
     protected virtual void Start()
     {
         Init();
@@ -72,6 +80,28 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     }
 
+    protected void OnEquipWeaponEvent(params object[] parameters)
+    {
+        if (parameters[0] == null || parameters.Length <= 0)
+            return;
+
+        WeaponSO weaponSOEquip = parameters[0] as WeaponSO;
+        EquipWeapon(weaponSOEquip);
+    }
+
+    protected virtual void EquipWeapon(WeaponSO weaponSO)
+    {
+        m_WeaponHolder.EquipWeapon(
+                weaponSO
+                .GetModule<ModelPrefabItemModule>()
+                .modelPrefabAsGameObject
+                .GetComponent<BaseWeapon>()
+        );
+        m_WeaponHolder.CurrentWeapon.SetFakePointFire(m_FakePointfire);
+        m_WeaponHolder.CurrentWeapon.SetOwner(this);
+        m_ChangeWeaponTimer = 1f;
+    }
+
     protected virtual void DetectEnemy()
     {
         List<INavigationPoint> navigations = FindTargetsInRange();
@@ -91,11 +121,13 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         if (m_TargetNavigationPoint == null)
             return;
 
+        m_ChangeWeaponTimer -= Time.deltaTime;
+
         float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.05f;
         float distance = Vector3.Distance(transform.position, GetTargetPoint());
         bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
 
-        if (canLook)
+        if (canLook && m_ChangeWeaponTimer <= 0)
         {
             m_IsLooking = true;
             transform.DOLookAt(GetTargetPoint(), 0.05f);
@@ -105,8 +137,8 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
                 m_IsAiming = true;
 
                 string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
-                m_Animator.ResetTrigger(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey);
-                m_Animator.SetTrigger(aimState);
+                m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
+                m_Animator.SetBool(aimState, true);
 
                 m_WeaponHolder.AimIK();
             }
@@ -120,8 +152,8 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
                 m_IsAiming = false;
 
                 string idleState = m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey;
-                m_Animator.ResetTrigger(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey);
-                m_Animator.SetTrigger(idleState);
+                m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey, false);
+                m_Animator.SetBool(idleState, true);
 
                 m_WeaponHolder.IdleIK();
             }
@@ -152,7 +184,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
                 m_TargetDamagable = target;
         }
 
-        if (m_TriggerTimer <= 0 && m_TargetNavigationPoint.IsAvailable())
+        if (m_TriggerTimer <= 0 && m_ChangeWeaponTimer <= 0 && m_TargetNavigationPoint.IsAvailable())
         {
             m_TriggerTimer = m_WeaponHolder.CurrentWeapon.WeaponStats.FireRate;
             PerformAttack();

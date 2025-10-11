@@ -17,6 +17,7 @@ MonoBehaviour:
   - rid: 2674162000506650624
   - rid: 2674162000506650625
   - rid: 2674162000506650626
+  - rid: 2674162062519173120
   IK_Idle:
     RevolverLocalPosition: {x: 0.245, y: -0.124, z: -0.052}
     RevolverLocalRotation: {x: 152.03, y: -74.61301, z: -62.29599}
@@ -29,8 +30,8 @@ MonoBehaviour:
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
   PointFirePos: {x: 0.1428703, y: -0.711071, z: -0.02493846}
   PointFireEur: {x: 104.723, y: 34.536, z: 125.185}
-  IdleAnimationKey: Assault_Idle_Trigger
-  AimAnimationKey: Assault_Aim_Trigger
+  IdleAnimationKey: Assault_Idle_Bool
+  AimAnimationKey: Assault_Aim_Bool
   references:
     version: 2
     RefIds:
@@ -53,4 +54,11 @@ MonoBehaviour:
       data:
         m_ItemSO: {fileID: 11400000}
         m_ModelPrefab: {fileID: 4003346151785456333, guid: 0aea61c40eb0d0a48a9714e1057aaa1f,
+          type: 3}
+    - rid: 2674162062519173120
+      type: {class: MonoImageItemModule, ns: , asm: Assembly-CSharp}
+      data:
+        m_ItemSO: {fileID: 11400000}
+        m_ThumbnailTintColor: {r: 1, g: 1, b: 1, a: 1}
+        m_ThumbnailImage: {fileID: 21300000, guid: 3ccaee02dd23b8742a0c5cee6fab1ebd,
           type: 3}

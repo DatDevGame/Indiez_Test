@@ -20,6 +20,7 @@ public class WeaponHolder : MonoBehaviour
     [ShowInInspector] private Transform IKRighHandPos;
     [ShowInInspector] private Transform IKLeftHandPos;
 
+    [ShowInInspector, ReadOnly] private WeaponSO oldWeaponSO;
     [ShowInInspector, ReadOnly] private BaseWeapon currentWeapon;
 
     private Dictionary<WeaponSO, BaseWeapon> m_WeaponSlot;
@@ -51,10 +52,14 @@ public class WeaponHolder : MonoBehaviour
             return;
 
         if (currentWeapon != null)
+        {
+            oldWeaponSO = currentWeapon.WeaponSO;
             currentWeapon.gameObject.SetActive(false);
+        }
 
         if (m_WeaponSlot.ContainsKey(newWeapon.WeaponSO))
         {
+            currentWeapon.gameObject.SetActive(false);
             currentWeapon = m_WeaponSlot[newWeapon.WeaponSO];
             currentWeapon.gameObject.SetActive(true);
         }
@@ -77,8 +82,16 @@ public class WeaponHolder : MonoBehaviour
         IKLeftHandPos = currentWeapon.LeftHandIK;
 
         if (m_BaseSoldier != null)
-            m_BaseSoldier.Animator.SetTrigger(currentWeapon.WeaponSO.IdleAnimationKey);
+        {
+            if (oldWeaponSO != null)
+            {
+                m_BaseSoldier.Animator.SetBool(oldWeaponSO.AimAnimationKey, false);
+                m_BaseSoldier.Animator.SetBool(oldWeaponSO.IdleAnimationKey, false);
+            }
 
+            m_BaseSoldier.Animator.SetBool(currentWeapon.WeaponSO.AimAnimationKey, false);
+            m_BaseSoldier.Animator.SetBool(currentWeapon.WeaponSO.IdleAnimationKey, true);
+        }
     }
 
     [Button]

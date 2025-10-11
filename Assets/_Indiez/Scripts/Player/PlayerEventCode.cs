@@ -6,4 +6,10 @@ public enum PlayerEventCode
     /// <para>Param: <b>float amount</b> — Damage.</para>
     /// </summary>
     TakeDamage,
+
+    /// <summary>
+    /// Call When Equip Weapon
+    /// <para>Param: <b>float amount</b> — Damage.</para>
+    /// </summary>
+    EquipWeapon,
 }
