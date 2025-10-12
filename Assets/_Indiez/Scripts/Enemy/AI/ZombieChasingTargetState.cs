@@ -60,15 +60,25 @@ public class ZombieChasingTargetState : AIBotState
 
     protected virtual void MoveTarget(Vector3 targetPosition)
     {
+        if (!IsVectorValid(targetPosition))
+            return;
+
         m_ZombieAIController.Visual.transform.DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
+
         if (m_LastTargetPosition != targetPosition && m_ZombieAIController.Target.IsAvailable())
         {
             m_LastTargetPosition = targetPosition;
-            m_ZombieAIController.Visual.transform
-                .DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
-            m_ZombieAIController.NavMeshAgent.SetDestination(targetPosition);
+            if (m_ZombieAIController.NavMeshAgent.isOnNavMesh)
+                m_ZombieAIController.NavMeshAgent.SetDestination(targetPosition);
         }
     }
+
+    private bool IsVectorValid(Vector3 vec)
+    {
+        return !(float.IsNaN(vec.x) || float.IsNaN(vec.y) || float.IsNaN(vec.z)
+              || float.IsInfinity(vec.x) || float.IsInfinity(vec.y) || float.IsInfinity(vec.z));
+    }
+
 }
 
 [Serializable]

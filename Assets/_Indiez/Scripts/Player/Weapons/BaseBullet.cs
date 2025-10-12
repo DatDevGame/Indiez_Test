@@ -93,7 +93,15 @@ public class BaseBullet : MonoBehaviour
 
     protected virtual void OnHit(RaycastHit hit)
     {
-        if (hit.collider.TryGetComponent(out IDamageable damageable) && m_Gun != null)
+        if (hit.collider.gameObject.layer == gameObject.layer)
+            return;
+        IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+        if (damageable == null)
+        {
+            damageable = hit.collider.GetComponentInParent<IDamageable>();
+        }
+
+        if (damageable != null && m_Gun != null)
         {
             if (m_Gun.WeaponSO.TryGetModule<WeaponInfoModule>(out var module))
             {
@@ -106,14 +114,13 @@ public class BaseBullet : MonoBehaviour
             ParticleSystem bulletImpactPrefab = m_BulletImpactDataSO.GetBulletImpact(hit.collider.gameObject.layer);
             if (bulletImpactPrefab != null)
             {
-                // --- Bullet Impact VFX ---
                 var bulletImpactPool = PoolManager.GetOrCreatePool<ParticleSystem>(
                     objectPrefab: bulletImpactPrefab,
                     initialCapacity: 1
                 );
                 ParticleSystem bulletImpact = bulletImpactPool.Get();
 
-                bulletImpact.transform.SetParent(hit.collider.transform, false);
+                bulletImpact.transform.SetParent(hit.collider.transform, true);
                 bulletImpact.transform.position = hit.point;
 
                 bulletImpact.gameObject.SetActive(true);
@@ -124,6 +131,7 @@ public class BaseBullet : MonoBehaviour
         }
         Despawn();
     }
+
 
     protected virtual void Despawn()
     {

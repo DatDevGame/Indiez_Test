@@ -3339,7 +3339,7 @@ MonoBehaviour:
   baseTransform: {fileID: 0}
   Hips: {fileID: 9158238438822653034}
   ScaleReferenceMode: 1
-  finalScaleReference: 0.8122666
+  finalScaleReference: 0.81226647
   finalScaleReferenceSqrt: 0.1
   customScaleReferenceValue: 0.5
   DelayedInitialization: 0
@@ -3549,6 +3549,7 @@ MonoBehaviour:
   m_HealthBarSO: {fileID: 11400000, guid: ab3740db74a17714c8a31cc4004c33cd, type: 2}
   m_BulletImpactDataSO: {fileID: 11400000, guid: d4bd072d9fd2ed54fb66f91f0bc81f84,
     type: 2}
+  m_PrefabThis: {fileID: 3623713231717001629}
 --- !u!114 &7510627167187600324
 MonoBehaviour:
   m_ObjectHideFlags: 0

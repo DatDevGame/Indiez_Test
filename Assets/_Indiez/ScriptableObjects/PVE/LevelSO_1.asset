@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c509bdf7fd432e4188b8163b6c3a5ee, type: 3}
+  m_Name: LevelSO_1
+  m_EditorClassIdentifier: 
+  m_guid: 76b0d46fd4642a9449b7d5884fb9931f
+  m_ItemModules: []
+  LevelIndex: 1
+  LevelName: Level 1
+  Map: {fileID: 5974186490255162454, guid: a57aedd054e87254d8b99326f39aabfa, type: 3}
+  Description: 
+  LevelDuration: 300
+  RequiredKillCount: 50
+  ZombieWaves:
+  - WaveIndex: 0
+    ZombieCount: 50
+    SpawnInterval: 1.5
+    StartDelay: 2
+    ZombieTypes:
+    - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      SpawnChance: 1
+  GoldReward: 100
+  ExpReward: 50
+  ItemRewards: []
+  references:
+    version: 2
+    RefIds: []

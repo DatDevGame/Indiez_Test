@@ -93,13 +93,21 @@ public class ZombieAttackingTargetState : AIBotState
     //Call In Animation
     public void HandleAttackHit()
     {
-
+        if (!IsVectorValid(m_ZombieAIController.GetTargetPoint()))
+            return;
+        { }
         float distanceAttack = Vector3.Distance(m_ZombieAIController.transform.position, m_ZombieAIController.GetTargetPoint());
         if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange)
         {
             m_Target.TakeDamage(m_ZombieAIController.EnemyBase.EnemyStats.AttackDamage, Vector3.zero);
             //SoundManager.Instance.PlayLoopSFX(m_ZombieAIController.EnemyBase.GetRandomPunchSound(), volumn: 0.5f);
         }
+    }
+
+    private bool IsVectorValid(Vector3 vec)
+    {
+        return !(float.IsNaN(vec.x) || float.IsNaN(vec.y) || float.IsNaN(vec.z)
+              || float.IsInfinity(vec.x) || float.IsInfinity(vec.y) || float.IsInfinity(vec.z));
     }
 
     public override void InitializeState(AIBotController botController)

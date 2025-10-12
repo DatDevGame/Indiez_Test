@@ -13,14 +13,14 @@ public class CameraController : MonoBehaviour
     private BaseSoldier m_Soldier;
     private void Awake()
     {
-        GameEventHandler.AddActionEvent(PVPEventCode.OnLevelStart, OnLevelStart);
-        GameEventHandler.AddActionEvent(PVPEventCode.OnLevelEnd, OnLevelEnd);
+        GameEventHandler.AddActionEvent(PVEEventCode.OnLevelStart, OnLevelStart);
+        GameEventHandler.AddActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
     }
 
     private void OnDestroy()
     {
-        GameEventHandler.RemoveActionEvent(PVPEventCode.OnLevelStart, OnLevelStart);
-        GameEventHandler.RemoveActionEvent(PVPEventCode.OnLevelEnd, OnLevelEnd);
+        GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelStart, OnLevelStart);
+        GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
     }
 
     private void OnLevelStart(object[] parrams)

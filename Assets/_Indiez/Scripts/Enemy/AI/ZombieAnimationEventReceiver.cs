@@ -10,7 +10,14 @@ public class ZombieAnimationEventReceiver : MonoBehaviour
     protected ZombieAttackingTargetState m_AttackingState;
     protected List<ParticleSystem> m_BiteVFXs = new List<ParticleSystem>();
 
-    public virtual void Init(EnemyBase enemyBase) => m_EnemyBase = enemyBase;
+    protected Animator m_Animator;
+
+    public virtual void Init(EnemyBase enemyBase)
+    {
+        m_EnemyBase = enemyBase;
+        if (m_Animator == null && m_EnemyBase != null)
+            m_Animator = m_EnemyBase.Animator;
+    }
 
     public virtual void SetAttackingState(ZombieAttackingTargetState state)
     {
@@ -19,12 +26,14 @@ public class ZombieAnimationEventReceiver : MonoBehaviour
 
     public virtual void OnAttackHit()
     {
-        m_AttackingState?.HandleAttackHit();
+        if (CanAttack())
+            m_AttackingState?.HandleAttackHit();
     }
 
     protected virtual bool CanAttack()
     {
-        if (m_EnemyBase == null) return false;
+        if (m_EnemyBase == null || !m_Animator.enabled) return false;
+
         INavigationPoint navigationPoint = m_EnemyBase.GetComponent<INavigationPoint>();
         if (navigationPoint != null)
         {

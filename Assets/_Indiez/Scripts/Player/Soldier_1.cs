@@ -131,7 +131,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
         m_ChangeWeaponTimer -= Time.deltaTime;
 
-        float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.05f;
+        float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.2f;
         float distance = Vector3.Distance(transform.position, GetTargetPoint());
         bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
 
@@ -303,11 +303,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     {
         return transform.position;
     }
-
-    public Vector3 GetTargetPoint()
-    {
-        return m_TargetNavigationPoint.GetSelfPoint();
-    }
+    public Vector3 GetTargetPoint() => m_TargetNavigationPoint?.GetSelfPoint() ?? transform.position * 999;
 #if UNITY_EDITOR
 
     [BoxGroup("Editor")] public float speedsMultyEditOR = 2;

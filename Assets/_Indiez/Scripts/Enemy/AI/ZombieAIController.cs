@@ -68,7 +68,7 @@ public class ZombieAIController : AIBotController, INavigationPoint
     }
     public Vector3 GetTargetPoint()
     {
-        return m_Target == null ? Vector3.zero : m_Target.GetSelfPoint();
+        return m_Target == null ? GetSelfPoint() * 999 : m_Target.GetSelfPoint();
     }
 
     protected void OnDead()

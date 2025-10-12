@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa8b69cde76a4440a8c4d2781db8755, type: 3}
+  m_Name: LevelManagerSO
+  m_EditorClassIdentifier: 
+  m_InitialValue:
+  - {fileID: 11400000, guid: 76b0d46fd4642a9449b7d5884fb9931f, type: 2}
+  m_ItemUsedEventCode:
+    m_EventType: 
+    m_EventCode: 
+  m_ItemSelectedEventCode:
+    m_EventType: 
+    m_EventCode: 
+  m_ItemUnlockedEventCode:
+    m_EventType: 
+    m_EventCode: 
+  m_DisplayNameTerm: 
+  m_AnalyticsName: 
+  m_AdsLocation: 0
+  m_ResourceLocation: 0
+  m_CurrentItemInUse: {fileID: 11400000, guid: b24bb6fc9587fef40b5a352debf6a802, type: 2}
+  m_CurrentLevelIndex: {fileID: 11400000, guid: b14d51302b074764fa000f96494e97fb,
+    type: 2}

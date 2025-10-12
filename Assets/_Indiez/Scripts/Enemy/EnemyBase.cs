@@ -33,7 +33,9 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void Init(EnemyStatsSO statsSO = null)
     {
-        m_StatsSO = statsSO;
+        if (statsSO != null)
+            m_StatsSO = statsSO;
+
         m_EnemyStats = new EnemyStats();
         m_EnemyStats.LoadStats(m_StatsSO);
         m_ZombieAnimationEventReceiver.Init(this);

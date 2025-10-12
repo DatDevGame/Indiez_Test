@@ -57,6 +57,10 @@ public class ZombieLookingTargetToChasingTargetTransition : AIBotStateTransition
 
     protected override bool Decide()
     {
+        if (m_ZombieAIController == null)
+            return false;
+        if (m_ZombieAIController.Target == null)
+            return false;
         if (!m_ZombieAIController.Target.IsAvailable())
             return false;
 

@@ -78,11 +78,6 @@ public class AIBotController : MonoBehaviour
         }
     }
 
-    protected virtual void Start()
-    {
-        InitializeStateMachine();
-    }
-
     protected virtual void Update()
     {
         if (!m_IsRunning) return;
