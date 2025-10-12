@@ -23,9 +23,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   LookAtRange: 4
-  MoveSpeed: 0.5
+  MoveSpeed: 1.5
   AttackDamage: 30
-  AttackRange: 1.5
+  AttackRange: 1.1
   AttackCoolDown: 0.2
   TargetLayermask:
     serializedVersion: 2

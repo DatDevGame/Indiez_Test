@@ -2430,6 +2430,7 @@ GameObject:
   - component: {fileID: 7510627167187600324}
   - component: {fileID: 5302313333997207715}
   - component: {fileID: 543374996785428143}
+  - component: {fileID: 5555159599265582454}
   m_Layer: 10
   m_Name: Zombie_Prototype
   m_TagString: Untagged
@@ -2475,7 +2476,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.78
   m_Radius: 0.19
-  m_SlopeLimit: 45
+  m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -2522,7 +2523,7 @@ MonoBehaviour:
   SendOnStopping: 0
   StepEventOnLanding: 1
   StepInfoReceiver: {fileID: 0}
-  ExtraPelvisOffset: {x: 0, y: 0, z: 0}
+  ExtraPelvisOffset: {x: 0, y: -0.04, z: 0}
   ReposeGluingAfter: 1.1073066
   GlueOnlyOnIdle: 0
   LocalWorldUp: 1
@@ -3327,10 +3328,10 @@ MonoBehaviour:
   _Editor_EnsureCount: 1
   _Editor_OnValidateTrigger: 1
   _EditorAllowAutoUpdateFeetParams: 1
-  _EditorCategory: 0
+  _EditorCategory: 2
   _EditorSetupCategory: 1
   _EditorMotionCategory: 0
-  _EditorExtraCategory: 2
+  _EditorExtraCategory: 0
   IKHintMode: 0
   LimitLegStretch: 0.99
   FeetYOffset: 0
@@ -3569,6 +3570,7 @@ MonoBehaviour:
   - rid: 2674162031510159375
   - rid: 2674162031510159376
   m_EnemyBase: {fileID: 3623713231717001629}
+  m_Visual: {fileID: 1277117125756066066}
   m_CharacterController: {fileID: 5133133940879922202}
   references:
     version: 2
@@ -3683,6 +3685,19 @@ MonoBehaviour:
   - {fileID: 142029908808625222}
   - {fileID: 8661305719630624199}
   - {fileID: 4102594553955684205}
+--- !u!114 &5555159599265582454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572275392290561479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3cd74f7f018da42926b19389a73e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ZombieAIController: {fileID: 0}
 --- !u!1 &3578929047739544465
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,7 +5046,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: fe51e57ce6a6c3a46b07d540b7dbd284, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

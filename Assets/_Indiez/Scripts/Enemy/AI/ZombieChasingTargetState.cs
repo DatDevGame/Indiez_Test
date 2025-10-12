@@ -63,7 +63,9 @@ public class ZombieChasingTargetState : AIBotState
         if (m_LastTargetPosition != targetPosition && m_ZombieAIController.Target.IsAvailable())
         {
             m_LastTargetPosition = targetPosition;
-            m_ZombieAIController.transform.DOLookAt(targetPosition, 0.2f);
+            m_ZombieAIController.Visual.transform
+                .DOLookAt(targetPosition, 0.3f, AxisConstraint.Y);
+
             m_ZombieAIController.NavMeshAgent.SetDestination(targetPosition);
         }
     }

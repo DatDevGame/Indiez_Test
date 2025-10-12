@@ -16,7 +16,6 @@ public class ZombieLookingTargetState : AIBotState
 
     protected override void OnStateEnable()
     {
-        m_ZombieAIController.NavMeshAgent.isStopped = true;
         m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, false);
         m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Idle, true);
     }
@@ -66,7 +65,7 @@ public class ZombieLookingTargetToChasingTargetTransition : AIBotStateTransition
             m_TriggerTimer -= Time.deltaTime;
             float timeLookAt = m_InitialTriggerTime * 0.5f;
             if (m_TriggerTimer <= timeLookAt)
-                m_ZombieAIController.BotTransform.DOLookAt(m_ZombieAIController.GetTargetPoint(), timeLookAt * 0.5f);
+                m_ZombieAIController.Visual.DOLookAt(m_ZombieAIController.GetTargetPoint(), timeLookAt * 0.5f);
 
             if (m_TriggerTimer <= 0)
             {

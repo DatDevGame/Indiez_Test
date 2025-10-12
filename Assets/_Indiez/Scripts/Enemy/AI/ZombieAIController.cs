@@ -12,8 +12,10 @@ public class ZombieAIController : AIBotController, INavigationPoint
     public Animator Animator => m_Animator;
     public ZombieAIProfile ZombieAIProfile => m_ZombieAIProfile;
     public ZombieAnimationSO AnimationKeySO => m_AnimationKeySO;
+    public Transform Visual => m_Visual;
 
     [SerializeField, BoxGroup("Reference")] protected EnemyBase m_EnemyBase;
+    [SerializeField, BoxGroup("Reference")] protected Transform m_Visual; 
     [SerializeField, BoxGroup("Reference")] protected CharacterController m_CharacterController;
 
     private ZombieAIProfile m_ZombieAIProfile;

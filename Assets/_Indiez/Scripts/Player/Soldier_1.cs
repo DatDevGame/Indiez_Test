@@ -15,8 +15,11 @@ using UnityEditor;
 
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
+    public Transform Visual => m_Visual;
+
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
     [SerializeField, BoxGroup("References")] protected RagdollController m_RagdollController;
+    [SerializeField, BoxGroup("Referrence")] protected Transform m_Visual;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_GrenadePoint;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
@@ -102,7 +105,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_WeaponHolder.CurrentWeapon.SetFakePointFire(m_FakePointfire);
         m_WeaponHolder.CurrentWeapon.SetOwner(this);
         m_ChangeWeaponTimer = 1f;
-        
+
         m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
         m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
     }
@@ -135,7 +138,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         if (canLook && m_ChangeWeaponTimer <= 0)
         {
             m_IsLooking = true;
-            transform.DOLookAt(GetTargetPoint(), 0.05f);
+            m_Visual.DOLookAt(GetTargetPoint(), 0.05f);
 
             if (!m_IsAiming)
             {

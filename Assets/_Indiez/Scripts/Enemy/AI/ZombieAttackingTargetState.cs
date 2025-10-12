@@ -56,7 +56,7 @@ public class ZombieAttackingTargetState : AIBotState
                 m_ZombieAIController.NavMeshAgent.enabled = true;
         }
 
-        m_ZombieAIController.BotTransform.DOLookAt(m_ZombieAIController.GetTargetPoint(), m_ZombieAIController.EnemyBase.StatsSOData.LookAtDuration);
+        m_ZombieAIController.Visual.DOLookAt(m_ZombieAIController.GetTargetPoint(), m_ZombieAIController.EnemyBase.StatsSOData.LookAtDuration);
         m_TriggerTimer -= Time.deltaTime;
         if (m_TriggerTimer <= 0 && m_ZombieAIController.Target.IsAvailable())
             PerformAttack();
