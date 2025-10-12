@@ -57,21 +57,25 @@ public class BaseBullet : MonoBehaviour
             if (hits.Length > 0)
             {
                 RaycastHit closestHit = hits[0];
-                float closestDist = float.MaxValue;
-
-                foreach (var h in hits)
+                if (closestHit.collider.gameObject.layer != gameObject.layer)
                 {
-                    float d = Vector3.Distance(transform.position, h.point);
-                    if (d < closestDist)
+                    float closestDist = float.MaxValue;
+
+                    foreach (var h in hits)
                     {
-                        closestHit = h;
-                        closestDist = d;
+                        float d = Vector3.Distance(transform.position, h.point);
+                        if (d < closestDist)
+                        {
+                            closestHit = h;
+                            closestDist = d;
+                        }
                     }
+
+                    transform.position = closestHit.point - direction * sphereRadius;
+                    OnHit(closestHit);
+                    yield break;
                 }
 
-                transform.position = closestHit.point - direction * sphereRadius;
-                OnHit(closestHit);
-                yield break;
             }
 
             transform.position = Vector3.SmoothDamp(
@@ -93,8 +97,6 @@ public class BaseBullet : MonoBehaviour
 
     protected virtual void OnHit(RaycastHit hit)
     {
-        if (hit.collider.gameObject.layer == gameObject.layer)
-            return;
         IDamageable damageable = hit.collider.GetComponent<IDamageable>();
         if (damageable == null)
         {
@@ -120,7 +122,6 @@ public class BaseBullet : MonoBehaviour
                 );
                 ParticleSystem bulletImpact = bulletImpactPool.Get();
 
-                bulletImpact.transform.SetParent(hit.collider.transform, true);
                 bulletImpact.transform.position = hit.point;
 
                 bulletImpact.gameObject.SetActive(true);
@@ -136,9 +137,7 @@ public class BaseBullet : MonoBehaviour
     protected virtual void Despawn()
     {
         if (m_ShootCoroutine != null)
-        {
             StopCoroutine(m_ShootCoroutine);
-        }
 
         transform.localScale = m_LocalScaleOntStart;
         m_SpawnScaleTween?.Kill();
