@@ -60,12 +60,12 @@ public class ZombieChasingTargetState : AIBotState
 
     protected virtual void MoveTarget(Vector3 targetPosition)
     {
+        m_ZombieAIController.Visual.transform.DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
         if (m_LastTargetPosition != targetPosition && m_ZombieAIController.Target.IsAvailable())
         {
             m_LastTargetPosition = targetPosition;
             m_ZombieAIController.Visual.transform
-                .DOLookAt(targetPosition, 0.3f, AxisConstraint.Y);
-
+                .DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
             m_ZombieAIController.NavMeshAgent.SetDestination(targetPosition);
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Premium;
 using Premium.PoolManagement;
 using Sirenix.OdinInspector;
@@ -11,9 +12,15 @@ public class BaseBullet : MonoBehaviour
     [SerializeField, BoxGroup("Config")] protected float m_LifeTime = 3f;
     [SerializeField, BoxGroup("Config")] protected float m_Speed = 20f;
     [SerializeField, BoxGroup("Config")] protected float m_radius = 0.05f;
+
+    [SerializeField, BoxGroup("VFX Config")] protected float m_SpawnScaleDuration = 0.5f;
+    [SerializeField, BoxGroup("VFX Config")] protected Ease m_SpawnScaleEase = Ease.OutBack;
+
     [SerializeField, BoxGroup("Data")] protected BulletImpactDataSO m_BulletImpactDataSO;
     protected BaseWeapon m_Gun;
     protected Coroutine m_ShootCoroutine;
+    protected Tween m_SpawnScaleTween;
+    protected Vector3 m_LocalScaleOntStart;
 
     protected bool m_IsActive = false;
     public virtual void OnInit(BaseWeapon baseWeapon)
@@ -30,6 +37,11 @@ public class BaseBullet : MonoBehaviour
 
     protected virtual IEnumerator ShootCoroutine()
     {
+        m_LocalScaleOntStart = transform.localScale;
+        transform.localScale = Vector3.zero;
+        m_SpawnScaleTween?.Kill();
+        m_SpawnScaleTween = transform.DOScale(m_LocalScaleOntStart, m_SpawnScaleDuration).SetEase(m_SpawnScaleEase);
+
         float timer = 0f;
         Vector3 velocity = Vector3.zero;
         float sphereRadius = 0.05f;
@@ -119,6 +131,9 @@ public class BaseBullet : MonoBehaviour
         {
             StopCoroutine(m_ShootCoroutine);
         }
+
+        transform.localScale = m_LocalScaleOntStart;
+        m_SpawnScaleTween?.Kill();
         gameObject.SetActive(false);
         PoolManager.Release(m_Gun.BulletPrefab, this);
     }
@@ -132,7 +147,7 @@ public class BaseBullet : MonoBehaviour
         Gizmos.color = Color.yellow;
         Vector3 dir = transform.forward;
         float distance = m_Speed * Time.deltaTime;
-        float sphereRadius = m_radius; 
+        float sphereRadius = m_radius;
 
         Gizmos.DrawLine(transform.position, transform.position + dir * distance);
 
