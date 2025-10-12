@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 580487347313977391}
-  - component: {fileID: 381912514815410094}
   m_Layer: 9
   m_Name: FakePointFire
   m_TagString: Untagged
@@ -87,40 +86,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3252640976634732727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.50901544, y: -0.58786505, z: 0.4094888, w: 0.47711307}
-  m_LocalPosition: {x: 0.11081785, y: -0.71655554, z: -0.024932802}
+  m_LocalRotation: {x: 0.50901556, y: -0.5878652, z: 0.40948865, w: 0.47711307}
+  m_LocalPosition: {x: 0.11080975, y: -0.7165569, z: -0.024932802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 61549614904282677}
   m_LocalEulerAnglesHint: {x: 104.69, y: 34.582993, z: 125.239}
---- !u!1773428102 &381912514815410094
-ParentConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3252640976634732727}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0.23699933, y: -0.5330004, z: 0}
-  m_RotationAtRest: {x: 88.68017, y: 90, z: -179.99979}
-  m_TranslationOffsets:
-  - {x: 0, y: 0, z: 0}
-  m_RotationOffsets:
-  - {x: 0, y: 0, z: 0}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_Active: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 580487347313977391}
-    weight: 1
 --- !u!1 &3289081526820209610
 GameObject:
   m_ObjectHideFlags: 0

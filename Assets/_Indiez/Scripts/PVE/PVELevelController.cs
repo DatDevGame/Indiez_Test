@@ -38,6 +38,7 @@ public class PVELevelController : MonoBehaviour
             yield break;
         }
 
+        m_CurrentWave.value = 0;
         SpawnMap();
         m_CurrentLevelSO.value = m_LevelManagerSO.GetCurrentLevelSO();
         m_Sodier.transform.position = m_CurrentLevel.Map.GetPlayerPoint();
@@ -52,7 +53,6 @@ public class PVELevelController : MonoBehaviour
     }
     private IEnumerator SpawnWave(ZombieWaveData wave)
     {
-        m_CurrentWave.value = 0;
         m_IsSpawning = true;
         yield return new WaitForSeconds(wave.StartDelay);
 
@@ -60,12 +60,13 @@ public class PVELevelController : MonoBehaviour
 
         for (int i = 0; i < wave.ZombieCount; i++)
         {
-            ZombieSpawnInfo zombieSpawnInfo = wave.ZombieTypes.GetRandom();
+            ZombieSpawnInfo zombieSpawnInfo = wave.GetRandomZombieByPercent();
             var zombiePrefab = zombieSpawnInfo.ZombiePrefab;
             Transform spawnPoint = m_CurrentLevel.Map.GetRandomSpawnPoint();
-
+            Debug.Log($"Key Pro HEHE 1 -> {zombiePrefab.name}");
             if (zombiePrefab != null && spawnPoint != null)
             {
+                Debug.Log($"Key Pro HEHE 2 -> {zombiePrefab.name}");
                 var pool = PoolManager.GetOrCreatePool<EnemyBase>($"{zombieSpawnInfo.PoolKey}", zombiePrefab, initialCapacity: 1);
                 var zombie = pool.Get();
                 zombie.transform.position = spawnPoint.position;
@@ -74,6 +75,7 @@ public class PVELevelController : MonoBehaviour
                 zombie.Init();
                 m_EnemyBases.Add(zombie);
                 zombie.OnDead += HandleZombieDied;
+                Debug.Log($"Key Pro HEHE 3 -> {zombiePrefab.name}");
             }
             yield return new WaitForSeconds(wave.SpawnInterval);
         }
@@ -82,15 +84,14 @@ public class PVELevelController : MonoBehaviour
 
     private void HandleZombieDied(EnemyBase zombie)
     {
-        m_AliveZombieCount--;
-        if (m_AliveZombieCount <= 0 && !m_IsSpawning)
+        m_EnemyBases.Remove(zombie);
+        if (m_EnemyBases.Count <= 0 && !m_IsSpawning)
             StartCoroutine(NextWave());
         zombie.OnDead -= HandleZombieDied;
     }
 
     private void HandlePlayerDead()
     {
-        m_CurrentLevelPPref.value++;
         GameEventHandler.Invoke(PVEEventCode.OnLevelEnd, false);
     }
 
@@ -98,7 +99,7 @@ public class PVELevelController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         m_CurrentWaveIndex++;
-        m_CurrentWave.value = m_CurrentWaveIndex;
+        m_CurrentWave.value++;
 
         if (m_CurrentWaveIndex < m_CurrentLevel.ZombieWaves.Count)
         {
@@ -106,14 +107,8 @@ public class PVELevelController : MonoBehaviour
         }
         else
         {
+            m_CurrentLevelPPref.value++;
             GameEventHandler.Invoke(PVEEventCode.OnLevelEnd, true);
         }
-    }
-
-    private bool IsEndGame()
-    {
-        return m_EnemyBases
-        .Where(v => v.gameObject.activeSelf)
-        .All(x => !x.IsAlive);
     }
 }

@@ -3703,7 +3703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3cd74f7f018da42926b19389a73e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ZombieAIController: {fileID: 0}
+  m_ZombieAIController: {fileID: 7510627167187600324}
 --- !u!1 &3578929047739544465
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,40 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 76b0d46fd4642a9449b7d5884fb9931f
   m_ItemModules: []
-  LevelIndex: 1
-  LevelName: Level 1
-  Map: {fileID: 8222220891699282151, guid: 75416c8b4dbfc1641a119d7a616c21e2, type: 3}
+  Map: {fileID: 4358026530056189503, guid: 626562eec6e6ec943a6a8c0f7b55c90d, type: 3}
   Description: 
-  LevelDuration: 300
-  RequiredKillCount: 50
   ZombieWaves:
-  - WaveIndex: 0
-    ZombieCount: 30
+  - ZombieCount: 30
     SpawnInterval: 1
     StartDelay: 2
     ZombieTypes:
     - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
-      SpawnChance: 1
-  - WaveIndex: 1
-    ZombieCount: 10
+      SpawnPercent: 70
+    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
+        type: 3}
+      SpawnPercent: 30
+  - ZombieCount: 10
     SpawnInterval: 1.5
     StartDelay: 2
     ZombieTypes:
-    - ZombiePrefab: {fileID: 4725696899081043255, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
+    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
         type: 3}
-      SpawnChance: 1
-  - WaveIndex: 0
-    ZombieCount: 1
+      SpawnPercent: 0
+  - ZombieCount: 1
     SpawnInterval: 0
     StartDelay: 2
     ZombieTypes:
-    - ZombiePrefab: {fileID: 9193770391790826719, guid: 9edf5145968c317469ed5a6526f6c732,
+    - ZombiePrefab: {fileID: 6002423859753908557, guid: 9edf5145968c317469ed5a6526f6c732,
         type: 3}
-      SpawnChance: 1
-  GoldReward: 100
-  ExpReward: 50
-  ItemRewards: []
+      SpawnPercent: 0
   references:
     version: 2
     RefIds: []

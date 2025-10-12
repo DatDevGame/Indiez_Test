@@ -68,8 +68,8 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_SoldierStats = new SodierStats();
         m_SoldierStats.LoadStats(m_SoldierStatsSO);
 
-        m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
-        m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
+        //m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
+        //m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
 
         if (m_HealthBar == null)
             m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
@@ -155,10 +155,23 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         if (canLook && m_ChangeWeaponTimer <= 0)
         {
             m_IsLooking = true;
-            Vector3 dirToTarget = (GetTargetPoint() - transform.position).normalized;
-            float rotateSpeed = 1f;
-            Quaternion targetRot = Quaternion.LookRotation(dirToTarget);
-            m_Visual.transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotateSpeed * Time.deltaTime);
+            Vector3 targetPoint = GetTargetPoint();
+            Vector3 dirToTarget = targetPoint - m_Visual.position;
+
+            Vector3 flatDir = dirToTarget;
+            flatDir.y = 0f;
+            if (flatDir.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(flatDir);
+                float rotateSpeed = 360f;
+                m_Visual.rotation = Quaternion.RotateTowards(m_Visual.rotation, targetRot, rotateSpeed * Time.deltaTime);
+            }
+
+            Vector3 muzzleDir = (targetPoint - m_FakePointfire.position).normalized;
+            muzzleDir.y += 0.25f;
+            Quaternion aimRot = Quaternion.LookRotation(muzzleDir, m_Visual.up);
+            m_FakePointfire.rotation = aimRot;
+
 
             if (!m_IsAiming)
             {

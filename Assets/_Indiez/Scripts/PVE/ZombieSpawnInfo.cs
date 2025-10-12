@@ -1,3 +1,4 @@
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -5,10 +6,21 @@ using UnityEngine;
 public class ZombieSpawnInfo
 {
     [ShowInInspector]
-    public string PoolKey => ZombiePrefab != null
-        ? ZombiePrefab.GetComponent<EnemyBase>()?.GetType().Name ?? "Unknown"
-        : "None";
+    public string PoolKey
+    {
+        get
+        {
+            if (ZombiePrefab == null)
+                return "None";
+
+            var enemy = ZombiePrefab.GetComponents<MonoBehaviour>()
+                .FirstOrDefault(c => c is EnemyBase);
+
+            return enemy != null ? enemy.GetType().Name : "Unknown";
+        }
+    }
+
 
     [SerializeField] public EnemyBase ZombiePrefab;
-    [Range(0f, 1f)] public float SpawnChance = 1f;
+    [Range(0, 100)] public float SpawnPercent;
 }

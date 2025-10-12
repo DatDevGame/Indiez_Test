@@ -51,6 +51,8 @@ public class InfoGamepPlayUI : MonoBehaviour
     {
         LevelSO levelSO = m_LevelManagerSO.currentItemInUse.Cast<LevelSO>();
         if (levelSO != null)
+        {
             m_WaveText.SetText($"Wave: {data.newValue + 1}/{levelSO.ZombieWaves.Count}");
+        }
     }
 }

@@ -494,26 +494,278 @@ PrefabInstance:
       propertyPath: m_MinMoveDistance
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5555159599265582454, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: m_ZombieAIController
+      value: 
+      objectReference: {fileID: 2731377186181242502}
     - target: {fileID: 5653674589219450873, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7510627167187600324, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: m_EnemyBase
+      value: 
+      objectReference: {fileID: 6002423859753908557}
+    m_RemovedComponents:
+    - {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1277117125756066066, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8603033908794454437}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3572275392290561479, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 6002423859753908557}
   m_SourcePrefab: {fileID: 100100000, guid: e55ac1effc805d64ab230571a18d43a0, type: 3}
+--- !u!114 &308865373348126177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5302313333997207715, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957539825497718917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75b7feeb613b4a43bdc088c9b1cfc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!143 &783723739380173144 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 5133133940879922202, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2731377186181242502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7510627167187600324, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957539825497718917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345951da034a8a9408fe56c5fa139cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5196618018237076854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 415120648470759476, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52e682c71f7c499c8f3750f97fb5262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5356647099391060973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 543374996785428143, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957539825497718917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045bfd13241c01d478387dadf9cb6765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6657989083160101968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1277117125756066066, guid: e55ac1effc805d64ab230571a18d43a0,
     type: 3}
   m_PrefabInstance: {fileID: 5610595123007970626}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &7467931203663642262 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3062374445143352276, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8628927214194026121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957539825497718917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3505aa6d98bd4418e0744d5ab56fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8957539825497718917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3572275392290561479, guid: e55ac1effc805d64ab230571a18d43a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5610595123007970626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6002423859753908557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957539825497718917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0112c24f90a344990382f360066f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BlockHit:
+    OptionalName: Impulse
+    PowerMultiplier: 1
+    ImpulseDuration: 0.5
+    WorldTranslation: {x: 0, y: 0, z: 0}
+    LocalTranslation: {x: 0, y: -0.2, z: 0.1}
+    HipsRotate: {x: 0, y: 0, z: 0}
+    InheritElasticness: 0.75
+    ImpulseCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2
+        value: 1
+        inSlope: 3.4375
+        outSlope: 3.4375
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    YAxisMultiplyCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    AlignWithDesiredMoveDirection: 0
+  m_ZombieAnimationEventReceiver: {fileID: 8467747631472383214}
+  m_CharacterController: {fileID: 783723739380173144}
+  m_HealthBar: {fileID: 5196618018237076854}
+  m_Animator: {fileID: 8603033908801675221}
+  m_LegsAnimator: {fileID: 8628927214194026121}
+  m_HealthBarMesh: {fileID: 7467931203663642262}
+  m_AnimationKeySO: {fileID: 11400000, guid: 2fef559a169946b448cdff049c06be73, type: 2}
+  m_StatsSO: {fileID: 11400000, guid: 35c9eea06f6614f429ff3b7e5cf938e9, type: 2}
+  m_HitDamgePelvisImpulse:
+    OptionalName: Impulse
+    PowerMultiplier: 1
+    ImpulseDuration: 0.5
+    WorldTranslation: {x: 0, y: 0, z: 0}
+    LocalTranslation: {x: 0, y: -0.05, z: 0.1}
+    HipsRotate: {x: 0, y: 0, z: 0}
+    InheritElasticness: 0.75
+    ImpulseCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2
+        value: 1
+        inSlope: 3.4375
+        outSlope: 3.4375
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    YAxisMultiplyCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    AlignWithDesiredMoveDirection: 0
+  m_ZombieAIController: {fileID: 2731377186181242502}
+  m_RagdollController: {fileID: 5356647099391060973}
+  m_AnimateDissolve: {fileID: 308865373348126177}
+  m_HealthBarSO: {fileID: 11400000, guid: ab3740db74a17714c8a31cc4004c33cd, type: 2}
+  m_BulletImpactDataSO: {fileID: 11400000, guid: d4bd072d9fd2ed54fb66f91f0bc81f84,
+    type: 2}
+  m_PrefabThis: {fileID: 6002423859753908557}
 --- !u!1001 &8603033908794321589
 PrefabInstance:
   m_ObjectHideFlags: 0
