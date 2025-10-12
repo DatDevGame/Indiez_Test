@@ -21,9 +21,6 @@ public enum PVEEventCode
     /// <para>Parameters:</para>
     /// <list type="number">
     ///   <item>
-    ///     <description><c>0</c> — <see cref="LevelSO"/>: Data Current Level.</description>
-    ///   </item>
-    ///   <item>
     ///     <description><c>1</c> — <see cref="bool"/>: IsVictory.</description>
     ///   </item>
     /// </list>

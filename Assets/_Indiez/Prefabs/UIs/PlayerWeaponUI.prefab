@@ -349,6 +349,8 @@ GameObject:
   m_Component:
   - component: {fileID: 10327809778824053}
   - component: {fileID: 3270824470679808930}
+  - component: {fileID: 6352807382987694968}
+  - component: {fileID: 5463947100891342310}
   m_Layer: 0
   m_Name: PlayerWeaponUI
   m_TagString: Untagged
@@ -394,7 +396,36 @@ MonoBehaviour:
   m_WeaponSlotHolder: {fileID: 410023209427027410}
   m_Button: {fileID: 6536073783505437421}
   m_OpenAndCloseEZAim: {fileID: 1490563897267677725}
+  m_CanvasGroupVisibility: {fileID: 6352807382987694968}
   m_WeaponManagerSO: {fileID: 11400000, guid: 5ce7528e965c5fc49b8622d2dc82b491, type: 2}
+--- !u!114 &6352807382987694968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716279463127764397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67460c8ff87964f2caee3c4576b23fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CanvasGroup: {fileID: 5463947100891342310}
+  _AnimationTime: 0.25
+  _ShowByDefault: 0
+  _IsIndependentUpdate: 0
+--- !u!225 &5463947100891342310
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716279463127764397}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4138434650178865328
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +839,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6189021044642659990}
   m_HandleRect: {fileID: 7083972666685918606}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -826,7 +857,7 @@ GameObject:
   - component: {fileID: 4060840395048402247}
   - component: {fileID: 2768317847314171498}
   - component: {fileID: 6536073783505437421}
-  - component: {fileID: 7257516627198333211}
+  - component: {fileID: 2574153671195247375}
   m_Layer: 0
   m_Name: OpenSlotButton
   m_TagString: Untagged
@@ -883,7 +914,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 4e3cdd40c462b4732858228c0be1636e, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -936,7 +967,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7257516627198333211
+--- !u!114 &2574153671195247375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -248,12 +248,12 @@ MonoBehaviour:
   m_PointFire: {fileID: 2120451994503579292}
   m_RightHandIK: {fileID: 4658442885785479434}
   m_LeftHandIK: {fileID: 1280820515973747370}
+  m_BoxCollider: {fileID: 4687016220519848733}
   m_BulletPrefab: {fileID: 8607112323178225277, guid: de9992633bff23244b2706c2bb507662,
     type: 3}
   m_BulletMuzzleFirePrefab: {fileID: 1465932610192973303, guid: 8609ce76a812e974da39fa3a36f2a93c,
     type: 3}
   weaponSO: {fileID: 11400000, guid: fce00cd8390c63f44bbc73cd7d7078fd, type: 2}
-  m_BoxCollider: {fileID: 4687016220519848733}
 --- !u!65 &4687016220519848733
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -269,9 +269,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.26, y: 1.27, z: 4.77}
   m_Center: {x: 0, y: 0.25, z: 0}

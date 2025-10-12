@@ -8,6 +8,12 @@ using UnityEngine;
 public class ZombieIdleTargetState : AIBotState
 {
     protected ZombieAIController m_ZombieAIController;
+
+    protected override void OnStateEnable()
+    {
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, false);
+        m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Idle, true);
+    }
     public override void InitializeState(AIBotController botController)
     {
         if (botController is ZombieAIController zombieAIController)

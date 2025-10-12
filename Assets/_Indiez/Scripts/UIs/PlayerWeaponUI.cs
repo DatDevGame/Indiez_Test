@@ -12,6 +12,7 @@ public class PlayerWeaponUI : MonoBehaviour
     [SerializeField, BoxGroup("Reference")] private Transform m_WeaponSlotHolder;
     [SerializeField, BoxGroup("Reference")] private Button m_Button;
     [SerializeField, BoxGroup("Reference")] private EZAnimVector2 m_OpenAndCloseEZAim;
+    [SerializeField, BoxGroup("Reference")] private CanvasGroupVisibility m_CanvasGroupVisibility;
     [SerializeField, BoxGroup("Data")] private WeaponManagerSO m_WeaponManagerSO;
 
     private List<WeaponSlotUI> m_WeaponSlotUIs;
@@ -19,18 +20,32 @@ public class PlayerWeaponUI : MonoBehaviour
     private void Awake()
     {
         GameEventHandler.AddActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeapon);
+        GameEventHandler.AddActionEvent(PVEEventCode.OnLevelStart, OnLevelStart);
+        GameEventHandler.AddActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
         m_Button.onClick.AddListener(OnClickButton);
     }
 
     private void OnDestroy()
     {
         GameEventHandler.RemoveActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeapon);
+        GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelStart, OnLevelStart);
+        GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
         m_Button.onClick.RemoveListener(OnClickButton);
     }
 
     private void Start()
     {
         Init();
+    }
+
+    private void OnLevelStart()
+    {
+        m_CanvasGroupVisibility.Show();
+    }
+
+    private void OnLevelEnd()
+    {
+        m_CanvasGroupVisibility.Hide();
     }
 
     private void OnClickButton()
@@ -56,7 +71,7 @@ public class PlayerWeaponUI : MonoBehaviour
         WeaponSO weaponSOEquip = parameters[0] as WeaponSO;
         if (weaponSOEquip != null)
             m_WeaponManagerSO.Use(weaponSOEquip);
-            
+
         for (int i = 0; i < m_WeaponSlotUIs.Count; i++)
         {
             if (m_WeaponSlotUIs[i].WeaponSO != weaponSOEquip)

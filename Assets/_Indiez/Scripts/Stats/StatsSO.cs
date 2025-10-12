@@ -13,7 +13,7 @@ public class StatsSO : SerializableScriptableObject
     [SerializeField, BoxGroup("Combat Stats")] public LayerMask TeamLayerMask = -1;
 
     [Title("Look State Config", "", TitleAlignments.Centered)]
-    [Range(0.1f, 5f)]
+    [Range(0.1f, 100f)]
     public float LookAtRange = 4f;
 
     [Title("Move State Config", "", TitleAlignments.Centered)]

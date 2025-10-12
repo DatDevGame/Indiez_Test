@@ -96,7 +96,7 @@ public class ZombiePrototype : EnemyBase, IDamageable
     protected void Dead()
     {
         m_IsAlive = false;
-        OnDead?.Invoke();
+        OnDead?.Invoke(this);
         m_ZombieAIController.NavMeshAgent.enabled = false;
         m_Animator.ResetAllTriggers();
         ResetAnimator();

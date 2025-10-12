@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 3252640976634732727}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50901544, y: -0.58786505, z: 0.4094888, w: 0.47711307}
-  m_LocalPosition: {x: 0.11758881, y: -0.71527904, z: -0.024938285}
+  m_LocalPosition: {x: 0.11081785, y: -0.71655554, z: -0.024932802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1248,7 +1248,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1350,7 +1350,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1452,7 +1452,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1554,7 +1554,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1702,7 +1702,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1808,7 +1808,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1874,7 +1874,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1974,7 +1974,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2076,7 +2076,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2208,7 +2208,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2310,7 +2310,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2484,17 +2484,17 @@ PrefabInstance:
     - target: {fileID: 7305329151495421424, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7305329151495421424, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7305329151495421424, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7305329151495421424, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
@@ -2558,6 +2558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
+      propertyPath: PushYBlend
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
       propertyPath: CastDistance
       value: 1
       objectReference: {fileID: 0}
@@ -2565,6 +2570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _EditorCategory
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: StabilizingSpeed
+      value: 0.351
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
@@ -2578,8 +2588,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
+      propertyPath: PushHipsOnLegMove
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: PushReactionSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
       propertyPath: ExtraPelvisOffset.y
       value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: StabilizeOnIsMoving
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
@@ -2594,6 +2619,21 @@ PrefabInstance:
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: _EditorSetupCategory
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: AnimationIsStablePose
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: StabilizeCenterOfMass
+      value: 0.3505535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: _EditorMotionCategory
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
@@ -2680,6 +2720,21 @@ PrefabInstance:
         type: 3}
       propertyPath: _Hips_Modules_ExtraWOffset.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: BaseLegAnimating.MaxFootRaise
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: BaseLegAnimating.MinFootRaise
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: BaseLegAnimating.AllowSpeedups
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
@@ -2773,6 +2828,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
+      propertyPath: BaseLegAnimating.StepMoveDuration
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
       propertyPath: Legs.Array.data[0].AnkleForward.x
       value: -0.012813076
       objectReference: {fileID: 0}
@@ -2804,32 +2864,32 @@ PrefabInstance:
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: Legs.Array.data[0].AnkleToFeetEnd.x
-      value: 0.13315782
+      value: 0.13299392
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: Legs.Array.data[0].AnkleToFeetEnd.y
-      value: -0.116619505
+      value: -0.12939581
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: Legs.Array.data[0].AnkleToFeetEnd.z
-      value: 0.007311435
+      value: 0.007893474
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: Legs.Array.data[1].AnkleToFeetEnd.x
-      value: -0.13315634
+      value: -0.13299245
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: Legs.Array.data[1].AnkleToFeetEnd.y
-      value: 0.116619505
+      value: 0.12939583
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: Legs.Array.data[1].AnkleToFeetEnd.z
-      value: -0.007311445
+      value: -0.007893491
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
@@ -2849,6 +2909,16 @@ PrefabInstance:
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: CustomModules.Array.data[2].variables.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: CustomModules.Array.data[0].variables.Array.data[0]._rangeHelper.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
+        type: 3}
+      propertyPath: CustomModules.Array.data[0].variables.Array.data[0]._rangeHelper.y
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3060,14 +3130,15 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     AlignWithDesiredMoveDirection: 0
+  m_SpeedsMulty: 2
+  m_ArcFactor: 0.07
+  m_LookThemTime: 0.3
   m_RagdollController: {fileID: 3078111454068633378}
   m_Visual: {fileID: 1658624699354681251}
   m_FakePointfire: {fileID: 580487347313977391}
   m_GrenadePoint: {fileID: 9112372328916127737}
   m_HealthBarSO: {fileID: 11400000, guid: ab3740db74a17714c8a31cc4004c33cd, type: 2}
   m_CurrentWeapons: {fileID: 11400000, guid: 7cf123a5d0a646f499b22ecb9b0ec07c, type: 2}
-  speedsMulty: 2
-  arcFactor: 0.07
   speedsMultyEditOR: 2
   arcFactoreDITOR: 0.07
 --- !u!114 &5438035323216430523

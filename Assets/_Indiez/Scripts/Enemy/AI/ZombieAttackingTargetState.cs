@@ -97,7 +97,7 @@ public class ZombieAttackingTargetState : AIBotState
             return;
         { }
         float distanceAttack = Vector3.Distance(m_ZombieAIController.transform.position, m_ZombieAIController.GetTargetPoint());
-        if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange)
+        if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_Target != null)
         {
             m_Target.TakeDamage(m_ZombieAIController.EnemyBase.EnemyStats.AttackDamage, Vector3.zero);
             //SoundManager.Instance.PlayLoopSFX(m_ZombieAIController.EnemyBase.GetRandomPunchSound(), volumn: 0.5f);

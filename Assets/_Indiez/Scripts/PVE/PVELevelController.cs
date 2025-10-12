@@ -5,12 +5,16 @@ using Premium.PoolManagement;
 using HCore.Helpers;
 using HCore.Events;
 using Unity.VisualScripting;
+using Sirenix.OdinInspector;
+using System.Linq;
 
 public class PVELevelController : MonoBehaviour
 {
-    [Header("Data")]
-    [SerializeField] private LevelManagerSO m_LevelManagerSO;
-    [SerializeField] private PPrefItemSOVariable m_CurrentLevelSO;
+    [SerializeField, BoxGroup("Reference")] private BaseSoldier m_Sodier;
+    [SerializeField, BoxGroup("Data")] private LevelManagerSO m_LevelManagerSO;
+    [SerializeField, BoxGroup("Data")] private PPrefItemSOVariable m_CurrentLevelSO;
+    [SerializeField, BoxGroup("Data")] private IntVariable m_CurrentWave;
+    [SerializeField, BoxGroup("Data")] private PPrefIntVariable m_CurrentLevelPPref;
 
     private List<EnemyBase> m_EnemyBases;
     private int m_CurrentWaveIndex = 0;
@@ -18,17 +22,6 @@ public class PVELevelController : MonoBehaviour
     private bool m_IsSpawning = false;
     private LevelSO m_CurrentLevel;
     private MapBase m_Map;
-
-    private void OnEnable()
-    {
-        //ZombieBase.OnZombieDied += HandleZombieDied;
-    }
-
-    private void OnDisable()
-    {
-        //ZombieBase.OnZombieDied -= HandleZombieDied;
-    }
-
     private void Start()
     {
         StartCoroutine(StartLevel());
@@ -36,6 +29,7 @@ public class PVELevelController : MonoBehaviour
 
     private IEnumerator StartLevel()
     {
+        m_EnemyBases = new List<EnemyBase>();
         LevelSO currentLevelSO = m_LevelManagerSO.GetCurrentLevelSO();
         m_CurrentLevel = currentLevelSO;
         if (currentLevelSO == null)
@@ -46,7 +40,9 @@ public class PVELevelController : MonoBehaviour
 
         SpawnMap();
         m_CurrentLevelSO.value = m_LevelManagerSO.GetCurrentLevelSO();
-        GameEventHandler.Invoke(PVEEventCode.OnLevelStart);
+        m_Sodier.transform.position = m_CurrentLevel.Map.GetPlayerPoint();
+        m_Sodier.OnDead += HandlePlayerDead;
+        GameEventHandler.Invoke(PVEEventCode.OnLevelStart, m_CurrentLevelSO.value, m_Sodier);
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(SpawnWave(m_CurrentLevel.ZombieWaves[m_CurrentWaveIndex]));
     }
@@ -56,6 +52,7 @@ public class PVELevelController : MonoBehaviour
     }
     private IEnumerator SpawnWave(ZombieWaveData wave)
     {
+        m_CurrentWave.value = 0;
         m_IsSpawning = true;
         yield return new WaitForSeconds(wave.StartDelay);
 
@@ -75,6 +72,8 @@ public class PVELevelController : MonoBehaviour
                 zombie.transform.rotation = spawnPoint.rotation;
                 zombie.gameObject.SetActive(true);
                 zombie.Init();
+                m_EnemyBases.Add(zombie);
+                zombie.OnDead += HandleZombieDied;
             }
             yield return new WaitForSeconds(wave.SpawnInterval);
         }
@@ -84,16 +83,22 @@ public class PVELevelController : MonoBehaviour
     private void HandleZombieDied(EnemyBase zombie)
     {
         m_AliveZombieCount--;
-
         if (m_AliveZombieCount <= 0 && !m_IsSpawning)
             StartCoroutine(NextWave());
+        zombie.OnDead -= HandleZombieDied;
+    }
+
+    private void HandlePlayerDead()
+    {
+        m_CurrentLevelPPref.value++;
+        GameEventHandler.Invoke(PVEEventCode.OnLevelEnd, false);
     }
 
     private IEnumerator NextWave()
     {
         yield return new WaitForSeconds(2f);
-
         m_CurrentWaveIndex++;
+        m_CurrentWave.value = m_CurrentWaveIndex;
 
         if (m_CurrentWaveIndex < m_CurrentLevel.ZombieWaves.Count)
         {
@@ -101,7 +106,14 @@ public class PVELevelController : MonoBehaviour
         }
         else
         {
-            Debug.Log("All waves completed! Level clear!");
+            GameEventHandler.Invoke(PVEEventCode.OnLevelEnd, true);
         }
+    }
+
+    private bool IsEndGame()
+    {
+        return m_EnemyBases
+        .Where(v => v.gameObject.activeSelf)
+        .All(x => !x.IsAlive);
     }
 }

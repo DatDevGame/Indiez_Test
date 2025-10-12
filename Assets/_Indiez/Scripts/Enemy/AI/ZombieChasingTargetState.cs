@@ -118,3 +118,24 @@ public class ZombieChasingToAttackTransition : AIBotStateTransition
         return distanceToTarget <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_ZombieAIController.IsAvailable();
     }
 }
+[Serializable]
+public class ZombieChasingToIdleTransition : AIBotStateTransition
+{
+    protected ZombieAIController m_ZombieAIController;
+    private ZombieChasingTargetState m_ZombieChasingTargetState;
+
+    protected override bool Decide()
+    {
+        if (!m_ZombieAIController.Target.IsAvailable())
+            return true;
+        return false;
+    }
+
+    public override void InitializeTransition(AIBotState originState, AIBotController botController)
+    {
+        if (botController is ZombieAIController zombieAIController)
+            m_ZombieAIController = zombieAIController;
+        base.InitializeTransition(originState, botController);
+        m_ZombieChasingTargetState = GetOriginStateAsType<ZombieChasingTargetState>();
+    }
+}

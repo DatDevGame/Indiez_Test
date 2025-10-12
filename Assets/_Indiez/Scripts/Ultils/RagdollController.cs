@@ -19,10 +19,13 @@ public class RagdollController : MonoBehaviour
     [Button("Load Rig & Collider")]
     private void Load()
     {
+        m_RagdollBodies.Clear();
+        m_RagdollColliders.Clear();
         foreach (var rb in GetComponentsInChildren<Rigidbody>())
         {
             Collider collider = rb.GetComponent<Collider>();
             collider.enabled = true;
+            collider.isTrigger = true;
             rb.isKinematic = true;
 
             m_RagdollBodies.Add(rb);
@@ -40,11 +43,11 @@ public class RagdollController : MonoBehaviour
         {
             var rb = m_RagdollBodies[i];
             var col = m_RagdollColliders[i];
+            col.isTrigger = !active;
 
             if (rb == null || col == null) continue;
 
             rb.isKinematic = !active;
-            //col.enabled = active;
         }
     }
 

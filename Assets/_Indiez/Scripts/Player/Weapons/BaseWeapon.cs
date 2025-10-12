@@ -47,10 +47,10 @@ public abstract class BaseWeapon : MonoBehaviour
     public virtual void SetOwner(BaseSoldier Owner)
     {
         m_Owner = Owner;
-        m_BoxCollider.enabled = true;
+        m_BoxCollider.enabled = false;
         m_BoxCollider.AddComponent<Rigidbody>();
         transform.SetParent(null);
-        m_Owner.OnDead -= OwnerDead;
+        m_Owner.OnDead += OwnerDead;
         m_BoxCollider.gameObject.layer = m_Owner.gameObject.layer;
     }
 

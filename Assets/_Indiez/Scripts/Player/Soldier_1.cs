@@ -40,8 +40,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected IDamageable m_TargetDamagable;
     protected INavigationPoint m_TargetNavigationPoint;
-    protected INavigationPoint m_OldTargetNavigationPoint;
-    protected Vector3 m_DefaultLocalPos;
     protected virtual void Awake()
     {
         GameEventHandler.AddActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeaponEvent);
@@ -118,16 +116,30 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected virtual void DetectEnemy()
     {
         List<INavigationPoint> navigations = FindTargetsInRange();
-        if (navigations.Count > 0)
-        {
-            INavigationPoint nearestTarget = navigations
-                .Where(v => v != null)
-                .OrderBy(v => Vector3.Distance(transform.position, v.GetSelfPoint()))
-                .FirstOrDefault();
+        if (navigations.Count == 0) return;
 
-            m_TargetNavigationPoint = nearestTarget;
-        }
+        INavigationPoint nearestTarget = navigations
+            .Where(v => v != null)
+            .Where(v => IsVisible(v.GetSelfPoint()))
+            .OrderBy(v => Vector3.Distance(transform.position, v.GetSelfPoint()))
+            .FirstOrDefault();
+
+        m_TargetNavigationPoint = nearestTarget;
     }
+
+    private bool IsVisible(Vector3 targetPoint)
+    {
+        Vector3 origin = transform.position;
+        Vector3 direction = targetPoint - origin;
+        float distance = direction.magnitude;
+
+        int obstacleMask = LayerMask.GetMask("Wall", "Ground");
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance, obstacleMask))
+            return false;
+
+        return true;
+    }
+
 
     protected virtual void LookAtTarget()
     {
@@ -136,14 +148,17 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
         m_ChangeWeaponTimer -= Time.deltaTime;
 
-        float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.2f;
+        float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.5f;
         float distance = Vector3.Distance(transform.position, GetTargetPoint());
         bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
 
         if (canLook && m_ChangeWeaponTimer <= 0)
         {
             m_IsLooking = true;
-            m_Visual.DOLookAt(GetTargetPoint(), 0.05f);
+            Vector3 dirToTarget = (GetTargetPoint() - transform.position).normalized;
+            float rotateSpeed = 1f;
+            Quaternion targetRot = Quaternion.LookRotation(dirToTarget);
+            m_Visual.transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotateSpeed * Time.deltaTime);
 
             if (!m_IsAiming)
             {
@@ -182,19 +197,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         if (m_TargetNavigationPoint == null || !m_IsLooking)
             return;
 
-        if (m_OldTargetNavigationPoint == null)
-            m_OldTargetNavigationPoint = m_TargetNavigationPoint;
-        if (m_OldTargetNavigationPoint != m_TargetNavigationPoint)
-        {
-            m_ThenAimTimer = m_LookThemTime;
-            m_OldTargetNavigationPoint = m_TargetNavigationPoint;
-            Debug.Log($"Key Pro HEHE");
-        }
-
-        if (m_ThenAimTimer > 0)
-            return;
         m_TriggerTimer -= Time.deltaTime;
-
         float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
         if (distanceAttack > m_WeaponHolder.CurrentWeapon.WeaponStats.Range)
             return;

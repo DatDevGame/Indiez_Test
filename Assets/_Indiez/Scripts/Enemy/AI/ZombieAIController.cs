@@ -71,7 +71,7 @@ public class ZombieAIController : AIBotController, INavigationPoint
         return m_Target == null ? GetSelfPoint() * 999 : m_Target.GetSelfPoint();
     }
 
-    protected void OnDead()
+    protected void OnDead(EnemyBase enemyBase)
     {
         m_NavMeshAgent.enabled = false;
         StopStateMachine();

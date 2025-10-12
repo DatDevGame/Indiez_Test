@@ -3588,6 +3588,7 @@ MonoBehaviour:
         stateId: eda21949-3da2-4857-a864-4f0ddec8d3c7
         transitions:
         - rid: 2674162031510159379
+        - rid: 2674162094850441216
     - rid: 2674162031510159376
       type: {class: ZombieAttackingTargetState, ns: , asm: Assembly-CSharp}
       data:
@@ -3616,6 +3617,10 @@ MonoBehaviour:
       type: {class: ZombieLookingTargetToChasingTargetTransition, ns: , asm: Assembly-CSharp}
       data:
         targetStateID: eda21949-3da2-4857-a864-4f0ddec8d3c7
+    - rid: 2674162094850441216
+      type: {class: ZombieChasingToIdleTransition, ns: , asm: Assembly-CSharp}
+      data:
+        targetStateID: 8f1d442a-519b-494e-8602-28ad5feddb6e
 --- !u!114 &5302313333997207715
 MonoBehaviour:
   m_ObjectHideFlags: 0

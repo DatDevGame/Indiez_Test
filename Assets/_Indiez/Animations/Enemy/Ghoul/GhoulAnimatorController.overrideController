@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GhoulAnimatorController
+  m_Controller: {fileID: 9100000, guid: fe51e57ce6a6c3a46b07d540b7dbd284, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 350a6051730a59446880eac32ac5668d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cbe78fba283a7014382e9c696322d485, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5024a0accc8239240a4214d952617614, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cbe78fba283a7014382e9c696322d485, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d3940d0f93494ee4382733d247082f80, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ad6d82fab83ab804283ae8f39f78860a, type: 2}

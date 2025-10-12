@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public Action OnDead = delegate { };
+    public Action<EnemyBase> OnDead = delegate { };
     public CharacterController CharacterController => m_CharacterController;
     public ZombieAnimationEventReceiver ZombieAnimationEventReceiver => m_ZombieAnimationEventReceiver;
     public Animator Animator => m_Animator;

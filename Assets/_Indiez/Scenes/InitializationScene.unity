@@ -399,6 +399,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5590392387512079440, guid: 552eb4b2c481ab646977f8c7187144ad,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590392387512079440, guid: 552eb4b2c481ab646977f8c7187144ad,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6602755192708819908, guid: 552eb4b2c481ab646977f8c7187144ad,
         type: 3}
       propertyPath: m_Pivot.x
@@ -503,6 +513,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoadingUI (Canvas)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602755192708819914, guid: 552eb4b2c481ab646977f8c7187144ad,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602755192708819914, guid: 552eb4b2c481ab646977f8c7187144ad,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602755192708819914, guid: 552eb4b2c481ab646977f8c7187144ad,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

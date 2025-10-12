@@ -20,15 +20,43 @@ public class LevelManagerSO : ItemManagerSO
             return null;
         }
 
-        int index = Mathf.Clamp(m_CurrentLevelIndex.value, 0, initialValue.Count - 1);
+        int index = m_CurrentLevelIndex.value;
+
+        // Clamp index trước
+        if (index < 0 || index >= initialValue.Count)
+        {
+            Debug.LogWarning($"[LevelManagerSO] Index {index} out of range! Picking random level instead.");
+            return GetRandomLevelSO();
+        }
 
         var levelSO = initialValue
             .OfType<LevelSO>()
             .ElementAtOrDefault(index);
 
         if (levelSO == null)
-            Debug.LogWarning($"[LevelManagerSO] No valid LevelSO found at index {index}!");
+        {
+            Debug.LogWarning($"[LevelManagerSO] No valid LevelSO found at index {index}! Picking random level instead.");
+            return GetRandomLevelSO();
+        }
 
         return levelSO;
     }
+
+    private LevelSO GetRandomLevelSO()
+    {
+        var validLevels = initialValue
+            .OfType<LevelSO>()
+            .Where(l => l != null)
+            .ToList();
+
+        if (validLevels.Count == 0)
+        {
+            Debug.LogWarning("[LevelManagerSO] No valid LevelSO available for random selection!");
+            return null;
+        }
+
+        int randomIndex = Random.Range(0, validLevels.Count);
+        return validLevels[randomIndex];
+    }
+
 }
