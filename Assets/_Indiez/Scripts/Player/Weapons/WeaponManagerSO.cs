@@ -6,3 +6,11 @@ using UnityEngine;
 public class WeaponManagerSO : ItemManagerSO
 {
 }
+
+[EventCode]
+public enum WeaponEventCode
+{
+    Use,
+    Select,
+    Unlocked
+}

@@ -18,6 +18,9 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     public Transform Visual => m_Visual;
 
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
+    [SerializeField, BoxGroup("Config Throw Bomb")] protected float m_SpeedsMulty = 2;
+    [SerializeField, BoxGroup("Config Throw Bomb")] protected float m_ArcFactor = 0.07f;
+    [SerializeField, BoxGroup("Config Delay Attack Then Look")] protected float m_LookThemTime = 1.5f;
     [SerializeField, BoxGroup("References")] protected RagdollController m_RagdollController;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_Visual;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
@@ -30,12 +33,14 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected float m_TriggerTimer;
     protected float m_ChangeWeaponTimer;
+    protected float m_ThenAimTimer;
     protected float m_ForwardDistance = 0.8f;
     protected bool m_IsLooking = false;
     protected bool m_IsAiming = false;
 
     protected IDamageable m_TargetDamagable;
     protected INavigationPoint m_TargetNavigationPoint;
+    protected INavigationPoint m_OldTargetNavigationPoint;
     protected Vector3 m_DefaultLocalPos;
     protected virtual void Awake()
     {
@@ -143,12 +148,16 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             if (!m_IsAiming)
             {
                 m_IsAiming = true;
-
+                m_ThenAimTimer = m_LookThemTime;
                 string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
                 m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
                 m_Animator.SetBool(aimState, true);
 
                 m_WeaponHolder.AimIK();
+            }
+            else
+            {
+                m_ThenAimTimer -= Time.deltaTime;
             }
         }
         else
@@ -172,7 +181,20 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     {
         if (m_TargetNavigationPoint == null || !m_IsLooking)
             return;
+
+        if (m_OldTargetNavigationPoint == null)
+            m_OldTargetNavigationPoint = m_TargetNavigationPoint;
+        if (m_OldTargetNavigationPoint != m_TargetNavigationPoint)
+        {
+            m_ThenAimTimer = m_LookThemTime;
+            m_OldTargetNavigationPoint = m_TargetNavigationPoint;
+            Debug.Log($"Key Pro HEHE");
+        }
+
+        if (m_ThenAimTimer > 0)
+            return;
         m_TriggerTimer -= Time.deltaTime;
+
         float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
         if (distanceAttack > m_WeaponHolder.CurrentWeapon.WeaponStats.Range)
             return;
@@ -215,9 +237,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         }
         m_WeaponHolder.FireCurrent();
     }
-
-    public float speedsMulty = 2;
-    public float arcFactor = 0.07f;
     protected virtual void ThrowGrenade()
     {
         if (m_IsAiming)
@@ -237,7 +256,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         grenadeSoldier.gameObject.SetActive(true);
         grenadeSoldier.OnInit(this);
         grenadeSoldier.StartFuse();
-        grenadeSoldier.ThrowToTargetByDistance(m_GrenadePoint.position, GetTargetPoint(), speedsMulty, arcFactor);
+        grenadeSoldier.ThrowToTargetByDistance(m_GrenadePoint.position, GetTargetPoint(), m_SpeedsMulty, m_ArcFactor);
     }
 
     protected List<INavigationPoint> FindTargetsInRange()

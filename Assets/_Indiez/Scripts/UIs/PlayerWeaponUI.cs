@@ -54,6 +54,9 @@ public class PlayerWeaponUI : MonoBehaviour
             return;
 
         WeaponSO weaponSOEquip = parameters[0] as WeaponSO;
+        if (weaponSOEquip != null)
+            m_WeaponManagerSO.Use(weaponSOEquip);
+            
         for (int i = 0; i < m_WeaponSlotUIs.Count; i++)
         {
             if (m_WeaponSlotUIs[i].WeaponSO != weaponSOEquip)

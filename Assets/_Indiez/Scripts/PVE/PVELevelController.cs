@@ -59,7 +59,6 @@ public class PVELevelController : MonoBehaviour
         m_IsSpawning = true;
         yield return new WaitForSeconds(wave.StartDelay);
 
-        Debug.Log($"🧟 Wave {wave.WaveIndex} started!");
         m_AliveZombieCount = wave.ZombieCount;
 
         for (int i = 0; i < wave.ZombieCount; i++)
@@ -102,7 +101,7 @@ public class PVELevelController : MonoBehaviour
         }
         else
         {
-            Debug.Log("🎉 All waves completed! Level clear!");
+            Debug.Log("All waves completed! Level clear!");
         }
     }
 }

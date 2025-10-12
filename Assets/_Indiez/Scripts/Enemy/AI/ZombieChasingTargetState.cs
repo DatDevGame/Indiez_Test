@@ -16,6 +16,8 @@ public class ZombieChasingTargetState : AIBotState
     protected ZombieAIController m_ZombieAIController;
     protected Vector3 m_LastTargetPosition;
     protected float m_RepathThreshold = 0.2f;
+    protected float m_ForceRepathInterval = 1f;
+    protected float m_ForceRepathTimer = 0f;
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
@@ -48,7 +50,8 @@ public class ZombieChasingTargetState : AIBotState
         base.OnStateUpdate();
         if (m_ZombieAIController.Target == null)
             return;
-        MoveTarget(m_ZombieAIController.GetTargetPoint());
+
+        MoveTarget(m_ZombieAIController.GetTargetPoint(), Time.deltaTime);
     }
 
     public override void InitializeState(AIBotController botController)
@@ -58,18 +61,24 @@ public class ZombieChasingTargetState : AIBotState
         base.InitializeState(botController);
     }
 
-    protected virtual void MoveTarget(Vector3 targetPosition)
+    protected virtual void MoveTarget(Vector3 targetPosition, float deltaTime)
     {
         if (!IsVectorValid(targetPosition))
             return;
 
         m_ZombieAIController.Visual.transform.DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
 
-        if (m_LastTargetPosition != targetPosition && m_ZombieAIController.Target.IsAvailable())
+        m_ForceRepathTimer += deltaTime;
+
+        bool shouldMove = m_LastTargetPosition != targetPosition || m_ForceRepathTimer >= m_ForceRepathInterval;
+
+        if (shouldMove && m_ZombieAIController.Target.IsAvailable())
         {
             m_LastTargetPosition = targetPosition;
             if (m_ZombieAIController.NavMeshAgent.isOnNavMesh)
                 m_ZombieAIController.NavMeshAgent.SetDestination(targetPosition);
+
+            m_ForceRepathTimer = 0f;
         }
     }
 

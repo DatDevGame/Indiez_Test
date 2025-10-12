@@ -17,14 +17,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95305cb782bb28a43a486b2d3704505e, type: 2}
   - {fileID: 11400000, guid: 990010cbb1d833b4cb68273c83bba46f, type: 2}
   m_ItemUsedEventCode:
-    m_EventType: 
-    m_EventCode: 
+    m_EventType: WeaponEventCode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    m_EventCode: Use
   m_ItemSelectedEventCode:
-    m_EventType: 
-    m_EventCode: 
+    m_EventType: WeaponEventCode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    m_EventCode: Select
   m_ItemUnlockedEventCode:
-    m_EventType: 
-    m_EventCode: 
+    m_EventType: WeaponEventCode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    m_EventCode: Unlocked
   m_DisplayNameTerm: 
   m_AnalyticsName: 
   m_AdsLocation: 0
