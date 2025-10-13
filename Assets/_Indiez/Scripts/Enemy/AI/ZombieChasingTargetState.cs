@@ -58,7 +58,7 @@ public class ZombieChasingTargetState : AIBotState
         m_SpeedupTimer -= Time.deltaTime;
         if (m_SpeedupTimer <= 0)
             m_ZombieAIController.NavMeshAgent.speed = m_OriginSpeed;
-            
+
         if (m_ZombieAIController.Target == null)
             return;
 
@@ -80,12 +80,21 @@ public class ZombieChasingTargetState : AIBotState
         float heightDiff = Mathf.Abs(targetPosition.y - m_ZombieAIController.Visual.transform.position.y);
         if (heightDiff > 1f)
         {
-            Vector3 parentForward = m_ZombieAIController.Visual.transform.parent.forward;
-            m_ZombieAIController.Visual.transform.DOLookAt(
-                m_ZombieAIController.Visual.transform.position + parentForward,
-                0.2f,
-                AxisConstraint.Y
+            Transform visual = m_ZombieAIController.Visual.transform;
+            Transform parent = visual.parent;
+
+            Vector3 targetDir = parent.forward;
+            targetDir.y = 0f;
+            if (targetDir.sqrMagnitude < 0.0001f)
+                return;
+
+            Quaternion targetRot = Quaternion.LookRotation(targetDir);
+            visual.rotation = Quaternion.Slerp(
+                visual.rotation,
+                targetRot,
+                deltaTime * 10f 
             );
+
         }
         else
         {
