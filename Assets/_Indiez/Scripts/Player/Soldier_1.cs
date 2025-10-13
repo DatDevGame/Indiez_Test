@@ -167,9 +167,17 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected virtual void LookAtTarget()
     {
+        if (!m_CharacterController.isGrounded)
+        {
+            m_Visual.eulerAngles = Vector3.zero;
+            m_IsLooking = false;
+            m_IsFacingTarget = false;
+            m_IsAiming = false;
+            return;
+        }
+
         if (m_TargetNavigationPoint == null)
             return;
-
         m_ChangeWeaponTimer -= Time.deltaTime;
 
         float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.5f;
@@ -226,7 +234,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         else
         {
             m_IsLooking = false;
-
             if (m_IsAiming)
             {
                 m_IsAiming = false;
@@ -244,7 +251,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     {
         if (m_TargetNavigationPoint == null || !m_IsLooking || !m_IsAiming)
             return;
-
+        Debug.Log($"Key Main -> 5");
         m_TriggerTimer -= Time.deltaTime;
         float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
         if (distanceAttack > m_WeaponHolder.CurrentWeapon.WeaponStats.Range)
@@ -367,7 +374,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     {
         return m_CenterPoint == null ? transform.position : m_CenterPoint.position;
     }
-    public Vector3 GetTargetPoint() => m_TargetNavigationPoint?.GetSelfPoint() ?? transform.position * 999;
+    public Vector3 GetTargetPoint() => m_TargetNavigationPoint?.GetSelfPoint() ?? transform.position * 99;
 #if UNITY_EDITOR
 
     [BoxGroup("Editor")] public float speedsMultyEditOR = 2;

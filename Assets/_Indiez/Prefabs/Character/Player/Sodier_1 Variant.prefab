@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33922cc4f31cd646bf6c54782eda665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Gravity: -9.81
+  m_Gravity: -9
   m_GroundCheckDistance: 0.3
   m_GroundMask:
     serializedVersion: 2

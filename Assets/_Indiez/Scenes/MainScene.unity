@@ -525,6 +525,16 @@ PrefabInstance:
       propertyPath: m_EnemyBase
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3908085432958948834, guid: 9edf5145968c317469ed5a6526f6c732,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148639421995751507, guid: 9edf5145968c317469ed5a6526f6c732,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8304928420580947031, guid: 9edf5145968c317469ed5a6526f6c732,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4121,6 +4131,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_EnemyBase
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908085432958948834, guid: 9edf5145968c317469ed5a6526f6c732,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148639421995751507, guid: 9edf5145968c317469ed5a6526f6c732,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304928420580947031, guid: 9edf5145968c317469ed5a6526f6c732,
         type: 3}
