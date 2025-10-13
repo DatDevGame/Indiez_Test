@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InitialValue:
   - {fileID: 11400000, guid: 76b0d46fd4642a9449b7d5884fb9931f, type: 2}
+  - {fileID: 11400000, guid: d0c029d268df4254daed768616b1bde6, type: 2}
   m_ItemUsedEventCode:
     m_EventType: 
     m_EventCode: 

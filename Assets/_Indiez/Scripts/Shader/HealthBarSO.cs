@@ -7,4 +7,6 @@ public class HealthBarSO : SerializableScriptableObject
 {
     public Material PlayerHealthBarMaterial;
     public Material OpponentHealthBarMaterial;
+    public Material GhoulHealthBarMaterial;
+    public Material BossGhoulHealthBarMaterial;
 }

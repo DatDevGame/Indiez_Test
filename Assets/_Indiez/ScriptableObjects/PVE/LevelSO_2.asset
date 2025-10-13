@@ -10,32 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c509bdf7fd432e4188b8163b6c3a5ee, type: 3}
-  m_Name: LevelSO_1
+  m_Name: LevelSO_2
   m_EditorClassIdentifier: 
-  m_guid: 76b0d46fd4642a9449b7d5884fb9931f
+  m_guid: d0c029d268df4254daed768616b1bde6
   m_ItemModules: []
-  Map: {fileID: 8222220891699282151, guid: 75416c8b4dbfc1641a119d7a616c21e2, type: 3}
+  Map: {fileID: 4358026530056189503, guid: 626562eec6e6ec943a6a8c0f7b55c90d, type: 3}
   Description: 
   ZombieWaves:
-  - ZombieCount: 100
-    SpawnInterval: 0.1
-    StartDelay: 1
-    ZombieTypes:
-    - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
-        type: 3}
-      SpawnPercent: 100
   - ZombieCount: 200
     SpawnInterval: 0.1
     StartDelay: 1
     ZombieTypes:
     - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
-      SpawnPercent: 100
-  - ZombieCount: 50
-    SpawnInterval: 0.3
+      SpawnPercent: 70
+    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
+        type: 3}
+      SpawnPercent: 30
+  - ZombieCount: 300
+    SpawnInterval: 0.1
+    StartDelay: 1
+    ZombieTypes:
+    - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      SpawnPercent: 50
+    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
+        type: 3}
+      SpawnPercent: 50
+  - ZombieCount: 5
+    SpawnInterval: 0.1
     StartDelay: 2
     ZombieTypes:
-    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
+    - ZombiePrefab: {fileID: 6002423859753908557, guid: 9edf5145968c317469ed5a6526f6c732,
         type: 3}
       SpawnPercent: 100
   references:

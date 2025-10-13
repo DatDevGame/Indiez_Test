@@ -31,7 +31,7 @@ public class ZombieAttackingTargetState : AIBotState
             return;
 
         float distanceTarget = Vector3.Distance(m_ZombieAIController.BotTransform.position, m_ZombieAIController.GetTargetPoint());
-        bool isTooClose = distanceTarget < m_ZombieAIController.EnemyBase.EnemyStats?.AttackRange * 0.95f;
+        bool isTooClose = distanceTarget < m_ZombieAIController.EnemyBase.EnemyStats?.AttackRange * 0.5f;
 
         if (isTooClose)
         {
@@ -39,7 +39,7 @@ public class ZombieAttackingTargetState : AIBotState
             dirAway.y = 0f;
             dirAway.Normalize();
 
-            float retreatSpeed = 0.8f;
+            float retreatSpeed = 1.5f;
             Vector3 retreatVelocity = dirAway * retreatSpeed;
 
             if (retreatVelocity.magnitude > 1f)
@@ -56,10 +56,13 @@ public class ZombieAttackingTargetState : AIBotState
                 m_ZombieAIController.NavMeshAgent.enabled = true;
         }
 
-        m_ZombieAIController.Visual.DOLookAt(m_ZombieAIController.GetTargetPoint(), m_ZombieAIController.EnemyBase.StatsSOData.LookAtDuration);
+        m_ZombieAIController.Visual.DOLookAt(m_ZombieAIController.GetTargetPoint(), m_ZombieAIController.EnemyBase.StatsSOData.LookAtDuration, AxisConstraint.Y);
         m_TriggerTimer -= Time.deltaTime;
         if (m_TriggerTimer <= 0 && m_ZombieAIController.Target.IsAvailable())
+        {
             PerformAttack();
+        }
+
     }
 
     private void PerformAttack()
@@ -78,26 +81,26 @@ public class ZombieAttackingTargetState : AIBotState
         Vector3 direction = m_ZombieAIController.transform.forward * m_ForwardDistance;
         float attackRange = m_ForwardDistance;
 
-#if UNITY_EDITOR
-        Debug.DrawLine(origin, origin + direction * attackRange, Color.cyan, 99);
-#endif
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, 99, targetLayer))
+        Vector3 center = m_ZombieAIController.GetSelfPoint();
+        float radius = m_ZombieAIController.EnemyBase.EnemyStats.AttackRange;
+        Collider[] hits = Physics.OverlapSphere(center, radius, targetLayer);
+        foreach (var hit in hits)
         {
-            IDamageable target = hit.collider.GetComponent<IDamageable>();
-            if (target != null)
+            IDamageable target = hit.GetComponent<IDamageable>();
+            if (target != null && hit.transform != m_ZombieAIController.transform)
+            {
                 m_Target = target;
+                break;
+            }
         }
+
     }
 
     //Call In Animation
     public void HandleAttackHit()
     {
-        if (!IsVectorValid(m_ZombieAIController.GetTargetPoint()))
-            return;
-        { }
         float distanceAttack = Vector3.Distance(m_ZombieAIController.transform.position, m_ZombieAIController.GetTargetPoint());
-        if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_Target != null)
+        if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange * 1.1f && m_Target != null)
         {
             m_Target.TakeDamage(m_ZombieAIController.EnemyBase.EnemyStats.AttackDamage, Vector3.zero);
             //SoundManager.Instance.PlayLoopSFX(m_ZombieAIController.EnemyBase.GetRandomPunchSound(), volumn: 0.5f);

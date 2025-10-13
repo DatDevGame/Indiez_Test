@@ -1541,18 +1541,33 @@ PrefabInstance:
     - target: {fileID: 3764608346546657025, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: m_AngularSpeed
-      value: 200
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764608346546657025, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: avoidancePriority
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4186390514610842831, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.92
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186390514610842831, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: Hips
       value: 
       objectReference: {fileID: 4297444271280317657}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: UseHips
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: FeetYOffset
@@ -1565,8 +1580,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
+      propertyPath: GlueOnlyOnIdle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
       propertyPath: _EditorCategory
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
@@ -1576,7 +1596,12 @@ PrefabInstance:
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: ExtraPelvisOffset.y
-      value: -0.04
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: HipsHeightStepBlend
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
@@ -1591,7 +1616,7 @@ PrefabInstance:
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: _EditorSetupCategory
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
@@ -1606,7 +1631,7 @@ PrefabInstance:
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: _EditorMotionCategory
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
@@ -1735,6 +1760,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
+      propertyPath: BaseLegAnimating.StepMoveDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
       propertyPath: Legs.Array.data[0].AnkleForward.x
       value: -0.39531827
       objectReference: {fileID: 0}
@@ -1792,6 +1822,36 @@ PrefabInstance:
         type: 3}
       propertyPath: Legs.Array.data[1].AnkleToFeetEnd.z
       value: -0.08473148
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MotionInfluence.AxisMotionInfluence.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MotionInfluence.AxisMotionInfluence.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MotionInfluence.AxisMotionInfluence.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MotionInfluence.AxisMotionInfluenceBackwards.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MotionInfluence.AxisMotionInfluenceBackwards.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MotionInfluence.AxisMotionInfluenceBackwards.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512007508711713045, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}

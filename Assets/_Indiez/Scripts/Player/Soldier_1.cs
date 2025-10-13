@@ -25,6 +25,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     [SerializeField, BoxGroup("Referrence")] protected Transform m_Visual;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_FakePointfire;
     [SerializeField, BoxGroup("Referrence")] protected Transform m_GrenadePoint;
+    [SerializeField, BoxGroup("Referrence")] protected Transform m_CenterPoint;
     [SerializeField, BoxGroup("Resource")] protected HealthBarSO m_HealthBarSO;
 
 #if UNITY_EDITOR
@@ -37,9 +38,17 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     protected float m_ForwardDistance = 0.8f;
     protected bool m_IsLooking = false;
     protected bool m_IsAiming = false;
+    protected bool m_IsFacingTarget;
+
+
+    protected float m_TargetSwitchDelay = 0.5f;
+    protected float m_TargetSwitchTimer = 0f;
+
 
     protected IDamageable m_TargetDamagable;
     protected INavigationPoint m_TargetNavigationPoint;
+
+
     protected virtual void Awake()
     {
         GameEventHandler.AddActionEvent(PlayerEventCode.EquipWeapon, OnEquipWeaponEvent);
@@ -65,17 +74,15 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     }
     public virtual void Init()
     {
+
         m_SoldierStats = new SodierStats();
         m_SoldierStats.LoadStats(m_SoldierStatsSO);
-
-        //m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
-        //m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
-
         if (m_HealthBar == null)
             m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
         m_HealthBarMesh.material = new Material(m_HealthBarSO.PlayerHealthBarMaterial);
         RangeIntValue range = new RangeIntValue(0, m_SoldierStats.Health);
-        var progress = new RangeProgress<int>(range, 100);
+        var progress = new RangeProgress<int>(range, m_SoldierStats.Health);
+
         m_HealthBar.Init(progress);
         m_IsActive = true;
     }
@@ -108,15 +115,27 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_WeaponHolder.CurrentWeapon.SetFakePointFire(m_FakePointfire);
         m_WeaponHolder.CurrentWeapon.SetOwner(this);
         m_ChangeWeaponTimer = 1f;
-
-        m_FakePointfire.transform.localPosition = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFirePos;
-        m_FakePointfire.transform.localEulerAngles = m_WeaponHolder.CurrentWeapon.WeaponSO.PointFireEur;
     }
 
     protected virtual void DetectEnemy()
     {
+        m_TargetSwitchTimer -= Time.deltaTime;
         List<INavigationPoint> navigations = FindTargetsInRange();
-        if (navigations.Count == 0) return;
+        if (navigations.Count == 0)
+        {
+            m_TargetNavigationPoint = null;
+            return;
+        }
+
+        if (m_TargetNavigationPoint != null && m_TargetNavigationPoint.IsAvailable())
+        {
+            float distanceToCurrent = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
+            if (distanceToCurrent <= m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.5f)
+                return;
+        }
+
+        if (m_TargetSwitchTimer > 0f)
+            return;
 
         INavigationPoint nearestTarget = navigations
             .Where(v => v != null)
@@ -124,8 +143,13 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             .OrderBy(v => Vector3.Distance(transform.position, v.GetSelfPoint()))
             .FirstOrDefault();
 
-        m_TargetNavigationPoint = nearestTarget;
+        if (nearestTarget != null && nearestTarget != m_TargetNavigationPoint)
+        {
+            m_TargetNavigationPoint = nearestTarget;
+            m_TargetSwitchTimer = m_TargetSwitchDelay;
+        }
     }
+
 
     private bool IsVisible(Vector3 targetPoint)
     {
@@ -160,23 +184,34 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
             Vector3 flatDir = dirToTarget;
             flatDir.y = 0f;
+
             if (flatDir.sqrMagnitude > 0.001f)
             {
                 Quaternion targetRot = Quaternion.LookRotation(flatDir);
                 float rotateSpeed = 360f;
                 m_Visual.rotation = Quaternion.RotateTowards(m_Visual.rotation, targetRot, rotateSpeed * Time.deltaTime);
+                float angle = Quaternion.Angle(m_Visual.rotation, targetRot);
+                m_IsFacingTarget = angle < 5f;
+            }
+            else
+            {
+                m_IsFacingTarget = false;
             }
 
             Vector3 muzzleDir = (targetPoint - m_FakePointfire.position).normalized;
-            muzzleDir.y += 0.25f;
             Quaternion aimRot = Quaternion.LookRotation(muzzleDir, m_Visual.up);
             m_FakePointfire.rotation = aimRot;
+
+            if (!m_IsFacingTarget)
+            {
+                m_Visual.DOLookAt(targetPoint, 0.2f, AxisConstraint.Y);
+                return;
+            }
 
 
             if (!m_IsAiming)
             {
                 m_IsAiming = true;
-                m_ThenAimTimer = m_LookThemTime;
                 string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
                 m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
                 m_Animator.SetBool(aimState, true);
@@ -207,7 +242,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected void OnUpdateAttack()
     {
-        if (m_TargetNavigationPoint == null || !m_IsLooking)
+        if (m_TargetNavigationPoint == null || !m_IsLooking || !m_IsAiming)
             return;
 
         m_TriggerTimer -= Time.deltaTime;
@@ -240,17 +275,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     private void PerformAttack()
     {
         if (m_WeaponHolder == null) return;
-
-        Vector3 targetPoint = GetTargetPoint();
-        Vector3 aimDir = (targetPoint - m_WeaponHolder.CurrentWeapon.PointFire.position);
-        aimDir.y = 0f;
-        aimDir.Normalize();
-
-        if (aimDir.sqrMagnitude > 0.001f)
-        {
-            float targetYaw = Mathf.Atan2(aimDir.x, aimDir.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, targetYaw, 0f);
-        }
         m_WeaponHolder.FireCurrent();
     }
     protected virtual void ThrowGrenade()
@@ -324,9 +348,14 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         m_HealthBar.SetValue(m_SoldierStats.Health + (int)amount, m_SoldierStats.Health, 0.2f);
     }
 
+    public Vector3 GetCenterPoint()
+    {
+        return m_CenterPoint == null ? transform.position : m_CenterPoint.position;
+    }
+
     public PointType GetPointType()
     {
-        throw new System.NotImplementedException();
+        return PointType.OpponentPoint;
     }
 
     public bool IsAvailable()
@@ -336,7 +365,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     public Vector3 GetSelfPoint()
     {
-        return transform.position;
+        return m_CenterPoint == null ? transform.position : m_CenterPoint.position;
     }
     public Vector3 GetTargetPoint() => m_TargetNavigationPoint?.GetSelfPoint() ?? transform.position * 999;
 #if UNITY_EDITOR

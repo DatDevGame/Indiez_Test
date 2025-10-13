@@ -22,5 +22,5 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   m_TimeRandomChasingTarget: {x: 0.5, y: 1.5}
-  RotationSpeed: 30
-  ReachThreshold: 5
+  RotationSpeed: 100
+  ReachThreshold: 0.1

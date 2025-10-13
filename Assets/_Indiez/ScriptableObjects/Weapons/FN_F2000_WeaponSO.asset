@@ -28,6 +28,7 @@ MonoBehaviour:
     RevolverLocalRotation: {x: -7.607, y: 108.53, z: 65.022}
     LeftHandIkHintLocalPosion: {x: -1.109, y: 0.803, z: 0}
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
+  RandomAngleRecol: 2
   PointFirePos: {x: 0.140346, y: -0.5382035, z: 0.01228881}
   PointFireEur: {x: 103.369, y: 43.08501, z: 132.512}
   IdleAnimationKey: Assault_Idle_Bool
@@ -44,9 +45,9 @@ MonoBehaviour:
       type: {class: WeaponInfoModule, ns: , asm: Assembly-CSharp}
       data:
         m_ItemSO: {fileID: 11400000}
-        Damage: 20
-        FireRate: 0.02
-        Range: 20
+        Damage: 9
+        FireRate: 0.04
+        Range: 5
         Ammo: -1
         MaxAmmo: -1
     - rid: 2674162020009639938

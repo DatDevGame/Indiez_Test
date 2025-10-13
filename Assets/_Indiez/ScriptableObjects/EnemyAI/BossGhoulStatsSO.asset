@@ -23,10 +23,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   LookAtRange: 5
-  MoveSpeed: 5
+  MoveSpeed: 3
   AttackDamage: 20
-  AttackRange: 3
+  AttackRange: 2
   AttackCoolDown: 0.2
   TargetLayermask:
     serializedVersion: 2
     m_Bits: 512
+  PercentSpeedUpThenScream: 3
+  DurationSpeedUp: 3

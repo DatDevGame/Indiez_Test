@@ -17,3 +17,7 @@ MonoBehaviour:
     type: 2}
   OpponentHealthBarMaterial: {fileID: 2100000, guid: de42c80c662734f40bedcff0bd8ada54,
     type: 2}
+  GhoulHealthBarMaterial: {fileID: 2100000, guid: 703ede3a2c5fd104b9e582c980a2bb87,
+    type: 2}
+  BossGhoulHealthBarMaterial: {fileID: 2100000, guid: cfcdba7b0cd40cc45aa03d4c22d5b71e,
+    type: 2}

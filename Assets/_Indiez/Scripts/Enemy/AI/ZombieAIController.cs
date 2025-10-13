@@ -15,7 +15,8 @@ public class ZombieAIController : AIBotController, INavigationPoint
     public Transform Visual => m_Visual;
 
     [SerializeField, BoxGroup("Reference")] protected EnemyBase m_EnemyBase;
-    [SerializeField, BoxGroup("Reference")] protected Transform m_Visual; 
+    [SerializeField, BoxGroup("Reference")] protected Transform m_Visual;
+    [SerializeField, BoxGroup("Reference")] protected Transform m_CenterPoint;
     [SerializeField, BoxGroup("Reference")] protected CharacterController m_CharacterController;
 
     private ZombieAIProfile m_ZombieAIProfile;
@@ -37,6 +38,7 @@ public class ZombieAIController : AIBotController, INavigationPoint
     {
         base.InitializeStateMachine();
     }
+    public List<INavigationPoint> testPro;
     public override List<INavigationPoint> FindTargetsInRange()
     {
         var targets = new List<INavigationPoint>();
@@ -52,6 +54,7 @@ public class ZombieAIController : AIBotController, INavigationPoint
                 targets.Add(navPoint);
             }
         }
+        testPro = targets;
         return targets;
     }
     public bool IsAvailable()
@@ -64,11 +67,11 @@ public class ZombieAIController : AIBotController, INavigationPoint
     }
     public Vector3 GetSelfPoint()
     {
-        return transform.position;
+        return m_CenterPoint == null ? transform.position : m_CenterPoint.position;
     }
     public Vector3 GetTargetPoint()
     {
-        return m_Target == null ? GetSelfPoint() * 999 : m_Target.GetSelfPoint();
+        return m_Target == null ? GetSelfPoint() : m_Target.GetSelfPoint();
     }
 
     protected void OnDead(EnemyBase enemyBase)

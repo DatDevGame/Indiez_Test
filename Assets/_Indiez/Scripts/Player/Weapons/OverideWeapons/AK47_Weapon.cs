@@ -10,7 +10,15 @@ public class AK47_Weapon : BaseWeapon
 {
     public override void Fire()
     {
-        // --- Bullet ---
+        INavigationPoint navigationPoint = (INavigationPoint)m_Owner;
+        Vector3 targetPoint = navigationPoint.GetTargetPoint();
+        Vector3 dirToTarget = (targetPoint - m_FakePoinfire.position).normalized;
+
+        dirToTarget = ApplyRecoilSpread(dirToTarget, weaponSO.RandomAngleRecol);
+
+        Quaternion targetRot = Quaternion.LookRotation(dirToTarget);
+
+        // --- Bullet Pool ---
         var bulletPool = PoolManager.GetOrCreatePool<BaseBullet>(
             objectPrefab: BulletPrefab,
             initialCapacity: 1
@@ -34,9 +42,10 @@ public class AK47_Weapon : BaseWeapon
         fireVFX.Play();
         fireVFX.Release(m_BulletMuzzleFirePrefab, 0.2f);
 
+        // --- Bullet setup ---
         bullet.transform.SetPositionAndRotation(
             m_FakePoinfire.position,
-            m_FakePoinfire.rotation
+            targetRot
         );
         bullet.gameObject.SetActive(true);
         bullet.gameObject.layer = m_Owner.gameObject.layer;
@@ -44,4 +53,16 @@ public class AK47_Weapon : BaseWeapon
         bullet.Shoot();
     }
 
+    /// <summary>
+    /// Tạo độ lệch ngẫu nhiên nhỏ quanh hướng bắn chính.
+    /// </summary>
+    private Vector3 ApplyRecoilSpread(Vector3 direction, float maxAngle)
+    {
+        // Random trong hình nón có góc maxAngle
+        float angle = Random.Range(-maxAngle, maxAngle);
+        float yaw = Random.Range(-maxAngle, maxAngle);
+
+        Quaternion spreadRot = Quaternion.Euler(angle, yaw, 0f);
+        return spreadRot * direction;
+    }
 }

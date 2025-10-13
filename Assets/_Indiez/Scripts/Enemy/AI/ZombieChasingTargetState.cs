@@ -18,6 +18,9 @@ public class ZombieChasingTargetState : AIBotState
     protected float m_RepathThreshold = 0.2f;
     protected float m_ForceRepathInterval = 1f;
     protected float m_ForceRepathTimer = 0f;
+
+    protected float m_OriginSpeed;
+    protected float m_SpeedupTimer;
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
@@ -37,6 +40,10 @@ public class ZombieChasingTargetState : AIBotState
         m_ZombieAIController.NavMeshAgent.isStopped = false;
         m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Idle, false);
         m_ZombieAIController.Animator.SetBool(m_ZombieAIController.AnimationKeySO.Walking, true);
+
+        m_OriginSpeed = m_ZombieAIController.NavMeshAgent.speed;
+        m_SpeedupTimer = m_ZombieAIController.EnemyBase.StatsSOData.DurationSpeedUp;
+        m_ZombieAIController.NavMeshAgent.speed += m_ZombieAIController.NavMeshAgent.speed * m_ZombieAIController.EnemyBase.StatsSOData.PercentSpeedUpThenScream;
     }
 
     protected override void OnStateDisable()
@@ -48,6 +55,10 @@ public class ZombieChasingTargetState : AIBotState
     protected override void OnStateUpdate()
     {
         base.OnStateUpdate();
+        m_SpeedupTimer -= Time.deltaTime;
+        if (m_SpeedupTimer <= 0)
+            m_ZombieAIController.NavMeshAgent.speed = m_OriginSpeed;
+            
         if (m_ZombieAIController.Target == null)
             return;
 
@@ -66,7 +77,20 @@ public class ZombieChasingTargetState : AIBotState
         if (!IsVectorValid(targetPosition))
             return;
 
-        m_ZombieAIController.Visual.transform.DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
+        float heightDiff = Mathf.Abs(targetPosition.y - m_ZombieAIController.Visual.transform.position.y);
+        if (heightDiff > 1f)
+        {
+            Vector3 parentForward = m_ZombieAIController.Visual.transform.parent.forward;
+            m_ZombieAIController.Visual.transform.DOLookAt(
+                m_ZombieAIController.Visual.transform.position + parentForward,
+                0.2f,
+                AxisConstraint.Y
+            );
+        }
+        else
+        {
+            m_ZombieAIController.Visual.transform.DOLookAt(targetPosition, 0.2f, AxisConstraint.Y);
+        }
 
         m_ForceRepathTimer += deltaTime;
 
@@ -81,6 +105,7 @@ public class ZombieChasingTargetState : AIBotState
             m_ForceRepathTimer = 0f;
         }
     }
+
 
     private bool IsVectorValid(Vector3 vec)
     {
@@ -115,7 +140,8 @@ public class ZombieChasingToAttackTransition : AIBotStateTransition
     {
         if (m_ZombieAIController == null) return false;
         float distanceToTarget = Vector3.Distance(m_ZombieAIController.transform.position, vecTarget);
-        return distanceToTarget <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange && m_ZombieAIController.IsAvailable();
+        float attackRange = m_ZombieAIController.EnemyBase.EnemyStats.AttackRange;
+        return distanceToTarget <= attackRange && m_ZombieAIController.IsAvailable();
     }
 }
 [Serializable]

@@ -41,7 +41,7 @@ public class ZombiePrototype : EnemyBase, IDamageable
             m_HealthBar = gameObject.GetComponentInChildren<HealthBar>();
         m_HealthBarMesh.material = new Material(m_HealthBarSO.OpponentHealthBarMaterial);
         RangeIntValue range = new RangeIntValue(0, m_EnemyStats.Health);
-        var progress = new RangeProgress<int>(range, 100);
+        var progress = new RangeProgress<int>(range, m_EnemyStats.Health);
         m_HealthBar.Init(progress);
 
         m_ZombieAIController.InitializeStateMachine();
