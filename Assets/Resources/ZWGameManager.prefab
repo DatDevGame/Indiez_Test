@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6111083475723884249}
   - component: {fileID: 7309752252014169835}
+  - component: {fileID: 2133611242406730756}
   m_Layer: 0
   m_Name: ZWGameManager
   m_TagString: Untagged
@@ -47,3 +48,21 @@ MonoBehaviour:
   m_Verbose: 1
   m_KeepAlive: 1
   m_DuplicateAllow: 0
+--- !u!114 &2133611242406730756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8084207547847604581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38606303e4f1e446abe660bfa8e6d496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SelfInitialize: 1
+  m_SceneSFXLibrarySO:
+  - {fileID: 11400000, guid: 57029ecef7b644243b0a40a0b6c47dc5, type: 2}
+  - {fileID: 11400000, guid: b47f9ece18b152146bd5d0df7d0387e8, type: 2}
+  - {fileID: 11400000, guid: 7ab43aee527f9c94cbd01a182fb6fc7e, type: 2}
+  m_SceneBGMLibrarySO: []

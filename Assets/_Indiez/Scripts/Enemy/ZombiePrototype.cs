@@ -155,6 +155,7 @@ public class ZombiePrototype : EnemyBase, IDamageable
             bulletImpact.Play();
             bulletImpact.Release(bulletImpactPrefab, 0.2f);
             #endregion
+            SoundManager.Instance.PlaySFX(ZombieSFX.ImpactZombie_2, 0.2f);
         }
 
         if (m_EnemyStats.Health <= 0)

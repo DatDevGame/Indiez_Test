@@ -41,5 +41,6 @@ public class Desert_Eagle_Weapon : BaseWeapon
         bullet.gameObject.layer = m_Owner.gameObject.layer;
         bullet.OnInit(this);
         bullet.Shoot();
+        SoundManager.Instance.PlaySFX(ZWSoundSFX.DE, 0.2f);
     }
 }

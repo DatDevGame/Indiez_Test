@@ -8,5 +8,17 @@ public class Boss_Ghoul_Zombie : ZombiePrototype
     {
         base.Init(statsSO);
         m_HealthBarMesh.material = new Material(m_HealthBarSO.BossGhoulHealthBarMaterial);
+
+        PlayRandomCreamSFX();
+        void PlayRandomCreamSFX()
+        {
+            ZombieSFX[] attackSounds =
+            {
+                    ZombieSFX.BossCream_1,
+                    ZombieSFX.ImpactZombie_2,
+                };
+            int randomIndex = UnityEngine.Random.Range(0, attackSounds.Length);
+            SoundManager.Instance.PlaySFX(attackSounds[randomIndex]);
+        }
     }
 }

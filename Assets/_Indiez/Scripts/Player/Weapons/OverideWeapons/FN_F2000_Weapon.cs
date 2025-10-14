@@ -40,5 +40,6 @@ public class FN_F2000_Weapon : BaseWeapon
         bullet.gameObject.layer = m_Owner.gameObject.layer;
         bullet.OnInit(this);
         bullet.Shoot();
+        SoundManager.Instance.PlaySFX(ZWSoundSFX.F2000, 0.1f);
     }
 }

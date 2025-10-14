@@ -21,7 +21,7 @@ MonoBehaviour:
     SpawnInterval: 0.4
     StartDelay: 1
     ZombieTypes:
-    - ZombiePrefab: {fileID: 3623713231717001629, guid: b84086db6d14db04699271da9dba418d,
+    - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       SpawnPercent: 100
   - ZombieCount: 25

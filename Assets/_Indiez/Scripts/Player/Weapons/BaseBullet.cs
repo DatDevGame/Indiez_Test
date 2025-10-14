@@ -127,12 +127,28 @@ public class BaseBullet : MonoBehaviour
                 bulletImpact.gameObject.SetActive(true);
                 bulletImpact.Play();
                 bulletImpact.Release(bulletImpactPrefab, 1);
+                PlayRandomImpactSFX();
             }
             #endregion
         }
         Despawn();
     }
 
+
+    private void PlayRandomImpactSFX()
+    {
+        SFXImpact[] attackSounds =
+        {
+                    SFXImpact.ImpactWall_1,
+                    SFXImpact.ImpactWall_2,
+                    SFXImpact.ImpactWall_3,
+                    SFXImpact.ImpactWall_4,
+                    SFXImpact.ImpactWall_5,
+                };
+
+        int randomIndex = UnityEngine.Random.Range(0, attackSounds.Length);
+        SoundManager.Instance.PlaySFX(attackSounds[randomIndex], 0.05f);
+    }
 
     protected virtual void Despawn()
     {

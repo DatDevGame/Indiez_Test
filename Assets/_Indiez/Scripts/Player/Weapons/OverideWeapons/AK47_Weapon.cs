@@ -8,9 +8,13 @@ using UnityEngine;
 
 public class AK47_Weapon : BaseWeapon
 {
+    private Soldier_1 m_Soldier_1;
     public override void Fire()
     {
         INavigationPoint navigationPoint = (INavigationPoint)m_Owner;
+        if (m_Soldier_1 == null)
+            m_Soldier_1 = (Soldier_1)m_Owner;
+
         Vector3 targetPoint = navigationPoint.GetTargetPoint();
         Vector3 dirToTarget = (targetPoint - m_FakePoinfire.position).normalized;
 
@@ -51,6 +55,7 @@ public class AK47_Weapon : BaseWeapon
         bullet.gameObject.layer = m_Owner.gameObject.layer;
         bullet.OnInit(this);
         bullet.Shoot();
+        SoundManager.Instance.PlaySFX(ZWSoundSFX.AKM, 0.1f);
     }
 
     /// <summary>

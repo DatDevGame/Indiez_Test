@@ -28,7 +28,7 @@ MonoBehaviour:
     RevolverLocalRotation: {x: -7.607, y: 108.53, z: 65.022}
     LeftHandIkHintLocalPosion: {x: -1.109, y: 0.803, z: 0}
     LeftHandIkHintLocalRotation: {x: 0, y: 0, z: 0}
-  RandomAngleRecol: 2
+  RandomAngleRecol: 4
   PointFirePos: {x: 0.140346, y: -0.5382035, z: 0.01228881}
   PointFireEur: {x: 103.369, y: 43.08501, z: 132.512}
   IdleAnimationKey: Assault_Idle_Bool

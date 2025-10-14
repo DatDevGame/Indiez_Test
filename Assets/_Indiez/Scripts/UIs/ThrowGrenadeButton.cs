@@ -12,11 +12,12 @@ public class ThrowGrenadeButton : MonoBehaviour
     [SerializeField, BoxGroup("Config")] private float m_CooldownTime = 5f;
 
     private bool m_IsCooldown = false;
+    private Soldier_1 m_Soldier_1;
 
     private void Awake()
     {
         m_Button.onClick.AddListener(OnClickButton);
-
+        m_Soldier_1 = FindObjectOfType<Soldier_1>();
         if (m_CooldownImage != null)
         {
             m_CooldownImage.type = Image.Type.Filled;
@@ -26,14 +27,21 @@ public class ThrowGrenadeButton : MonoBehaviour
             m_CooldownImage.fillAmount = 0f;
         }
     }
-
     private void OnDestroy()
     {
         m_Button.onClick.RemoveListener(OnClickButton);
     }
 
+    private void Update()
+    {
+        if (m_Soldier_1 != null)
+            m_Button.interactable = m_Soldier_1.IsAiming;
+    }
+
     private void OnClickButton()
     {
+        if (!m_Soldier_1.IsAiming || m_Soldier_1.TargetNavigationPoint == null)
+            return;
         if (m_IsCooldown)
             return;
 

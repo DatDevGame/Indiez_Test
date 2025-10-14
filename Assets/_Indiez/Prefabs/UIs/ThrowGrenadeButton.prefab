@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 7898863872097481505}
   - component: {fileID: 7384298122185301288}
   - component: {fileID: 2757957994714256317}
+  - component: {fileID: 638435789643549609}
   m_Layer: 0
   m_Name: ThrowGrenadeButton
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8038393482917284282}
   m_OnClick:
     m_PersistentCalls:
@@ -227,6 +228,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!225 &638435789643549609
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402901810128065213}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7920701494935424980
 GameObject:
   m_ObjectHideFlags: 0

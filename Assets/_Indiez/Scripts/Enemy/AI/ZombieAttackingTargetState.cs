@@ -103,7 +103,19 @@ public class ZombieAttackingTargetState : AIBotState
         if (distanceAttack <= m_ZombieAIController.EnemyBase.EnemyStats.AttackRange * 1.1f && m_Target != null)
         {
             m_Target.TakeDamage(m_ZombieAIController.EnemyBase.EnemyStats.AttackDamage, Vector3.zero);
-            //SoundManager.Instance.PlayLoopSFX(m_ZombieAIController.EnemyBase.GetRandomPunchSound(), volumn: 0.5f);
+            PlayRandomAttackSFX();
+            
+            void PlayRandomAttackSFX()
+            {
+                ZombieSFX[] attackSounds =
+                {
+                    ZombieSFX.ZombieAttack_1,
+                    ZombieSFX.ZombieAttack_2,
+                };
+
+                int randomIndex = UnityEngine.Random.Range(0, attackSounds.Length);
+                SoundManager.Instance.PlaySFX(attackSounds[randomIndex], 0.5f);
+            }
         }
     }
 

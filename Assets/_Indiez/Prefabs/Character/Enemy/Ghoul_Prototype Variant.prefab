@@ -1492,6 +1492,41 @@ PrefabInstance:
       propertyPath: m_RagdollColliders.Array.data[10]
       value: 
       objectReference: {fileID: 7359474330014153988}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: MinDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dd8caf021f591fd448a7d6ba10d4c485, type: 3}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491693081646592769, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3062374445143352276, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1596,7 +1631,7 @@ PrefabInstance:
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       propertyPath: ExtraPelvisOffset.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4187447276237601739, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Premium.PoolManagement;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GrenadeSoldier : BombBase
@@ -19,6 +20,7 @@ public class GrenadeSoldier : BombBase
 
     protected override void Explode()
     {
+        SoundManager.Instance.PlaySFX(ZWSoundSFX.GrenadeExplosion);
         base.Explode();
         PoolManager.Release(m_Owner.GrenadeSoldierPrefab, this);
         gameObject.SetActive(false);
@@ -76,4 +78,16 @@ public class GrenadeSoldier : BombBase
         m_Rb.velocity = velocity;
     }
 
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            SoundManager.Instance.PlaySFX(ZWSoundSFX.GrenadeImpact);
+        }
+        else if (col.gameObject.CompareTag("Wall"))
+        {
+            SoundManager.Instance.PlaySFX(ZWSoundSFX.GrenadeImpact);
+        }
+    }
 }
