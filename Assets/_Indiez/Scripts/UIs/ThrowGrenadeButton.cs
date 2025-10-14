@@ -37,7 +37,7 @@ public class ThrowGrenadeButton : MonoBehaviour
         if (m_Soldier_1 != null)
             m_Button.interactable = m_Soldier_1.IsAiming;
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.J))
             OnClickButton();
 
     }

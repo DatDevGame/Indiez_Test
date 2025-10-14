@@ -18,25 +18,15 @@ MonoBehaviour:
   Description: 
   ZombieWaves:
   - ZombieCount: 50
-    SpawnInterval: 1
+    SpawnInterval: 0.3
     StartDelay: 1
     ZombieTypes:
     - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
       SpawnPercent: 100
   - ZombieCount: 50
-    SpawnInterval: 1
-    StartDelay: 1
-    ZombieTypes:
-    - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
-        type: 3}
-      SpawnPercent: 70
-    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
-        type: 3}
-      SpawnPercent: 30
-  - ZombieCount: 50
     SpawnInterval: 0.5
-    StartDelay: 2
+    StartDelay: 1
     ZombieTypes:
     - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
         type: 3}
@@ -46,6 +36,16 @@ MonoBehaviour:
       SpawnPercent: 30
   - ZombieCount: 50
     SpawnInterval: 0.3
+    StartDelay: 2
+    ZombieTypes:
+    - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,
+        type: 3}
+      SpawnPercent: 70
+    - ZombiePrefab: {fileID: 97523857700093787, guid: 08d6f15f5f7e75f4fa818bca94987c4f,
+        type: 3}
+      SpawnPercent: 30
+  - ZombieCount: 50
+    SpawnInterval: 0.2
     StartDelay: 2
     ZombieTypes:
     - ZombiePrefab: {fileID: 3623713231717001629, guid: e55ac1effc805d64ab230571a18d43a0,

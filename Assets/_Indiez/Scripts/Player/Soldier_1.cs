@@ -8,8 +8,6 @@ using Premium.PoolManagement;
 using Sirenix.OdinInspector;
 using HCore.Events;
 using FIMSpace.FProceduralAnimation;
-using System;
-
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -17,7 +15,6 @@ using UnityEditor;
 
 public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
-    public Action OnStopFire = delegate { };
     public Transform Visual => m_Visual;
     public bool IsAiming => m_IsAiming;
     public INavigationPoint TargetNavigationPoint => m_TargetNavigationPoint;
@@ -52,6 +49,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected IDamageable m_TargetDamagable;
     protected INavigationPoint m_TargetNavigationPoint;
+
 
     protected virtual void Awake()
     {
@@ -182,23 +180,18 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
         if (m_TargetNavigationPoint == null)
             return;
-
         m_ChangeWeaponTimer -= Time.deltaTime;
 
-        float attackRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range;
-        float lookAtRange = attackRange * 1.5f;
-
+        float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.5f;
         float distance = Vector3.Distance(transform.position, GetTargetPoint());
-        bool inAttackRange = distance < attackRange && m_TargetNavigationPoint.IsAvailable();
-        bool inLookRange = distance < lookAtRange && m_TargetNavigationPoint.IsAvailable();
+        bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
 
-        // Nếu target nằm trong tầm nhìn
-        if (inLookRange && m_ChangeWeaponTimer <= 0)
+        if (canLook && m_ChangeWeaponTimer <= 0)
         {
             m_IsLooking = true;
-
             Vector3 targetPoint = GetTargetPoint();
             Vector3 dirToTarget = targetPoint - m_Visual.position;
+
             Vector3 flatDir = dirToTarget;
             flatDir.y = 0f;
 
@@ -219,22 +212,21 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
             Quaternion aimRot = Quaternion.LookRotation(muzzleDir, m_Visual.up);
             m_FakePointfire.rotation = aimRot;
 
-            // Nếu mục tiêu ra khỏi attack range => ngắt aim luôn
-            if (!inAttackRange)
-            {
-                StopAiming();
-                return;
-            }
-
             if (!m_IsFacingTarget)
             {
                 m_Visual.DOLookAt(targetPoint, 0.2f, AxisConstraint.Y);
                 return;
             }
 
+
             if (!m_IsAiming)
             {
-                StartAiming();
+                m_IsAiming = true;
+                string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
+                m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
+                m_Animator.SetBool(aimState, true);
+
+                m_WeaponHolder.AimIK();
             }
             else
             {
@@ -243,38 +235,25 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         }
         else
         {
-            StopAiming();
+            m_IsLooking = false;
+            if (m_IsAiming)
+            {
+                m_IsAiming = false;
+
+                string idleState = m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey;
+                m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey, false);
+                m_Animator.SetBool(idleState, true);
+
+                m_WeaponHolder.IdleIK();
+            }
         }
     }
-
-    private void StartAiming()
-    {
-        m_IsAiming = true;
-        string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
-        m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
-        m_Animator.SetBool(aimState, true);
-        m_WeaponHolder.AimIK();
-    }
-
-    private void StopAiming()
-    {
-        if (!m_IsAiming) return;
-        OnStopFire?.Invoke();
-        m_IsAiming = false;
-
-        string idleState = m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey;
-        m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey, false);
-        m_Animator.SetBool(idleState, true);
-        m_WeaponHolder.IdleIK();
-    }
-
-
 
     protected void OnUpdateAttack()
     {
         if (m_TargetNavigationPoint == null || !m_IsLooking || !m_IsAiming)
             return;
-
+        Debug.Log($"Key Main -> 5");
         m_TriggerTimer -= Time.deltaTime;
         float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
         if (distanceAttack > m_WeaponHolder.CurrentWeapon.WeaponStats.Range)
@@ -327,7 +306,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         grenadeSoldier.OnInit(this);
         grenadeSoldier.StartFuse();
         grenadeSoldier.ThrowToTargetByDistance(m_GrenadePoint.position, GetTargetPoint(), m_SpeedsMulty, m_ArcFactor);
-        SoundManager.Instance.PlaySFX(ZWSoundSFX.GrenadeThorow);
     }
 
     protected List<INavigationPoint> FindTargetsInRange()

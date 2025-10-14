@@ -45,7 +45,7 @@ MonoBehaviour:
       type: {class: WeaponInfoModule, ns: , asm: Assembly-CSharp}
       data:
         m_ItemSO: {fileID: 11400000}
-        Damage: 15
+        Damage: 25
         FireRate: 0.04
         Range: 10
         Ammo: -1
