@@ -46,7 +46,7 @@ MonoBehaviour:
       data:
         m_ItemSO: {fileID: 11400000}
         Damage: 30
-        FireRate: 0.08
+        FireRate: 0.06
         Range: 12
         Ammo: -1
         MaxAmmo: -1
