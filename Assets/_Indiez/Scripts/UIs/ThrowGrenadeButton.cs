@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using HCore.Events;
+using Premium;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class ThrowGrenadeButton : MonoBehaviour
 {
     [SerializeField, BoxGroup("Referrence")] private Button m_Button;
     [SerializeField, BoxGroup("Referrence")] private Image m_CooldownImage;
+    [SerializeField, BoxGroup("Referrence")] private CanvasGroupVisibility m_CanvasGroupVisibility;
     [SerializeField, BoxGroup("Config")] private float m_CooldownTime = 5f;
 
     private bool m_IsCooldown = false;
@@ -16,6 +18,8 @@ public class ThrowGrenadeButton : MonoBehaviour
 
     private void Awake()
     {
+        GameEventHandler.AddActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
+
         m_Button.onClick.AddListener(OnClickButton);
         m_Soldier_1 = FindObjectOfType<Soldier_1>();
         if (m_CooldownImage != null)
@@ -29,6 +33,8 @@ public class ThrowGrenadeButton : MonoBehaviour
     }
     private void OnDestroy()
     {
+        GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
+
         m_Button.onClick.RemoveListener(OnClickButton);
     }
 
@@ -40,6 +46,11 @@ public class ThrowGrenadeButton : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
             OnClickButton();
 
+    }
+
+    private void OnLevelEnd(params object[] parameters)
+    {
+        m_CanvasGroupVisibility.Hide();
     }
 
     private void OnClickButton()

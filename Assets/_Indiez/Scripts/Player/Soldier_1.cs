@@ -37,7 +37,6 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected float m_TriggerTimer;
     protected float m_ChangeWeaponTimer;
-    protected float m_ThenAimTimer;
     protected float m_ForwardDistance = 0.8f;
     protected bool m_IsLooking = false;
     protected bool m_IsAiming = false;
@@ -168,12 +167,23 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
     }
 
 
+
+    private float m_TrackAimTimer;
+    private float m_TrackAimDelay = 0.2f;
     protected virtual void LookAtTarget()
     {
         if (m_TargetNavigationPoint == null)
+        {
+            m_TrackAimTimer -= Time.deltaTime;
+            if (m_TrackAimTimer <= 0)
+            {
+                ResetIdle();
+            }
             return;
-        m_ChangeWeaponTimer -= Time.deltaTime;
+        }
 
+        m_ChangeWeaponTimer -= Time.deltaTime;
+        m_TrackAimTimer = m_TrackAimDelay;
         float lookatRange = m_WeaponHolder.CurrentWeapon.WeaponStats.Range * 1.5f;
         float distance = Vector3.Distance(transform.position, GetTargetPoint());
         bool canLook = distance < lookatRange && m_TargetNavigationPoint.IsAvailable();
@@ -218,18 +228,12 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
                 m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
                 m_Animator.SetBool(aimState, true);
                 m_WeaponHolder.AimIK();
-                m_TrackAimTimer = m_TrackAimDelay;
-            }
-            else
-            {
-                m_ThenAimTimer -= Time.deltaTime;
             }
         }
         else
         {
             m_IsLooking = false;
-            m_TrackAimTimer -= Time.deltaTime;
-            if (m_IsAiming && m_TrackAimTimer <= 0)
+            if (m_IsAiming)
             {
                 m_IsAiming = false;
 
@@ -241,9 +245,16 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         }
     }
 
-    private float m_TrackAimTimer;
-    private float m_TrackAimDelay = 0.2f;
-
+    private void ResetIdle()
+    {
+        if (m_IsAiming || m_IsLooking)
+        {
+            m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey, false);
+            m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, true);
+        }
+        m_IsAiming = false;
+        m_IsLooking = false;
+    }
 
     protected void OnUpdateAttack()
     {

@@ -39,7 +39,8 @@ public class GameOverUI : MonoBehaviour
         bool isVictory = (bool)parameters[0];
         string title = isVictory ? "Victory" : "Lose";
         m_Title.SetText($"{title}");
-        m_CanvasGroupVisibility.Show();
+
+        StartCoroutine(CommonCoroutine.Delay(3, false, () => { m_CanvasGroupVisibility.Show(); }));
     }
 
     private void OnContinue()
