@@ -197,6 +197,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -8153468022190502949, guid: 9c90fa55d3e92e8459c665d076b6e5b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7853120362946791194, guid: 9c90fa55d3e92e8459c665d076b6e5b3,
         type: 3}
       propertyPath: m_Lightmapping
