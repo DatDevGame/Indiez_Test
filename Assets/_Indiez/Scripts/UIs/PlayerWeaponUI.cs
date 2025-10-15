@@ -41,11 +41,13 @@ public class PlayerWeaponUI : MonoBehaviour
     private void OnLevelStart()
     {
         m_CanvasGroupVisibility.Show();
+        Debug.Log($"Key Pro -> Show {m_CanvasGroupVisibility}");
     }
 
     private void OnLevelEnd()
     {
         m_CanvasGroupVisibility.Hide();
+        Debug.Log($"Key Pro -> End {m_CanvasGroupVisibility}");
     }
 
     private void OnClickButton()

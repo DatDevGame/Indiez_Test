@@ -16,6 +16,9 @@ public class PVELevelController : MonoBehaviour
     [SerializeField, BoxGroup("Data")] private IntVariable m_CurrentWave;
     [SerializeField, BoxGroup("Data")] private PPrefIntVariable m_CurrentLevelPPref;
 
+    [SerializeField, BoxGroup("Test")] private GameObject m_PlayerWeaponUI;
+    [SerializeField, BoxGroup("Test")] private CanvasGroup m_CanvasGroupTest;
+
     private List<EnemyBase> m_EnemyBases;
     private int m_CurrentWaveIndex = 0;
     private int m_AliveZombieCount = 0;
@@ -25,6 +28,13 @@ public class PVELevelController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartLevel());
+    }
+
+    private void Update()
+    {
+        Debug.Log($"Key Pro - 1 - {m_PlayerWeaponUI.activeSelf}");
+        
+        Debug.Log($"Key Pro - 2 - {m_CanvasGroupTest.alpha}");
     }
 
     private IEnumerator StartLevel()

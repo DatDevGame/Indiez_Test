@@ -56,6 +56,8 @@ public class ZombiePrototype : EnemyBase, IDamageable
         m_HealthBarMesh.enabled = m_IsAlive;
         m_CharacterController.enabled = m_IsAlive;
         m_RagdollController.DisableRagdoll();
+
+        SetLayerRecursively(gameObject, LayerMask.NameToLayer("Enemy"));
     }
 
     protected virtual void InitDissolveMat()
@@ -105,6 +107,8 @@ public class ZombiePrototype : EnemyBase, IDamageable
         m_HealthBarMesh.enabled = m_IsAlive;
         m_CharacterController.enabled = m_IsAlive;
         m_RagdollController.EnableRagdoll();
+
+        SetLayerRecursively(gameObject, LayerMask.NameToLayer("EnemyDead"));
     }
 
     private void ResetAnimator()
@@ -163,9 +167,9 @@ public class ZombiePrototype : EnemyBase, IDamageable
             Dead();
             m_EnemyStats.Health = 0;
 
-            StartCoroutine(CommonCoroutine.Delay(3, false, () =>
+            StartCoroutine(CommonCoroutine.Delay(1.5f, false, () =>
             {
-                float coolDownTime = 5;
+                float coolDownTime = 2f;
                 foreach (var dissolveMat in m_IndiMatSkins)
                     m_AnimateDissolve.PlayDissolve(dissolveMat, coolDownTime);
                 m_SkinnedMeshRenderers.ForEach(v => v.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off);
@@ -193,6 +197,13 @@ public class ZombiePrototype : EnemyBase, IDamageable
                 Destroy(mat);
         }
         m_IndiMatSkins.Clear();
+    }
+
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+            SetLayerRecursively(child.gameObject, newLayer);
     }
 
 

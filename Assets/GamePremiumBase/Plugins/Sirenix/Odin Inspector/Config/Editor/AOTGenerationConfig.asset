@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 090000000d0000000200000005000000
-  lastScan: 638961441837334620
+  lastScan: 638961537848194618
   supportSerializedTypes:
   - TypeName: UnityEngine.AudioClip, UnityEngine.AudioModule
     IsCustom: 0

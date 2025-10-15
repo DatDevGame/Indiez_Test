@@ -2628,7 +2628,7 @@ PrefabInstance:
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}
       propertyPath: GroundMask.m_Bits
-      value: 128
+      value: 8320
       objectReference: {fileID: 0}
     - target: {fileID: 8538735769338626951, guid: 774ab0eaf7be5d04cbaee959707db598,
         type: 3}

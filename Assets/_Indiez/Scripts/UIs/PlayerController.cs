@@ -35,16 +35,13 @@ public class PlayerController : MonoBehaviour
         GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelStart, OnLevelStart);
         GameEventHandler.RemoveActionEvent(PVEEventCode.OnLevelEnd, OnLevelEnd);
     }
-    private void Start()
+
+    private void OnLevelStart()
     {
         if (m_Player == null)
             m_Player = FindObjectOfType<BaseSoldier>();
-        m_Soldier = m_Player as Soldier_1;
-    }
-    private void OnLevelStart()
-    {
-
         m_Player.OnDead += OnDead;
+        m_Soldier = m_Player as Soldier_1;
         SetActive(true);
     }
 
@@ -64,7 +61,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDir = new Vector3(m_Horizontal, 0, m_Vertical);
         float inputStrength = Mathf.Clamp01(inputDir.magnitude);
-        Debug.Log($"Key Pro - 1 - {inputStrength}");
         if (inputStrength > 0.01f)
         {
             Vector3 camForward = m_Cam.transform.forward;
@@ -76,24 +72,23 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDir = (camForward * m_Vertical + camRight * m_Horizontal).normalized;
 
             moveDir = Vector3.ProjectOnPlane(moveDir, Vector3.up).normalized;
-            Debug.Log($"Key Pro - 2 - {moveDir}");
             float speed = m_Player.SoldierStats.MoveSpeed * inputStrength;
             m_Player.CharacterController.Move(moveDir * m_Player.SoldierStats.MoveSpeed * Time.deltaTime);
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
 
-            Debug.Log($"Key Pro - 3 - {m_Soldier.Visual.transform.rotation}");
             m_Soldier.Visual.transform.rotation = Quaternion.Slerp(
                 m_Soldier.Visual.transform.rotation,
                 targetRotation,
                 Time.deltaTime * 3f
             );
-            Debug.Log($"Key Pro - 4 - {m_Soldier.Visual.transform.rotation}");
         }
     }
+
     private void OnDead()
     {
         SetActive(false);
     }
+
     public void SetActive(bool isActive)
     {
         this.isActive = isActive;
