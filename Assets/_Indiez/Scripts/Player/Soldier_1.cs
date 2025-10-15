@@ -169,14 +169,14 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 
     protected virtual void LookAtTarget()
     {
-        if (!m_CharacterController.isGrounded)
-        {
-            m_Visual.eulerAngles = Vector3.zero;
-            m_IsLooking = false;
-            m_IsFacingTarget = false;
-            m_IsAiming = false;
-            return;
-        }
+        // if (!m_CharacterController.isGrounded)
+        // {
+        //     m_Visual.eulerAngles = Vector3.zero;
+        //     m_IsLooking = false;
+        //     m_IsFacingTarget = false;
+        //     m_IsAiming = false;
+        //     return;
+        // }
 
         if (m_TargetNavigationPoint == null)
             return;

@@ -142,8 +142,8 @@ PlayerSettings:
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
   preloadedAssets:
-  - {fileID: -3288868439431871196, guid: c195dc31cf75d3f4f99b9a45749e6866, type: 2}
   - {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
+  - {fileID: -3288868439431871196, guid: c195dc31cf75d3f4f99b9a45749e6866, type: 2}
   - {fileID: 11400000, guid: dc1a4ed7e8349b349b0b139a7fe93ab2, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -835,7 +835,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
-    Android: 0
+    Android: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration:
     Android: 0
@@ -940,7 +940,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: a8bf476b-a110-4915-9acb-3f904b94f40e
   framebufferDepthMemorylessMode: 0

@@ -33,6 +33,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - Cinemachine
     - Coffee.UIParticle
+    - IngameDebugConsole.Runtime
     - KinoBloom.Runtime
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo

@@ -190,6 +190,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1100709018 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1050528150896456328, guid: adefa3ec9d2e30b43ae63b446a4ae654,
+    type: 3}
+  m_PrefabInstance: {fileID: 6541619525904747027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1296937426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -292,7 +298,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1100709018}
     - target: {fileID: 5990464704321945237, guid: dfd80b3b50b91a345898319087d1183d,
         type: 3}
       propertyPath: m_Lens.FieldOfView
