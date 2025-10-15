@@ -76,11 +76,15 @@ public class PlayerController : MonoBehaviour
             m_Player.CharacterController.Move(moveDir * m_Player.SoldierStats.MoveSpeed * Time.deltaTime);
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
 
-            m_Soldier.Visual.transform.rotation = Quaternion.Slerp(
-                m_Soldier.Visual.transform.rotation,
-                targetRotation,
-                Time.deltaTime * 3f
-            );
+            if (!m_Soldier.IsAiming && !m_Soldier.IsLooking)
+            {
+                m_Soldier.Visual.transform.rotation = Quaternion.Slerp(
+                    m_Soldier.Visual.transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * 3f
+                );
+            }
+
         }
     }
 

@@ -17,6 +17,7 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
 {
     public Transform Visual => m_Visual;
     public bool IsAiming => m_IsAiming;
+    public bool IsLooking => m_IsLooking;
     public INavigationPoint TargetNavigationPoint => m_TargetNavigationPoint;
 
     [SerializeField, BoxGroup("Config")] protected LegsAnimator.PelvisImpulseSettings m_HitDamgePelvisImpulse;
@@ -216,8 +217,8 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
                 string aimState = m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey;
                 m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey, false);
                 m_Animator.SetBool(aimState, true);
-
                 m_WeaponHolder.AimIK();
+                m_TrackAimTimer = m_TrackAimDelay;
             }
             else
             {
@@ -227,24 +228,28 @@ public class Soldier_1 : BaseSoldier, INavigationPoint, IDamageable
         else
         {
             m_IsLooking = false;
-            if (m_IsAiming)
+            m_TrackAimTimer -= Time.deltaTime;
+            if (m_IsAiming && m_TrackAimTimer <= 0)
             {
                 m_IsAiming = false;
 
                 string idleState = m_WeaponHolder.CurrentWeapon.WeaponSO.IdleAnimationKey;
                 m_Animator.SetBool(m_WeaponHolder.CurrentWeapon.WeaponSO.AimAnimationKey, false);
                 m_Animator.SetBool(idleState, true);
-
                 m_WeaponHolder.IdleIK();
             }
         }
     }
 
+    private float m_TrackAimTimer;
+    private float m_TrackAimDelay = 0.2f;
+
+
     protected void OnUpdateAttack()
     {
         if (m_TargetNavigationPoint == null || !m_IsLooking || !m_IsAiming)
             return;
-        Debug.Log($"Key Main -> 5");
+
         m_TriggerTimer -= Time.deltaTime;
         float distanceAttack = Vector3.Distance(transform.position, m_TargetNavigationPoint.GetSelfPoint());
         if (distanceAttack > m_WeaponHolder.CurrentWeapon.WeaponStats.Range)
